@@ -58,7 +58,7 @@ BGS = {
 }
 
 def load(n): return Image.open(os.path.join(HERE, "assets", n)).convert("RGB")
-ASSETS = {n: load(n + ".png") for n in ["logo", "atv_home", "atv_gids", "atv_movies", "iphone_detail", "rec_settings"]}
+ASSETS = {n: load(n + ".png") for n in ["logo", "atv_home", "atv_gids", "atv_movies", "iphone_detail", "rec_settings", "site_couch"]}
 
 # ---------- drawing helpers ----------
 def text(img, s, cx, cy, size, fill=WHITE, alpha=1.0, w="Bold", anchor="mm", grad=False, maxw=980):
@@ -409,20 +409,172 @@ def sc_screen(t, d, p):
 
 def sc_tips(t, d, p):
     """Numbered fix-list: problem solving, no selling."""
-    img = BGS[p.get("bg", "violet")].copy()
-    text(img, p["title"], W/2, 300, 76, w="Black", alpha=ease(prog(t, 0, 0.3)))
-    if p.get("sub"): text(img, p["sub"], W/2, 400, 76, w="Black", grad=True, alpha=ease(prog(t, 0.15, 0.45)))
+    img = BGS[p.get("bg", "violet")].copy() if not p.get("site") else site_bg((70, 50, 160), cy=0.6, strength=0.25)
+    if p.get("site"): header(img)
+    oy = 0
+    if p.get("site"):
+        headline(img, [p["title"]] + (["*" + p["sub"] + "*"] if p.get("sub") else []), 440, 96, t); oy = 140
+    else:
+        text(img, p["title"], W/2, 300, 76, w="Black", alpha=ease(prog(t, 0, 0.3)))
+        if p.get("sub"): text(img, p["sub"], W/2, 400, 76, w="Black", grad=True, alpha=ease(prog(t, 0.15, 0.45)))
     items = p["items"]; step = (d - 1.2) / max(1, len(items))
     for i, it in enumerate(items):
         q = prog(t, 0.5 + i * step, 0.8 + i * step)
         if q <= 0: continue
-        y = 640 + i * 300 + 40 * (1 - ease(q))
+        y = 640 + oy + i * 300 + 40 * (1 - ease(q))
         rrect(img, (70, y - 125, 1010, y + 125), 40, (255, 255, 255), alpha=0.07 * ease(q), outline=(255, 255, 255), width=2)
         btn = brand_grad(110, 110); m = Image.new("L", (110, 110), 0)
         ImageDraw.Draw(m).ellipse([0, 0, 109, 109], fill=int(255 * ease(q))); img.paste(btn, (110, int(y - 55)), m)
         text(img, str(i + 1), 165, y, 56, w="Black", alpha=ease(q))
         text(img, it[0], 260, y - 30, 46, w="ExtraBold", anchor="lm", alpha=ease(q), maxw=720)
         if len(it) > 1: text(img, it[1], 260, y + 32, 34, fill=(205, 195, 225), w="Medium", anchor="lm", alpha=ease(q), maxw=720)
+    return img
+
+def sc_bill(t, d, p):
+    """Costs piling up in a typical (unnamed) IPTV app."""
+    img = BGS["problem"].copy() if not p.get("site") else site_bg((150, 30, 40), cy=0.6, strength=0.25)
+    if p.get("site"): header(img)
+    oy = 0
+    if p.get("site"):
+        headline(img, p["hl"], 440, 96, t, red=True); oy = 160
+        if p.get("note"): text(img, p["note"], 80, 440 + len(p["hl"]) * 112, 36, fill=(200, 170, 175), w="Medium", anchor="ls")
+    else:
+        text(img, p.get("title", "What it costs you:"), W/2, 330, 80, w="Black", alpha=ease(prog(t, 0, 0.3)))
+        if p.get("note"): text(img, p["note"], W/2, 420, 36, fill=(220, 180, 180), w="Medium", alpha=ease(prog(t, 0.1, 0.4)))
+    items = p["items"]; step = (d - 1.6) / max(1, len(items))
+    x0, x1 = 110, 970
+    for i, (a, b) in enumerate(items):
+        q = prog(t, 0.4 + i * step, 0.7 + i * step)
+        if q <= 0: continue
+        y = 620 + oy + i * 170 + 30 * (1 - ease(q))
+        rrect(img, (x0, y - 65, x1, y + 65), 30, (255, 255, 255), alpha=0.07 * ease(q), outline=(255, 120, 120), width=2)
+        text(img, a, x0 + 40, y, 44, w="SemiBold", anchor="lm", alpha=ease(q), maxw=560)
+        text(img, b, x1 - 40, y, 48, w="Black", anchor="rm", fill=RED, alpha=ease(q))
+    q = prog(t, d - 1.3, d - 0.9)
+    if q > 0:
+        y = 620 + oy + len(items) * 170 + 60
+        rrect(img, (x0, y - 4, x1, y), 2, (255, 255, 255), alpha=0.4 * ease(q))
+        text(img, p.get("total_label", "Per year:"), x0 + 40, y + 90, 54, w="ExtraBold", anchor="lm", alpha=ease(q))
+        text(img, p["total"], x1 - 40, y + 90, int(90 * (0.7 + 0.3 * back(q))), w="Black", anchor="rm", fill=RED, alpha=ease(q))
+    return img
+
+# ---------- site style (matches kanalo.app): dark, left-aligned headlines, italic gradient accent ----------
+SITE_BG = (10, 10, 15)
+_fl = {}
+def FL(size):
+    if size not in _fl:
+        f = ImageFont.truetype(os.path.join(HERE, "assets", "Lora-Italic-Variable.ttf"), size)
+        try: f.set_variation_by_name("SemiBold Italic")
+        except Exception: pass
+        _fl[size] = f
+    return _fl[size]
+
+def site_bg(tint=None, cy=0.62, strength=0.35):
+    img = Image.new("RGB", (W, H), SITE_BG)
+    if tint:
+        lay = Image.new("RGB", (W, H), SITE_BG); r = 620
+        ImageDraw.Draw(lay).ellipse([W/2 - r, H*cy - r, W/2 + r, H*cy + r], fill=tint)
+        img = Image.blend(img, lay.filter(ImageFilter.GaussianBlur(240)), strength)
+    return img
+
+def header(img):
+    logo(img, 120, 190, 76)
+    text(img, "Kanalo", 182, 190, 52, w="Regular", anchor="lm")
+    rrect(img, (0, 268, W, 270), 0, (40, 40, 52))
+
+def segs(line):
+    out = []; parts = line.split("*")
+    for i, ptxt in enumerate(parts):
+        if ptxt: out.append((ptxt, i % 2 == 1))
+    return out
+
+def headline(img, lines, y, size, t=9.0, instant=False, x=80, gap=1.16, red=False):
+    """Lines with *accent* parts (Lora italic, brand gradient, or red for problems). Left aligned like the site."""
+    d0 = ImageDraw.Draw(img)
+    for i, ln in enumerate(lines):
+        q = 1.0 if instant else ease(prog(t, 0.05 + i * 0.18, 0.4 + i * 0.18))
+        if q <= 0: continue
+        cx = x; yy = y + i * size * gap + 24 * (1 - q)
+        for txt, acc in segs(ln):
+            f = FL(int(size * 1.08)) if acc else F(size, "Medium")
+            wdt = d0.textlength(txt, font=f)
+            mask = Image.new("L", img.size, 0)
+            ImageDraw.Draw(mask).text((cx, yy), txt, font=f, fill=int(255 * q), anchor="ls")
+            if acc and not red:
+                bb = mask.getbbox()
+                if bb:
+                    full = Image.new("RGB", img.size); full.paste(brand_grad(bb[2] - bb[0], bb[3] - bb[1]), (bb[0], bb[1]))
+                    img.paste(full, (0, 0), mask)
+            else:
+                img.paste(Image.new("RGB", img.size, RED if acc else WHITE), (0, 0), mask)
+            cx += wdt
+
+def tile(img, box, c, alpha=1.0):
+    x0, y0, x1, y1 = [int(v) for v in box]; w, h = x1 - x0, y1 - y0
+    g = Image.new("RGB", (1, 256))
+    for i in range(256):
+        f = i / 255; g.putpixel((0, i), tuple(int(c[j] * (1 - 0.75 * f) + 12 * 0.75 * f) for j in range(3)))
+    g = g.resize((w, h)); m = Image.new("L", (w, h), 0)
+    ImageDraw.Draw(m).rounded_rectangle([0, 0, w - 1, h - 1], 60, fill=int(255 * alpha)); img.paste(g, (x0, y0), m)
+
+def fake_old_app(img, box, t, price="€4,99 / maand", ad="RECLAME  ·  0:30"):
+    """Generic ad-filled player (no real brand): dim video frame, spinner, yellow ad bar, price badge."""
+    x0, y0, x1, y1 = box
+    rrect(img, (x0 - 16, y0 - 16, x1 + 16, y1 + 16), 58, (36, 34, 44))
+    rrect(img, (x0, y0, x1, y1), 44, (22, 20, 28))
+    vy1 = y0 + (y1 - y0) * 0.5
+    paste_round(img, hgrad(400, 200, (60, 50, 70), (30, 26, 40)), (x0 + 30, y0 + 90, x1 - 30, vy1), 24)
+    spinner(img, (x0 + x1) / 2, (y0 + 90 + vy1) / 2, 44, t)
+    rrect(img, (x0 + 30, vy1 + 30, x1 - 30, vy1 + 130), 22, (250, 205, 40))
+    secs = max(0, 30 - int(t * 2))
+    text(img, ad.replace("0:30", f"0:{secs:02d}"), (x0 + x1) / 2, vy1 + 80, 42, fill=(20, 20, 20), w="ExtraBold", maxw=x1 - x0 - 80)
+    for k in range(3):
+        rrect(img, (x0 + 30, vy1 + 170 + k * 70, x1 - 30 - k * 90, vy1 + 200 + k * 70), 12, (46, 44, 56))
+    bx, by = x1 - 20, y0 + 40
+    rrect(img, (bx - 330, by - 10, bx + 40, by + 80), 45, RED)
+    text(img, price, bx - 145, by + 35, 40, w="ExtraBold", maxw=340)
+
+def sc_s_hook(t, d, p):
+    img = site_bg((150, 30, 40), cy=0.72, strength=0.3); header(img)
+    headline(img, p["lines"], 470, p.get("size", 104), t, instant=True, red=True)
+    fake_old_app(img, (230, 900, 850, 1560), t, p.get("price", "€4,99 / maand"), p.get("ad", "RECLAME  ·  0:30"))
+    if p.get("foot"): text(img, p["foot"], W/2, 1680, 46, fill=(215, 205, 230), w="Medium")
+    return img
+
+def sc_s_photo(t, d, p):
+    img = site_bg((90, 50, 140), cy=0.6, strength=0.25); header(img)
+    headline(img, p["lines"], 470, p.get("size", 110), t)
+    src = ASSETS[p.get("asset", "site_couch")]; bw = 940; bh = int(bw * src.size[1] / src.size[0])
+    y0 = 760 + int(60 * (1 - ease(prog(t, 0, 0.5))))
+    paste_round(img, zoomed(src, 1.0 + 0.12 * t / d, 0.5, 0.4), (70, y0, 70 + bw, y0 + bh), 48)
+    if p.get("sub"): text(img, p["sub"], 80, y0 + bh + 110, 50, fill=(215, 205, 230), w="Medium", anchor="ls", alpha=ease(prog(t, 0.6, 1.0)))
+    return img
+
+def sc_s_device(t, d, p):
+    c = tuple(p.get("tint", (50, 50, 170)))
+    img = site_bg(); header(img)
+    headline(img, p["lines"], 470, p.get("size", 104), t)
+    ty0 = 760 + int(60 * (1 - ease(prog(t, 0, 0.5))))
+    tile(img, (60, ty0, 1020, ty0 + 820), c)
+    src = ASSETS[p.get("asset", "atv_home")]; tw = 860; th = int(tw * src.size[1] / src.size[0])
+    x0 = (W - tw) // 2; y0 = ty0 + (820 - th) // 2 - 30
+    rrect(img, (x0 - 16, y0 - 16, x0 + tw + 16, y0 + th + 16), 36, (30, 30, 36))
+    paste_round(img, zoomed(src, p.get("z0", 1.0) + (p.get("z1", 1.08) - p.get("z0", 1.0)) * t / d, p.get("fx", 0.4), p.get("fy", 0.4)), (x0, y0, x0 + tw, y0 + th), 22)
+    rrect(img, (W/2 - 200, y0 + th + 40, W/2 + 200, y0 + th + 52), 6, (30, 30, 36))
+    if p.get("label"): text(img, p["label"], W/2, ty0 + 900, 40, fill=(160, 160, 175), w="Regular", alpha=ease(prog(t, 0.4, 0.8)))
+    return img
+
+def sc_s_end(t, d, p):
+    img = site_bg((110, 50, 140), cy=0.45, strength=0.3)
+    headline(img, p.get("lines", ["Gewoon *kijken.*"]), 560, 110, t)
+    q = back(prog(t, 0.4, 0.9)); logo(img, W/2 - 150, 1000, 150 * q)
+    text(img, "Kanalo", W/2 - 50, 1000, 96, w="Regular", anchor="lm", alpha=ease(prog(t, 0.5, 0.9)))
+    q2 = ease(prog(t, 0.9, 1.3))
+    text(img, p.get("a", "Gratis · geen reclame · geen account"), W/2, 1180, 40, fill=(205, 195, 225), alpha=q2, w="Medium")
+    q3 = ease(prog(t, 1.2, 1.6))
+    if q3 > 0:
+        rrect(img, (W/2 - 230, 1300, W/2 + 230, 1420), 60, (190, 190, 200), alpha=0.55 * q3)
+        text(img, "kanalo.app", W/2, 1360, 60, w="Bold", fill=(12, 12, 16), alpha=q3)
     return img
 
 SOFT = {"en": ("I use Kanalo for this.", "Free · no ads · iPhone, iPad & Apple TV"),
@@ -442,7 +594,8 @@ def sc_soft(t, d, p):
 
 SCENES = dict(hook=sc_hook, oldapp=sc_oldapp, wait=sc_wait, reveal=sc_reveal, tv=sc_tv, phone=sc_phone,
               list=sc_list, compare=sc_compare, steps=sc_steps, qr=sc_qr, price=sc_price, cta=sc_cta,
-              screen=sc_screen, tips=sc_tips, soft=sc_soft)
+              screen=sc_screen, tips=sc_tips, soft=sc_soft, bill=sc_bill,
+              s_hook=sc_s_hook, s_photo=sc_s_photo, s_device=sc_s_device, s_end=sc_s_end)
 
 def frames(video):
     for sc in video["scenes"]:

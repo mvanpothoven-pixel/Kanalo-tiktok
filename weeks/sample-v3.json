@@ -1,9 +1,11 @@
-{"videos":[{"id":"v3-sample_nl_epg-leeg","lang":"nl","seed":3,
-"title":"TV-gids leeg in je IPTV-app? Zo fix je het",
+{"videos":[{"id":"v3-sample_nl_betalen-en-ads","lang":"nl","seed":5,
+"title":"Betaal je voor je IPTV-app én krijg je reclame? Dit hoeft niet",
 "scenes":[
- {"type":"hook","dur":2.4,"bg":"problem","instant":true,"pov":"Herkenbaar?","lines":["Je TV-gids","blijft leeg."],"foot":"Zo los je het op ↓"},
- {"type":"tips","dur":5.6,"title":"3 oorzaken","sub":"+ de fix","items":[["Geen EPG-link toegevoegd","Vraag je provider om de XMLTV-URL"],["Zender-ID's matchen niet","tvg-id in de playlist moet kloppen"],["Tijd staat verkeerd","Zet het tijdverschil op +1 uur"]]},
- {"type":"screen","dur":3.4,"top":"In de app:","sub":"Instellingen → EPG","hy":0.742,"label":"Plak hier je XMLTV-link","label2":"Daarna: Verversen"},
- {"type":"tv","dur":2.8,"asset":"atv_gids","top":"Gids gevuld.","sub":"Klaar.","label":"APPLE TV  ·  TV-GIDS","z1":1.15,"fx":0.5},
- {"type":"soft","dur":3.0,"lang":"nl"}
+ {"type":"s_hook","dur":2.8,"lines":["Je betaalt voor","je IPTV-app.","*En toch reclame?*"],"foot":"Zo los je het op ↓","price":"€4,99 / maand","ad":"RECLAME  ·  0:30"},
+ {"type":"bill","site":true,"dur":3.6,"hl":["Wat het je","*echt kost:*"],"note":"bij een gemiddelde IPTV-app","items":[["Abonnement","€4,99 /mnd"],["Reclame weg","€2,99"],["Extra functies","€9,99"]],"total_label":"Per jaar:","total":"± €72"},
+ {"type":"tips","site":true,"dur":5.2,"title":"De oplossing:","sub":"wissel van speler.","items":[["Je playlist is van jou","Werkt in elke speler (M3U of Xtream)"],["Kies een speler zonder ads","Geen reclame meer midden in je film"],["Overzetten duurt 1 minuut","Je zenders, films en series blijven"]]},
+ {"type":"s_photo","dur":3.0,"lines":["Gewoon *kijken.*"],"sub":"Zonder reclame tussendoor."},
+ {"type":"s_device","dur":2.8,"asset":"atv_home","lines":["Dezelfde zenders.","*Nul reclame.*"],"label":"APPLE TV  ·  HOME","tint":[45,45,170],"fx":0.3},
+ {"type":"s_device","dur":2.6,"asset":"atv_gids","lines":["Een gids die","*gewoon laadt.*"],"label":"APPLE TV  ·  TV-GIDS","tint":[150,40,120],"z1":1.12,"fx":0.5},
+ {"type":"s_end","dur":3.0,"lines":["Ik gebruik zelf","*Kanalo.*"]}
 ]}]}
