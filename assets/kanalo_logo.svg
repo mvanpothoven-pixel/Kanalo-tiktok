@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 100 100">
+  <title>Kanalo logo</title>
+  <defs>
+    <radialGradient id="tile" cx="50%" cy="50%" r="65%">
+      <stop offset="0" stop-color="#2a1842"/>
+      <stop offset="1" stop-color="#0d0a16"/>
+    </radialGradient>
+    <linearGradient id="stem" gradientUnits="userSpaceOnUse" x1="0" y1="22" x2="0" y2="78">
+      <stop offset="0" stop-color="#F07A45"/>
+      <stop offset="0.5" stop-color="#E0408F"/>
+      <stop offset="1" stop-color="#7B4CF0"/>
+    </linearGradient>
+    <linearGradient id="arm" gradientUnits="userSpaceOnUse" x1="44" y1="26" x2="66" y2="74">
+      <stop offset="0" stop-color="#F0605A"/>
+      <stop offset="0.55" stop-color="#E0408F"/>
+      <stop offset="1" stop-color="#C23FC8"/>
+    </linearGradient>
+    <clipPath id="right"><rect x="41.5" y="0" width="58.5" height="100"/></clipPath>
+  </defs>
+  <rect width="100" height="100" rx="23" fill="url(#tile)"/>
+  <line x1="34" y1="29" x2="34" y2="71" stroke="url(#stem)" stroke-width="15" stroke-linecap="round"/>
+  <g clip-path="url(#right)">
+    <line x1="30.3" y1="60" x2="65" y2="29" stroke="url(#arm)" stroke-width="15" stroke-linecap="round"/>
+    <line x1="30.3" y1="40" x2="65" y2="71" stroke="url(#arm)" stroke-width="15" stroke-linecap="round"/>
+  </g>
+  <polygon points="41.5,39.9 41.5,60.1 52.77,50" fill="#0d0a14"/>
+</svg>
