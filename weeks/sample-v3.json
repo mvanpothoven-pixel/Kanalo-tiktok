@@ -1,0 +1,9 @@
+{"videos":[{"id":"v3-sample_nl_epg-leeg","lang":"nl","seed":3,
+"title":"TV-gids leeg in je IPTV-app? Zo fix je het",
+"scenes":[
+ {"type":"hook","dur":2.4,"bg":"problem","instant":true,"pov":"Herkenbaar?","lines":["Je TV-gids","blijft leeg."],"foot":"Zo los je het op ↓"},
+ {"type":"tips","dur":5.6,"title":"3 oorzaken","sub":"+ de fix","items":[["Geen EPG-link toegevoegd","Vraag je provider om de XMLTV-URL"],["Zender-ID's matchen niet","tvg-id in de playlist moet kloppen"],["Tijd staat verkeerd","Zet het tijdverschil op +1 uur"]]},
+ {"type":"screen","dur":3.4,"top":"In de app:","sub":"Instellingen → EPG","hy":0.742,"label":"Plak hier je XMLTV-link","label2":"Daarna: Verversen"},
+ {"type":"tv","dur":2.8,"asset":"atv_gids","top":"Gids gevuld.","sub":"Klaar.","label":"APPLE TV  ·  TV-GIDS","z1":1.15,"fx":0.5},
+ {"type":"soft","dur":3.0,"lang":"nl"}
+]}]}

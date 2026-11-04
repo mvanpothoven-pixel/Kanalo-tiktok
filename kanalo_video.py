@@ -58,7 +58,7 @@ BGS = {
 }
 
 def load(n): return Image.open(os.path.join(HERE, "assets", n)).convert("RGB")
-ASSETS = {n: load(n + ".png") for n in ["logo", "atv_home", "atv_gids", "atv_movies", "iphone_detail"]}
+ASSETS = {n: load(n + ".png") for n in ["logo", "atv_home", "atv_gids", "atv_movies", "iphone_detail", "rec_settings"]}
 
 # ---------- drawing helpers ----------
 def text(img, s, cx, cy, size, fill=WHITE, alpha=1.0, w="Bold", anchor="mm", grad=False, maxw=980):
@@ -161,13 +161,15 @@ def sc_hook(t, d, p):
     lines = p["lines"]; acc = p.get("accent", len(lines) - 1); size = p.get("size", 104)
     y0 = H * 0.42 - (len(lines) - 1) * size * 0.62
     for i, ln in enumerate(lines):
-        q = prog(t, 0.15 + i * 0.35, 0.45 + i * 0.35)
+        q = 1.0 if p.get("instant") else prog(t, 0.15 + i * 0.35, 0.45 + i * 0.35)
         if q > 0:
             text(img, ln, W/2, y0 + i * size * 1.25 + 26 * (1 - ease(q)), int(size * (0.8 + 0.2 * back(q))),
                  alpha=ease(q), w="Black", grad=(i == acc and p.get("bg") != "problem"),
                  fill=RED if (i == acc and p.get("bg") == "problem") else WHITE)
     if p.get("pov"):
-        text(img, p["pov"], W/2, y0 - 150, 46, fill=(210, 200, 230), alpha=ease(prog(t, 0, 0.3)), w="SemiBold")
+        text(img, p["pov"], W/2, y0 - 150, 46, fill=(210, 200, 230), alpha=1.0 if p.get("instant") else ease(prog(t, 0, 0.3)), w="SemiBold")
+    if p.get("foot"):
+        text(img, p["foot"], W/2, H * 0.42 + len(lines) * size * 0.75 + 90, 44, fill=(215, 205, 230), w="SemiBold")
     return img
 
 def sc_oldapp(t, d, p):
@@ -386,8 +388,61 @@ def sc_cta(t, d, p):
     text(img, c["foot"], W/2, 1440, 34, fill=(200, 190, 220), alpha=q2, w="Medium")
     return img
 
+def sc_screen(t, d, p):
+    """Real app screen (from a clean screen recording) in a phone frame, with a highlight ring on one row."""
+    img = BGS[p.get("bg", "violet")].copy()
+    caption(img, p.get("top", ""), p.get("sub", ""), t, y=200, size=74)
+    src = ASSETS[p.get("asset", "rec_settings")]; pw = 640; ph = int(pw * src.size[1] / src.size[0])
+    vis = 1440 - 430; x0 = (W - pw) // 2; y0 = int(430 + 100 * (1 - ease(prog(t, 0, 0.5))))
+    hy = p.get("hy", 0.74)
+    off = int(clamp(hy * ph - vis * 0.55, 0, ph - vis) * ease(prog(t, 0.3, 1.2))) if ph > vis else 0
+    crop = src.resize((pw, ph), Image.LANCZOS).crop((0, off, pw, off + vis))
+    rrect(img, (x0 - 20, y0 - 20, x0 + pw + 20, y0 + vis + 20), 70, (38, 36, 46))
+    paste_round(img, crop, (x0, y0, x0 + pw, y0 + vis), 56)
+    q = prog(t, 1.3, 1.7)
+    if q > 0:
+        yy = y0 + hy * ph - off; a = ease(q)
+        rrect(img, (x0 + 14, yy - 40, x0 + pw - 14, yy + 40), 22, None, alpha=a, outline=PINK, width=7)
+    if p.get("label"): text(img, p["label"], W/2, 1560, 48, w="ExtraBold", grad=True, alpha=ease(prog(t, 1.6, 2.0)))
+    if p.get("label2"): text(img, p["label2"], W/2, 1640, 38, fill=(200, 190, 220), w="Medium", alpha=ease(prog(t, 1.8, 2.2)))
+    return img
+
+def sc_tips(t, d, p):
+    """Numbered fix-list: problem solving, no selling."""
+    img = BGS[p.get("bg", "violet")].copy()
+    text(img, p["title"], W/2, 300, 76, w="Black", alpha=ease(prog(t, 0, 0.3)))
+    if p.get("sub"): text(img, p["sub"], W/2, 400, 76, w="Black", grad=True, alpha=ease(prog(t, 0.15, 0.45)))
+    items = p["items"]; step = (d - 1.2) / max(1, len(items))
+    for i, it in enumerate(items):
+        q = prog(t, 0.5 + i * step, 0.8 + i * step)
+        if q <= 0: continue
+        y = 640 + i * 300 + 40 * (1 - ease(q))
+        rrect(img, (70, y - 125, 1010, y + 125), 40, (255, 255, 255), alpha=0.07 * ease(q), outline=(255, 255, 255), width=2)
+        btn = brand_grad(110, 110); m = Image.new("L", (110, 110), 0)
+        ImageDraw.Draw(m).ellipse([0, 0, 109, 109], fill=int(255 * ease(q))); img.paste(btn, (110, int(y - 55)), m)
+        text(img, str(i + 1), 165, y, 56, w="Black", alpha=ease(q))
+        text(img, it[0], 260, y - 30, 46, w="ExtraBold", anchor="lm", alpha=ease(q), maxw=720)
+        if len(it) > 1: text(img, it[1], 260, y + 32, 34, fill=(205, 195, 225), w="Medium", anchor="lm", alpha=ease(q), maxw=720)
+    return img
+
+SOFT = {"en": ("I use Kanalo for this.", "Free · no ads · iPhone, iPad & Apple TV"),
+        "nl": ("Ik gebruik hier Kanalo voor.", "Gratis · geen reclame · iPhone, iPad & Apple TV")}
+def sc_soft(t, d, p):
+    """Calm ending: what you use, no button, no hard sell."""
+    a, b = SOFT[p.get("lang", "en")]
+    img = BGS["brand"].copy()
+    if p.get("top"): text(img, p["top"], W/2, 560, 70, w="Black", alpha=ease(prog(t, 0, 0.35)))
+    if p.get("sub"): text(img, p["sub"], W/2, 655, 70, w="Black", grad=True, alpha=ease(prog(t, 0.15, 0.5)))
+    logo(img, W/2, 960, 220 * back(prog(t, 0.5, 0.95)))
+    q = ease(prog(t, 0.9, 1.3))
+    text(img, p.get("a", a), W/2, 1180, 54, alpha=q, w="ExtraBold")
+    text(img, p.get("b", b), W/2, 1260, 36, fill=(205, 195, 225), alpha=q, w="Medium")
+    text(img, p.get("c", "kanalo.app"), W/2, 1340, 40, alpha=ease(prog(t, 1.3, 1.7)), w="Bold", grad=True)
+    return img
+
 SCENES = dict(hook=sc_hook, oldapp=sc_oldapp, wait=sc_wait, reveal=sc_reveal, tv=sc_tv, phone=sc_phone,
-              list=sc_list, compare=sc_compare, steps=sc_steps, qr=sc_qr, price=sc_price, cta=sc_cta)
+              list=sc_list, compare=sc_compare, steps=sc_steps, qr=sc_qr, price=sc_price, cta=sc_cta,
+              screen=sc_screen, tips=sc_tips, soft=sc_soft)
 
 def frames(video):
     for sc in video["scenes"]:
@@ -402,7 +457,16 @@ def render(video, out_dir):
     pr = subprocess.Popen(cmd, stdin=subprocess.PIPE)
     for im in frames(video): pr.stdin.write(im.tobytes())
     pr.stdin.close()
-    if pr.wait() == 0: os.replace(tmp, final); return final
+    if pr.wait() != 0: return None
+    if video.get("music", True):
+        sys.path.insert(0, HERE); from kanalo_music import make_music
+        dur = sum(sc["dur"] for sc in video["scenes"]); wav = final[:-4] + ".wav"
+        make_music(wav, dur, seed=video.get("seed", abs(hash(video["id"])) % 997))
+        subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", tmp, "-i", wav, "-map", "0:v", "-map", "1:a", "-c:v", "copy",
+                        "-c:a", "aac", "-b:a", "160k", "-shortest", "-movflags", "+faststart", final], check=True)
+        os.remove(tmp); os.remove(wav)
+    else: os.replace(tmp, final)
+    return final
 
 def preview(video, out_dir):
     ims = []
