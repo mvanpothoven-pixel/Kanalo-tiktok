@@ -1,0 +1,45 @@
+{
+ "videos": [
+  {
+   "id": "2026-11-04_21_still-paying",
+   "publish": "2026-11-04T21:00:00",
+   "lang": "en",
+   "scenes": [
+    {
+     "type": "hook",
+     "dur": 2.4,
+     "bg": "problem",
+     "lines": [
+      "Still using an",
+      "IPTV player",
+      "full of ads?"
+     ]
+    },
+    {
+     "type": "oldapp",
+     "dur": 2.8,
+     "title": "Every. Single. Time."
+    },
+    {
+     "type": "reveal",
+     "dur": 2.6,
+     "top": "Meet Kanalo."
+    },
+    {
+     "type": "tv",
+     "dur": 3.0,
+     "asset": "atv_home",
+     "top": "Your playlist.",
+     "sub": "Zero ads.",
+     "label": "APPLE TV  \u00b7  HOME",
+     "fx": 0.3
+    },
+    {
+     "type": "cta",
+     "dur": 3.4,
+     "lang": "en"
+    }
+   ]
+  }
+ ]
+}
