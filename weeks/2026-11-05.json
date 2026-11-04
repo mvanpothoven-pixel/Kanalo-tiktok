@@ -1,0 +1,591 @@
+{
+ "week": "2026-11-05",
+ "timezone": "Europe/Amsterdam",
+ "videos": [
+  {
+   "id": "2026-11-05_10_pov-deleted",
+   "publish": "2026-11-05T10:00:00",
+   "lang": "en",
+   "caption": "Deleted the ad-filled IPTV app. Not going back 📺 Kanalo is free, ad-free and made for iPhone, iPad & Apple TV. Link in bio. #iptv #iptvplayer #appletv #iphone #techtok",
+   "title": "POV: you deleted the IPTV app with ads",
+   "scenes": [
+    {
+     "type": "hook",
+     "dur": 2.6,
+     "bg": "problem",
+     "pov": "POV:",
+     "lines": [
+      "You finally deleted",
+      "the IPTV app",
+      "with ads."
+     ]
+    },
+    {
+     "type": "reveal",
+     "dur": 2.6
+    },
+    {
+     "type": "tv",
+     "dur": 3.4,
+     "asset": "atv_home",
+     "top": "Your playlist.",
+     "sub": "On the big screen.",
+     "label": "APPLE TV  ·  HOME",
+     "fx": 0.3
+    },
+    {
+     "type": "cta",
+     "dur": 3.4,
+     "lang": "en"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-05_18_nl-wachten",
+   "publish": "2026-11-05T18:00:00",
+   "lang": "nl",
+   "caption": "Nooit meer 8 seconden wachten bij het zappen ⚡️ Kanalo is gratis en zonder reclame, voor iPhone, iPad & Apple TV. Link in bio. #iptv #appletv #iphone #techtok #iptvnederland",
+   "title": "Nooit meer wachten bij het zappen",
+   "scenes": [
+    {
+     "type": "wait",
+     "dur": 2.6,
+     "top": "Zender wisselen...",
+     "bottom": "Elke. Keer. Weer.",
+     "dec": ","
+    },
+    {
+     "type": "reveal",
+     "dur": 2.6,
+     "top": "Het kan sneller.",
+     "tag1": "De IPTV-speler zonder reclame",
+     "tag2": "voor iPhone, iPad & Apple TV"
+    },
+    {
+     "type": "phone",
+     "dur": 3.2,
+     "top": "4K & HDR.",
+     "sub": "Nul reclame."
+    },
+    {
+     "type": "cta",
+     "dur": 3.4,
+     "lang": "nl"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-06_10_3-things",
+   "publish": "2026-11-06T10:00:00",
+   "lang": "en",
+   "caption": "Number 1 is a game changer for Apple TV 👀 Kanalo is free on the App Store. #iptv #iptvplayer #appletv #appletvapps #techtok",
+   "title": "3 things your IPTV player can't do",
+   "scenes": [
+    {
+     "type": "hook",
+     "dur": 2.4,
+     "bg": "violet",
+     "lines": [
+      "3 things your",
+      "IPTV player",
+      "can't do."
+     ]
+    },
+    {
+     "type": "list",
+     "dur": 5.0,
+     "title": "Kanalo can.",
+     "items": [
+      [
+       "Send playlists to Apple TV",
+       "Scan one QR code. Nothing to type."
+      ],
+      [
+       "Zap in 0.4 seconds",
+       "Streams pre-buffer as you scroll."
+      ],
+      [
+       "Load the guide instantly",
+       "EPG cached in the background."
+      ]
+     ]
+    },
+    {
+     "type": "tv",
+     "dur": 3.0,
+     "asset": "atv_gids",
+     "top": "A TV guide that",
+     "sub": "actually loads.",
+     "label": "APPLE TV  ·  TV GUIDE",
+     "z1": 1.18,
+     "fx": 0.55
+    },
+    {
+     "type": "cta",
+     "dur": 3.4,
+     "lang": "en"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-06_18_compare",
+   "publish": "2026-11-06T18:00:00",
+   "lang": "en",
+   "caption": "Same playlist. Completely different experience. Which one are you using? 👇 #iptv #iptvplayer #appletv #iphone #techtok",
+   "title": "Your IPTV app vs Kanalo",
+   "scenes": [
+    {
+     "type": "hook",
+     "dur": 2.0,
+     "bg": "problem",
+     "lines": [
+      "Your IPTV app",
+      "vs Kanalo"
+     ]
+    },
+    {
+     "type": "compare",
+     "dur": 6.0,
+     "rows": [
+      [
+       "Ads everywhere",
+       "Zero ads"
+      ],
+      [
+       "Sign-up required",
+       "No account"
+      ],
+      [
+       "Slow zapping",
+       "0.4s zapping"
+      ],
+      [
+       "Phone only",
+       "iPhone, iPad & TV"
+      ],
+      [
+       "Typing on the TV",
+       "Scan a QR code"
+      ]
+     ]
+    },
+    {
+     "type": "cta",
+     "dur": 3.4,
+     "lang": "en"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-07_10_qr",
+   "publish": "2026-11-07T10:00:00",
+   "lang": "en",
+   "caption": "Typing an Xtream login with a TV remote should be illegal 😅 With Kanalo you scan one QR code and your playlists are on your Apple TV. #appletv #iptv #iptvplayer #appletvtips #techtok",
+   "title": "Stop typing passwords on your TV",
+   "scenes": [
+    {
+     "type": "hook",
+     "dur": 2.4,
+     "bg": "violet",
+     "lines": [
+      "Stop typing passwords",
+      "with your TV remote."
+     ],
+     "size": 92
+    },
+    {
+     "type": "qr",
+     "dur": 4.2
+    },
+    {
+     "type": "tv",
+     "dur": 3.0,
+     "asset": "atv_movies",
+     "top": "Movies & series,",
+     "sub": "beautifully sorted.",
+     "label": "APPLE TV  ·  MOVIES",
+     "fx": 0.5
+    },
+    {
+     "type": "cta",
+     "dur": 3.4,
+     "lang": "en"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-07_18_nl-weekend",
+   "publish": "2026-11-07T18:00:00",
+   "lang": "nl",
+   "caption": "Klaar voor het weekend 🍿 Scan de QR-code en je playlist staat op je Apple TV. Gratis en zonder reclame. #appletv #iptv #weekend #techtok #iptvnederland",
+   "title": "Weekend? Zet je playlist op de grote TV",
+   "scenes": [
+    {
+     "type": "hook",
+     "dur": 2.6,
+     "bg": "brand",
+     "lines": [
+      "Weekend?",
+      "Zet je playlist",
+      "op de grote TV."
+     ]
+    },
+    {
+     "type": "qr",
+     "dur": 4.2,
+     "top": "Van iPhone naar Apple TV",
+     "sub": "met één scan.",
+     "tv1": "Playlist toevoegen",
+     "tv2": "Vanaf iPhone",
+     "tv3": "Scan met je camera",
+     "sent": "Playlists verstuurd",
+     "label": "NIETS TYPEN OP DE TV"
+    },
+    {
+     "type": "cta",
+     "dur": 3.4,
+     "lang": "nl"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-08_10_setup",
+   "publish": "2026-11-08T10:00:00",
+   "lang": "en",
+   "caption": "The easiest IPTV setup on iPhone: download, paste your playlist, press play ✅ #iptv #iptvplayer #iphone #iphonetips #techtok",
+   "title": "IPTV setup on iPhone in under a minute",
+   "scenes": [
+    {
+     "type": "hook",
+     "dur": 2.6,
+     "bg": "brand",
+     "size": 88,
+     "lines": [
+      "Setting up IPTV",
+      "on iPhone is easier",
+      "than you think."
+     ]
+    },
+    {
+     "type": "steps",
+     "dur": 4.4,
+     "steps": [
+      "Download Kanalo",
+      "Paste your M3U or Xtream",
+      "Press play"
+     ]
+    },
+    {
+     "type": "phone",
+     "dur": 3.0,
+     "top": "That's it.",
+     "sub": "You're watching."
+    },
+    {
+     "type": "cta",
+     "dur": 3.4,
+     "lang": "en"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-08_18_guide",
+   "publish": "2026-11-08T18:00:00",
+   "lang": "en",
+   "caption": "If your EPG takes forever to load, this one's for you ⏱️ #iptv #epg #appletv #iptvplayer #techtok",
+   "title": "A TV guide that loads instantly",
+   "scenes": [
+    {
+     "type": "hook",
+     "dur": 2.6,
+     "bg": "problem",
+     "size": 88,
+     "lines": [
+      "Your TV guide",
+      "shouldn't take",
+      "30 seconds to load."
+     ]
+    },
+    {
+     "type": "tv",
+     "dur": 3.4,
+     "asset": "atv_gids",
+     "top": "Kanalo loads it",
+     "sub": "instantly.",
+     "label": "APPLE TV  ·  TV GUIDE",
+     "z1": 1.2,
+     "fx": 0.55
+    },
+    {
+     "type": "list",
+     "dur": 3.8,
+     "numbered": false,
+     "title": "Why it's fast",
+     "items": [
+      [
+       "Parsed in the background"
+      ],
+      [
+       "Cached on your device"
+      ],
+      [
+       "Dead channels hidden"
+      ]
+     ]
+    },
+    {
+     "type": "cta",
+     "dur": 3.4,
+     "lang": "en"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-09_10_price",
+   "publish": "2026-11-09T10:00:00",
+   "lang": "en",
+   "caption": "Everything you need to watch is free. Pro is €0.99 a month if you want PiP, AirPlay & downloads 💸 #iptv #iptvplayer #iphone #appletv #techtok",
+   "title": "The best IPTV player for Apple costs €0",
+   "scenes": [
+    {
+     "type": "hook",
+     "dur": 2.6,
+     "bg": "brand",
+     "size": 96,
+     "lines": [
+      "The IPTV player",
+      "for Apple",
+      "costs €0."
+     ]
+    },
+    {
+     "type": "price",
+     "dur": 4.4
+    },
+    {
+     "type": "cta",
+     "dur": 3.4,
+     "lang": "en"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-09_18_nl-vergelijk",
+   "publish": "2026-11-09T18:00:00",
+   "lang": "nl",
+   "caption": "Zelfde playlist, compleet andere ervaring. Welke gebruik jij? 👇 #iptv #appletv #iphone #techtok #iptvnederland",
+   "title": "Jouw IPTV-app vs Kanalo",
+   "scenes": [
+    {
+     "type": "hook",
+     "dur": 2.0,
+     "bg": "problem",
+     "lines": [
+      "Jouw IPTV-app",
+      "vs Kanalo"
+     ]
+    },
+    {
+     "type": "compare",
+     "dur": 6.0,
+     "title": "IPTV-apps vs Kanalo",
+     "left": "Andere apps",
+     "rows": [
+      [
+       "Overal reclame",
+       "Nul reclame"
+      ],
+      [
+       "Account verplicht",
+       "Geen account"
+      ],
+      [
+       "Traag zappen",
+       "Zappen in 0,4s"
+      ],
+      [
+       "Alleen telefoon",
+       "iPhone, iPad & TV"
+      ],
+      [
+       "Typen op je TV",
+       "Scan een QR-code"
+      ]
+     ]
+    },
+    {
+     "type": "cta",
+     "dur": 3.4,
+     "lang": "nl"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-10_10_library",
+   "publish": "2026-11-10T10:00:00",
+   "lang": "en",
+   "caption": "Your playlist, finally looking like a real streaming app 🍿 #iptv #iptvplayer #appletv #m3u #techtok",
+   "title": "Your playlist like a real streaming app",
+   "scenes": [
+    {
+     "type": "hook",
+     "dur": 2.4,
+     "bg": "violet",
+     "size": 90,
+     "accent": 1,
+     "lines": [
+      "Live TV, movies & series.",
+      "One app."
+     ]
+    },
+    {
+     "type": "tv",
+     "dur": 3.2,
+     "asset": "atv_home",
+     "top": "Live TV,",
+     "sub": "movies & series.",
+     "label": "APPLE TV  ·  HOME",
+     "fx": 0.3
+    },
+    {
+     "type": "tv",
+     "dur": 3.2,
+     "asset": "atv_movies",
+     "top": "Sorted like",
+     "sub": "a real streaming app.",
+     "label": "APPLE TV  ·  MOVIES",
+     "z1": 1.15,
+     "fx": 0.5
+    },
+    {
+     "type": "cta",
+     "dur": 3.4,
+     "lang": "en"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-10_18_apple",
+   "publish": "2026-11-10T18:00:00",
+   "lang": "en",
+   "caption": "Not a ported Android app. Kanalo is built natively for iPhone, iPad & Apple TV 🍎 #appletv #iphone #ipad #iptv #techtok",
+   "title": "Made only for Apple",
+   "scenes": [
+    {
+     "type": "hook",
+     "dur": 2.2,
+     "bg": "brand",
+     "lines": [
+      "Made only",
+      "for Apple."
+     ]
+    },
+    {
+     "type": "phone",
+     "dur": 3.0,
+     "top": "iPhone.",
+     "sub": "Picture in Picture."
+    },
+    {
+     "type": "tv",
+     "dur": 3.2,
+     "asset": "atv_home",
+     "top": "Apple TV.",
+     "sub": "Built for the remote.",
+     "label": "ONE PRO PURCHASE, THREE SCREENS",
+     "fx": 0.3
+    },
+    {
+     "type": "cta",
+     "dur": 3.4,
+     "lang": "en"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-11_10_nl-instellen",
+   "publish": "2026-11-11T10:00:00",
+   "lang": "nl",
+   "caption": "Zo zet je IPTV in een minuut op je iPhone: downloaden, playlist plakken, play ✅ #iptv #iphone #iphonetips #techtok #iptvnederland",
+   "title": "IPTV op je iPhone in een minuut",
+   "scenes": [
+    {
+     "type": "hook",
+     "dur": 2.2,
+     "bg": "brand",
+     "lines": [
+      "IPTV op je iPhone",
+      "instellen?"
+     ]
+    },
+    {
+     "type": "steps",
+     "dur": 4.4,
+     "top": "Klaar in",
+     "sub": "minder dan een minuut.",
+     "steps": [
+      "Download Kanalo",
+      "Plak je M3U of Xtream",
+      "Druk op play"
+     ]
+    },
+    {
+     "type": "tv",
+     "dur": 3.0,
+     "asset": "atv_home",
+     "top": "Ook op je",
+     "sub": "Apple TV.",
+     "label": "APPLE TV  ·  HOME",
+     "fx": 0.3
+    },
+    {
+     "type": "cta",
+     "dur": 3.4,
+     "lang": "nl"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-11_18_privacy",
+   "publish": "2026-11-11T18:00:00",
+   "lang": "en",
+   "caption": "Privacy matters, even for your TV app 🔒 No account, no ad trackers, your login stays on your device. #iptv #privacy #iptvplayer #iphone #techtok",
+   "title": "Your IPTV app knows too much",
+   "scenes": [
+    {
+     "type": "hook",
+     "dur": 2.2,
+     "bg": "problem",
+     "lines": [
+      "Your IPTV app",
+      "knows too much."
+     ]
+    },
+    {
+     "type": "list",
+     "dur": 5.0,
+     "title": "Kanalo doesn't.",
+     "items": [
+      [
+       "No account",
+       "No email, no sign-up."
+      ],
+      [
+       "No ad trackers",
+       "No analytics SDKs."
+      ],
+      [
+       "Password stays on device",
+       "Your Xtream login never leaves it."
+      ]
+     ]
+    },
+    {
+     "type": "cta",
+     "dur": 3.4,
+     "lang": "en"
+    }
+   ]
+  }
+ ]
+}
