@@ -1,0 +1,1470 @@
+{
+ "week": "2026-11-05",
+ "style": "v3-site",
+ "timezone": "Europe/Amsterdam",
+ "videos": [
+  {
+   "id": "2026-11-05_10_paying-and-ads",
+   "publish": "2026-11-05T10:00:00",
+   "lang": "en",
+   "seed": 1,
+   "title": "Paying for your IPTV app and still getting ads?",
+   "caption": "Paying every month and still watching ads? Your playlist isn't tied to that app. It works in any player, so you can switch in a minute. I moved to Kanalo (free, no ads). #iptv #iptvplayer #iptvtips #appletv #techtok",
+   "scenes": [
+    {
+     "type": "s_hook",
+     "dur": 2.8,
+     "lines": [
+      "You pay for",
+      "your IPTV app.",
+      "*Still ads?*"
+     ],
+     "foot": "Here's the fix ↓",
+     "price": "€4.99 / month",
+     "ad": "AD  ·  0:30",
+     "mode": "ad"
+    },
+    {
+     "type": "bill",
+     "site": true,
+     "dur": 3.6,
+     "hl": [
+      "What it",
+      "*really costs:*"
+     ],
+     "note": "a typical IPTV app",
+     "items": [
+      [
+       "Subscription",
+       "€4.99 /mo"
+      ],
+      [
+       "Remove ads",
+       "€2.99"
+      ],
+      [
+       "Extra features",
+       "€9.99"
+      ]
+     ],
+     "total_label": "Per year:",
+     "total": "± €72"
+    },
+    {
+     "type": "tips",
+     "site": true,
+     "dur": 5.2,
+     "title": "The fix:",
+     "sub": "switch players.",
+     "items": [
+      [
+       "Your playlist is yours",
+       "Works in any player (M3U or Xtream)"
+      ],
+      [
+       "Pick a player without ads",
+       "No more ads in the middle of a film"
+      ],
+      [
+       "Switching takes a minute",
+       "Your channels, films and series stay"
+      ]
+     ]
+    },
+    {
+     "type": "s_photo",
+     "dur": 3.0,
+     "lines": [
+      "Just *watch.*"
+     ],
+     "sub": "No ads in between."
+    },
+    {
+     "type": "s_end",
+     "dur": 3.0,
+     "lines": [
+      "What I use:",
+      "*Kanalo.*"
+     ],
+     "a": "Free · no ads · no account"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-05_14_nl-check-ads",
+   "publish": "2026-11-05T14:00:00",
+   "lang": "nl",
+   "seed": 15,
+   "title": "Zit je IPTV-app vol reclame? Check dit in 10 seconden",
+   "caption": "Gratis IPTV-apps verdienen vaak aan reclame en tracking. Check het zelf: App Store-pagina → Privacy van app. Ik gebruik zelf Kanalo: geen reclame, geen ad-trackers. #iptv #iptvtips #appletv #iptvnederland #techtok",
+   "scenes": [
+    {
+     "type": "s_hook",
+     "dur": 2.8,
+     "lines": [
+      "Zit je IPTV-app",
+      "ook zo",
+      "*vol reclame?*"
+     ],
+     "foot": "Check dit ↓",
+     "ad": "RECLAME  ·  0:30",
+     "mode": "ad"
+    },
+    {
+     "type": "tips",
+     "site": true,
+     "dur": 5.4,
+     "title": "Check het",
+     "sub": "in 10 seconden.",
+     "items": [
+      [
+       "Open de App Store-pagina",
+       "Scroll naar 'Privacy van app'"
+      ],
+      [
+       "Zie je 'Gebruikt om je te volgen'?",
+       "Zo volgen advertenties je"
+      ],
+      [
+       "Kies een speler zonder",
+       "Je playlist werkt in elke speler"
+      ]
+     ]
+    },
+    {
+     "type": "s_device",
+     "dur": 2.8,
+     "asset": "atv_movies",
+     "lines": [
+      "Films & series,",
+      "*zonder onderbreking.*"
+     ],
+     "label": "APPLE TV  ·  FILMS",
+     "tint": [
+      150,
+      40,
+      120
+     ],
+     "z1": 1.12,
+     "fx": 0.5
+    },
+    {
+     "type": "s_end",
+     "dur": 3.0,
+     "lines": [
+      "Ik gebruik zelf",
+      "*Kanalo.*"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "2026-11-05_18_nl-zappen-traag",
+   "publish": "2026-11-05T18:00:00",
+   "lang": "nl",
+   "seed": 2,
+   "title": "Zappen duurt 8 seconden? Dit is waarom",
+   "caption": "Elke keer wachten als je van zender wisselt? Meestal ligt het aan je wifi, de kwaliteit of je speler. Zo los je het op 👇 Ik gebruik zelf Kanalo, die buffert alvast vooruit. #iptv #iptvtips #appletv #iptvnederland #techtok",
+   "scenes": [
+    {
+     "type": "s_hook",
+     "dur": 2.8,
+     "lines": [
+      "Zappen duurt",
+      "bij jou ook",
+      "*8 seconden?*"
+     ],
+     "foot": "Zo los je het op ↓",
+     "ad": "Laden…",
+     "mode": "buffer"
+    },
+    {
+     "type": "tips",
+     "site": true,
+     "dur": 5.4,
+     "title": "3 oorzaken",
+     "sub": "+ de fix.",
+     "items": [
+      [
+       "Wifi op 2,4 GHz",
+       "Kies 5 GHz of gebruik een kabel"
+      ],
+      [
+       "Altijd 4K aan",
+       "Trage lijn? Kies FHD, dat start sneller"
+      ],
+      [
+       "Speler laadt pas na je klik",
+       "Kies een speler die vooruit buffert"
+      ]
+     ]
+    },
+    {
+     "type": "s_device",
+     "dur": 2.8,
+     "asset": "atv_home",
+     "lines": [
+      "Zappen in",
+      "*een tel.*"
+     ],
+     "label": "APPLE TV  ·  HOME",
+     "tint": [
+      45,
+      45,
+      170
+     ],
+     "fx": 0.3
+    },
+    {
+     "type": "s_end",
+     "dur": 3.0,
+     "lines": [
+      "Ik gebruik zelf",
+      "*Kanalo.*"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "2026-11-06_10_why-ads",
+   "publish": "2026-11-06T10:00:00",
+   "lang": "en",
+   "seed": 3,
+   "title": "Why does your IPTV app show so many ads?",
+   "caption": "Free IPTV apps often earn from ads and tracking, not from you. Quick check: open the App Store page and look at the privacy label. I use Kanalo: no ads, no ad trackers. #iptv #iptvplayer #iptvtips #appletv #techtok",
+   "scenes": [
+    {
+     "type": "s_hook",
+     "dur": 2.8,
+     "lines": [
+      "Why does your",
+      "IPTV app show",
+      "*so many ads?*"
+     ],
+     "foot": "Check this ↓",
+     "ad": "AD  ·  0:30",
+     "mode": "ad"
+    },
+    {
+     "type": "tips",
+     "site": true,
+     "dur": 5.4,
+     "title": "How to check",
+     "sub": "in 10 seconds.",
+     "items": [
+      [
+       "Open the App Store page",
+       "Scroll to App Privacy"
+      ],
+      [
+       "Look for: 'Used to track you'",
+       "That's how ads follow you around"
+      ],
+      [
+       "Pick a player without it",
+       "Your playlist works in any player"
+      ]
+     ]
+    },
+    {
+     "type": "s_device",
+     "dur": 2.8,
+     "asset": "atv_movies",
+     "lines": [
+      "Films & series,",
+      "*no breaks.*"
+     ],
+     "label": "APPLE TV  ·  MOVIES",
+     "tint": [
+      150,
+      40,
+      120
+     ],
+     "z1": 1.12,
+     "fx": 0.5
+    },
+    {
+     "type": "s_end",
+     "dur": 3.0,
+     "lines": [
+      "What I use:",
+      "*Kanalo.*"
+     ],
+     "a": "Free · no ads · no account"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-06_14_ad-before-ending",
+   "publish": "2026-11-06T14:00:00",
+   "lang": "en",
+   "seed": 16,
+   "title": "An ad right before the ending of your film?",
+   "caption": "Nothing worse than an ad right before the ending 😤 It's not your playlist, it's the app you play it in. Your playlist works in any player. I use Kanalo (free, no ads). #iptv #iptvplayer #iptvtips #appletv #techtok",
+   "scenes": [
+    {
+     "type": "s_hook",
+     "dur": 2.8,
+     "lines": [
+      "An ad.",
+      "Right before",
+      "*the ending.*"
+     ],
+     "foot": "Here's why ↓",
+     "ad": "AD  ·  0:30",
+     "mode": "ad"
+    },
+    {
+     "type": "tips",
+     "site": true,
+     "dur": 5.2,
+     "title": "It's not your",
+     "sub": "playlist.",
+     "items": [
+      [
+       "It's the app",
+       "Free apps earn per ad you watch"
+      ],
+      [
+       "Your playlist is portable",
+       "M3U or Xtream works anywhere"
+      ],
+      [
+       "Switch in a minute",
+       "Pick a player without ads"
+      ]
+     ]
+    },
+    {
+     "type": "s_photo",
+     "dur": 3.0,
+     "lines": [
+      "Just *watch.*"
+     ],
+     "sub": "All the way to the end."
+    },
+    {
+     "type": "s_end",
+     "dur": 3.0,
+     "lines": [
+      "What I use:",
+      "*Kanalo.*"
+     ],
+     "a": "Free · no ads · no account"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-06_18_empty-guide",
+   "publish": "2026-11-06T18:00:00",
+   "lang": "en",
+   "seed": 4,
+   "title": "Empty TV guide in your IPTV app? Fix it",
+   "caption": "TV guide says 'No information'? Almost always one of these three. Save this for later 📌 I use Kanalo, it caches the guide in the background. #iptv #iptvplayer #iptvtips #appletv #techtok",
+   "scenes": [
+    {
+     "type": "s_hook",
+     "dur": 2.8,
+     "lines": [
+      "Your TV guide",
+      "just says",
+      "*'No information'?*"
+     ],
+     "size": 96,
+     "foot": "3 fixes ↓",
+     "ad": "Loading guide…",
+     "mode": "guide",
+     "guide_txt": "No information"
+    },
+    {
+     "type": "tips",
+     "site": true,
+     "dur": 5.4,
+     "title": "3 causes",
+     "sub": "+ the fix.",
+     "items": [
+      [
+       "No EPG link added",
+       "Ask your provider for the XMLTV URL"
+      ],
+      [
+       "Channel IDs don't match",
+       "The tvg-id in your playlist must match"
+      ],
+      [
+       "Wrong time zone",
+       "Set the time offset (e.g. +1h)"
+      ]
+     ]
+    },
+    {
+     "type": "s_device",
+     "dur": 2.8,
+     "asset": "atv_gids",
+     "lines": [
+      "A guide that",
+      "*just loads.*"
+     ],
+     "label": "APPLE TV  ·  TV GUIDE",
+     "tint": [
+      150,
+      40,
+      120
+     ],
+     "z1": 1.12,
+     "fx": 0.5
+    },
+    {
+     "type": "s_end",
+     "dur": 3.0,
+     "lines": [
+      "What I use:",
+      "*Kanalo.*"
+     ],
+     "a": "Free · no ads · no account"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-07_10_tv-typing",
+   "publish": "2026-11-07T10:00:00",
+   "lang": "en",
+   "seed": 5,
+   "title": "Stop typing your IPTV login with a TV remote",
+   "caption": "Typing a long Xtream login letter by letter with a remote 😩 You don't have to. Some players let you send it from your iPhone with a QR code. Kanalo does this for free. #iptv #iptvplayer #iptvtips #appletv #techtok",
+   "scenes": [
+    {
+     "type": "s_hook",
+     "dur": 2.8,
+     "lines": [
+      "Typing your",
+      "IPTV login",
+      "*with a remote?*"
+     ],
+     "foot": "There's a faster way ↓",
+     "ad": "Username: k",
+     "mode": "login"
+    },
+    {
+     "type": "qr",
+     "site": true,
+     "dur": 4.2,
+     "lines": [
+      "Scan once",
+      "*on your iPhone.*"
+     ],
+     "tv1": "Add playlist",
+     "tv2": "From iPhone",
+     "tv3": "Scan with your camera",
+     "sent": "Playlists sent",
+     "label": "NOTHING TO TYPE ON THE TV"
+    },
+    {
+     "type": "s_device",
+     "dur": 2.8,
+     "asset": "atv_home",
+     "lines": [
+      "Done.",
+      "*On the big screen.*"
+     ],
+     "label": "APPLE TV  ·  HOME",
+     "tint": [
+      45,
+      45,
+      170
+     ],
+     "fx": 0.3
+    },
+    {
+     "type": "s_end",
+     "dur": 3.0,
+     "lines": [
+      "What I use:",
+      "*Kanalo.*"
+     ],
+     "a": "Free · no ads · no account"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-07_14_nl-lege-gids",
+   "publish": "2026-11-07T14:00:00",
+   "lang": "nl",
+   "seed": 17,
+   "title": "Lege TV-gids in je IPTV-app? Zo los je het op",
+   "caption": "Staat er bij elke zender 'Geen informatie'? Bijna altijd een van deze drie. Sla op voor later 📌 Ik gebruik zelf Kanalo, die laadt de gids op de achtergrond. #iptv #iptvtips #appletv #iptvnederland #techtok",
+   "scenes": [
+    {
+     "type": "s_hook",
+     "dur": 2.8,
+     "lines": [
+      "Je TV-gids",
+      "zegt alleen",
+      "*'Geen informatie'?*"
+     ],
+     "size": 96,
+     "foot": "3 oplossingen ↓",
+     "ad": "Gids laden…",
+     "mode": "guide",
+     "guide_txt": "Geen informatie"
+    },
+    {
+     "type": "tips",
+     "site": true,
+     "dur": 5.4,
+     "title": "3 oorzaken",
+     "sub": "+ de fix.",
+     "items": [
+      [
+       "Geen EPG-link toegevoegd",
+       "Vraag je provider om de XMLTV-URL"
+      ],
+      [
+       "Zender-ID's kloppen niet",
+       "tvg-id in je playlist moet matchen"
+      ],
+      [
+       "Verkeerde tijdzone",
+       "Zet het tijdverschil goed (bijv. +1 uur)"
+      ]
+     ]
+    },
+    {
+     "type": "s_device",
+     "dur": 2.8,
+     "asset": "atv_gids",
+     "lines": [
+      "Een gids die",
+      "*gewoon laadt.*"
+     ],
+     "label": "APPLE TV  ·  TV-GIDS",
+     "tint": [
+      150,
+      40,
+      120
+     ],
+     "z1": 1.12,
+     "fx": 0.5
+    },
+    {
+     "type": "s_end",
+     "dur": 3.0,
+     "lines": [
+      "Ik gebruik zelf",
+      "*Kanalo.*"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "2026-11-07_18_nl-tv-typen",
+   "publish": "2026-11-07T18:00:00",
+   "lang": "nl",
+   "seed": 6,
+   "title": "Je IPTV-login typen met de afstandsbediening? Hoeft niet",
+   "caption": "Letter voor letter je Xtream-login invoeren op de TV 😩 Het kan ook via je iPhone: QR-code scannen en klaar. Ik gebruik zelf Kanalo daarvoor. #iptv #iptvtips #appletv #iptvnederland #techtok",
+   "scenes": [
+    {
+     "type": "s_hook",
+     "dur": 2.8,
+     "lines": [
+      "Je login typen",
+      "met de",
+      "*afstandsbediening?*"
+     ],
+     "size": 96,
+     "foot": "Het kan sneller ↓",
+     "ad": "Gebruikersnaam: k",
+     "mode": "login"
+    },
+    {
+     "type": "qr",
+     "site": true,
+     "dur": 4.2,
+     "lines": [
+      "Scan één keer",
+      "*met je iPhone.*"
+     ],
+     "tv1": "Playlist toevoegen",
+     "tv2": "Vanaf iPhone",
+     "tv3": "Scan met je camera",
+     "sent": "Playlists verstuurd",
+     "label": "NIETS TYPEN OP JE TV"
+    },
+    {
+     "type": "s_device",
+     "dur": 2.8,
+     "asset": "atv_home",
+     "lines": [
+      "Klaar.",
+      "*Op de grote TV.*"
+     ],
+     "label": "APPLE TV  ·  HOME",
+     "tint": [
+      45,
+      45,
+      170
+     ],
+     "fx": 0.3
+    },
+    {
+     "type": "s_end",
+     "dur": 3.0,
+     "lines": [
+      "Ik gebruik zelf",
+      "*Kanalo.*"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "2026-11-08_10_m3u-vs-xtream",
+   "publish": "2026-11-08T10:00:00",
+   "lang": "en",
+   "seed": 7,
+   "title": "M3U or Xtream? Which one should you use",
+   "caption": "Your provider gave you an M3U link AND Xtream details? Here's the difference in 15 seconds. Both work in Kanalo. #iptv #iptvplayer #iptvtips #appletv #techtok",
+   "scenes": [
+    {
+     "type": "s_hook",
+     "dur": 2.8,
+     "lines": [
+      "M3U or Xtream?",
+      "*Which one",
+      "*do you use?*"
+     ],
+     "foot": "Quick answer ↓",
+     "ad": "Choose playlist type",
+     "mode": "list"
+    },
+    {
+     "type": "tips",
+     "site": true,
+     "dur": 5.6,
+     "title": "The difference",
+     "sub": "in 15 seconds.",
+     "items": [
+      [
+       "M3U = one long link",
+       "Everything in one big file"
+      ],
+      [
+       "Xtream = server + login",
+       "Films & series load separately, faster"
+      ],
+      [
+       "Got both? Use Xtream",
+       "Quicker updates, cleaner library"
+      ]
+     ]
+    },
+    {
+     "type": "s_device",
+     "dur": 2.8,
+     "asset": "atv_movies",
+     "lines": [
+      "Same playlist.",
+      "*Cleaner library.*"
+     ],
+     "label": "APPLE TV  ·  MOVIES",
+     "tint": [
+      150,
+      40,
+      120
+     ],
+     "z1": 1.12,
+     "fx": 0.5
+    },
+    {
+     "type": "s_end",
+     "dur": 3.0,
+     "lines": [
+      "What I use:",
+      "*Kanalo.*"
+     ],
+     "a": "Free · no ads · no account"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-08_14_nl-m3u-xtream",
+   "publish": "2026-11-08T14:00:00",
+   "lang": "nl",
+   "seed": 18,
+   "title": "M3U of Xtream? Dit is het verschil",
+   "caption": "Kreeg je van je provider een M3U-link én Xtream-gegevens? Dit is het verschil in 15 seconden. Allebei werken in Kanalo. #iptv #iptvtips #appletv #iptvnederland #techtok",
+   "scenes": [
+    {
+     "type": "s_hook",
+     "dur": 2.8,
+     "lines": [
+      "M3U of Xtream?",
+      "*Wat moet",
+      "*je kiezen?*"
+     ],
+     "foot": "Kort antwoord ↓",
+     "ad": "Kies type playlist",
+     "mode": "list"
+    },
+    {
+     "type": "tips",
+     "site": true,
+     "dur": 5.6,
+     "title": "Het verschil",
+     "sub": "in 15 seconden.",
+     "items": [
+      [
+       "M3U = één lange link",
+       "Alles in één groot bestand"
+      ],
+      [
+       "Xtream = server + login",
+       "Films en series laden apart, sneller"
+      ],
+      [
+       "Heb je allebei? Kies Xtream",
+       "Snellere updates, nettere bibliotheek"
+      ]
+     ]
+    },
+    {
+     "type": "s_device",
+     "dur": 2.8,
+     "asset": "atv_movies",
+     "lines": [
+      "Zelfde playlist.",
+      "*Veel netter.*"
+     ],
+     "label": "APPLE TV  ·  FILMS",
+     "tint": [
+      150,
+      40,
+      120
+     ],
+     "z1": 1.12,
+     "fx": 0.5
+    },
+    {
+     "type": "s_end",
+     "dur": 3.0,
+     "lines": [
+      "Ik gebruik zelf",
+      "*Kanalo.*"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "2026-11-08_18_dead-channels",
+   "publish": "2026-11-08T18:00:00",
+   "lang": "en",
+   "seed": 8,
+   "title": "Channels not loading in your IPTV app?",
+   "caption": "Black screen on half your channels? Before you blame the app, try these three. Save it 📌 I use Kanalo, it shows which channels actually work. #iptv #iptvplayer #iptvtips #appletv #techtok",
+   "scenes": [
+    {
+     "type": "s_hook",
+     "dur": 2.8,
+     "lines": [
+      "Half your",
+      "channels",
+      "*won't load?*"
+     ],
+     "foot": "Try this first ↓",
+     "ad": "Stream not available",
+     "mode": "buffer"
+    },
+    {
+     "type": "tips",
+     "site": true,
+     "dur": 5.4,
+     "title": "Try this",
+     "sub": "first.",
+     "items": [
+      [
+       "Refresh your playlist",
+       "Providers change links all the time"
+      ],
+      [
+       "Check your subscription",
+       "Expired = channels go black"
+      ],
+      [
+       "Make a favourites list",
+       "Only the channels that work"
+      ]
+     ]
+    },
+    {
+     "type": "s_device",
+     "dur": 2.8,
+     "asset": "atv_gids",
+     "lines": [
+      "Only channels",
+      "*that work.*"
+     ],
+     "label": "APPLE TV  ·  TV GUIDE",
+     "tint": [
+      45,
+      45,
+      170
+     ],
+     "z1": 1.12,
+     "fx": 0.5
+    },
+    {
+     "type": "s_end",
+     "dur": 3.0,
+     "lines": [
+      "What I use:",
+      "*Kanalo.*"
+     ],
+     "a": "Free · no ads · no account"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-09_10_do-the-math",
+   "publish": "2026-11-09T10:00:00",
+   "lang": "en",
+   "seed": 9,
+   "title": "How much are you paying for your IPTV player?",
+   "caption": "Quick math: a paid IPTV player adds up to more than you'd think. The player doesn't make your playlist better, it just plays it. Kanalo is free (Pro is optional). #iptv #iptvplayer #iptvtips #appletv #techtok",
+   "scenes": [
+    {
+     "type": "s_hook",
+     "dur": 2.8,
+     "lines": [
+      "How much is",
+      "your IPTV player",
+      "*costing you?*"
+     ],
+     "size": 96,
+     "foot": "Do the math ↓",
+     "price": "€4.99 / month",
+     "ad": "Upgrade to remove ads",
+     "mode": "ad"
+    },
+    {
+     "type": "bill",
+     "site": true,
+     "dur": 3.8,
+     "hl": [
+      "Just for",
+      "*the player:*"
+     ],
+     "note": "not your playlist, only the app",
+     "items": [
+      [
+       "Subscription",
+       "€4.99 /mo"
+      ],
+      [
+       "Remove ads",
+       "€2.99"
+      ],
+      [
+       "Apple TV version",
+       "€9.99"
+      ]
+     ],
+     "total_label": "Per year:",
+     "total": "± €72"
+    },
+    {
+     "type": "tips",
+     "site": true,
+     "dur": 5.0,
+     "title": "Good to know:",
+     "sub": "it's just a player.",
+     "items": [
+      [
+       "It doesn't add channels",
+       "Your playlist stays the same"
+      ],
+      [
+       "So don't overpay",
+       "Free players can be just as good"
+      ],
+      [
+       "Look for: no ads, Apple TV",
+       "And no account needed"
+      ]
+     ]
+    },
+    {
+     "type": "s_end",
+     "dur": 3.0,
+     "lines": [
+      "What I use:",
+      "*Kanalo.*"
+     ],
+     "a": "Free · no ads · no account"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-09_14_nl-excel-lijst",
+   "publish": "2026-11-09T14:00:00",
+   "lang": "nl",
+   "seed": 19,
+   "title": "Ziet je IPTV-playlist eruit als een Excel-lijst?",
+   "caption": "Eindeloze lijsten zendernamen, geen posters, geen info? Dat ligt aan je speler, niet aan je playlist. Ik gebruik zelf Kanalo daarvoor. #iptv #iptvtips #appletv #iptvnederland #techtok",
+   "scenes": [
+    {
+     "type": "s_hook",
+     "dur": 2.8,
+     "lines": [
+      "Ziet je playlist",
+      "eruit als een",
+      "*Excel-lijst?*"
+     ],
+     "foot": "Dat hoeft niet ↓",
+     "ad": "Scrollen…  1 / 3.214",
+     "mode": "list"
+    },
+    {
+     "type": "tips",
+     "site": true,
+     "dur": 5.2,
+     "title": "Dat is je speler,",
+     "sub": "niet je playlist.",
+     "items": [
+      [
+       "Posters en beoordelingen",
+       "Worden automatisch toegevoegd"
+      ],
+      [
+       "Netjes per categorie",
+       "Films, series en live TV apart"
+      ],
+      [
+       "Verder kijken",
+       "Ga verder waar je gebleven was"
+      ]
+     ]
+    },
+    {
+     "type": "s_device",
+     "dur": 2.8,
+     "asset": "atv_movies",
+     "lines": [
+      "Zelfde playlist.",
+      "*Zo ziet het eruit.*"
+     ],
+     "label": "APPLE TV  ·  FILMS",
+     "tint": [
+      150,
+      40,
+      120
+     ],
+     "z1": 1.12,
+     "fx": 0.5
+    },
+    {
+     "type": "s_end",
+     "dur": 3.0,
+     "lines": [
+      "Ik gebruik zelf",
+      "*Kanalo.*"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "2026-11-09_18_nl-reclame",
+   "publish": "2026-11-09T18:00:00",
+   "lang": "nl",
+   "seed": 10,
+   "title": "Betaal je voor je IPTV-app én krijg je reclame? Dit hoeft niet",
+   "caption": "Je betaalt elke maand en krijgt nog steeds reclame? Je playlist zit niet vast aan die app, hij werkt in elke speler. Overstappen duurt een minuut. Ik gebruik zelf Kanalo (gratis, zonder reclame). #iptv #iptvtips #appletv #iptvnederland #techtok",
+   "scenes": [
+    {
+     "type": "s_hook",
+     "dur": 2.8,
+     "lines": [
+      "Je betaalt voor",
+      "je IPTV-app.",
+      "*En toch reclame?*"
+     ],
+     "foot": "Zo los je het op ↓",
+     "price": "€4,99 / maand",
+     "ad": "RECLAME  ·  0:30",
+     "mode": "ad"
+    },
+    {
+     "type": "bill",
+     "site": true,
+     "dur": 3.6,
+     "hl": [
+      "Wat het je",
+      "*echt kost:*"
+     ],
+     "note": "bij een gemiddelde IPTV-app",
+     "items": [
+      [
+       "Abonnement",
+       "€4,99 /mnd"
+      ],
+      [
+       "Reclame weg",
+       "€2,99"
+      ],
+      [
+       "Extra functies",
+       "€9,99"
+      ]
+     ],
+     "total_label": "Per jaar:",
+     "total": "± €72"
+    },
+    {
+     "type": "tips",
+     "site": true,
+     "dur": 5.2,
+     "title": "De oplossing:",
+     "sub": "wissel van speler.",
+     "items": [
+      [
+       "Je playlist is van jou",
+       "Werkt in elke speler (M3U of Xtream)"
+      ],
+      [
+       "Kies een speler zonder ads",
+       "Geen reclame meer midden in je film"
+      ],
+      [
+       "Overzetten duurt 1 minuut",
+       "Je zenders, films en series blijven"
+      ]
+     ]
+    },
+    {
+     "type": "s_photo",
+     "dur": 3.0,
+     "lines": [
+      "Gewoon *kijken.*"
+     ],
+     "sub": "Zonder reclame tussendoor."
+    },
+    {
+     "type": "s_end",
+     "dur": 3.0,
+     "lines": [
+      "Ik gebruik zelf",
+      "*Kanalo.*"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "2026-11-10_10_messy-list",
+   "publish": "2026-11-10T10:00:00",
+   "lang": "en",
+   "seed": 11,
+   "title": "Your IPTV playlist looks like a spreadsheet?",
+   "caption": "Endless lists of channel names, no posters, no info? That's the player, not your playlist. A good player adds covers, ratings and 'continue watching'. I use Kanalo for this. #iptv #iptvplayer #iptvtips #appletv #techtok",
+   "scenes": [
+    {
+     "type": "s_hook",
+     "dur": 2.8,
+     "lines": [
+      "Your playlist",
+      "looks like",
+      "*a spreadsheet?*"
+     ],
+     "foot": "It doesn't have to ↓",
+     "ad": "Scroll…  1 / 3,214",
+     "mode": "list"
+    },
+    {
+     "type": "tips",
+     "site": true,
+     "dur": 5.2,
+     "title": "That's the player,",
+     "sub": "not your playlist.",
+     "items": [
+      [
+       "Posters & ratings",
+       "Pulled in automatically"
+      ],
+      [
+       "Sorted by category",
+       "Films, series and live TV apart"
+      ],
+      [
+       "Continue watching",
+       "Pick up where you left off"
+      ]
+     ]
+    },
+    {
+     "type": "s_device",
+     "dur": 2.8,
+     "asset": "atv_movies",
+     "lines": [
+      "Same playlist.",
+      "*Looks like this.*"
+     ],
+     "label": "APPLE TV  ·  MOVIES",
+     "tint": [
+      150,
+      40,
+      120
+     ],
+     "z1": 1.12,
+     "fx": 0.5
+    },
+    {
+     "type": "s_photo",
+     "dur": 2.8,
+     "lines": [
+      "Finally *relaxing.*"
+     ],
+     "sub": "Like a real streaming app."
+    },
+    {
+     "type": "s_end",
+     "dur": 3.0,
+     "lines": [
+      "What I use:",
+      "*Kanalo.*"
+     ],
+     "a": "Free · no ads · no account"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-10_14_nl-zenders-laden-niet",
+   "publish": "2026-11-10T14:00:00",
+   "lang": "nl",
+   "seed": 20,
+   "title": "Laden je IPTV-zenders niet? Probeer dit eerst",
+   "caption": "Zwart scherm bij de helft van je zenders? Probeer eerst deze drie dingen, voordat je de app de schuld geeft. Sla op 📌 #iptv #iptvtips #appletv #iptvnederland #techtok",
+   "scenes": [
+    {
+     "type": "s_hook",
+     "dur": 2.8,
+     "lines": [
+      "De helft van",
+      "je zenders",
+      "*laadt niet?*"
+     ],
+     "foot": "Probeer dit eerst ↓",
+     "ad": "Stream niet beschikbaar",
+     "mode": "buffer"
+    },
+    {
+     "type": "tips",
+     "site": true,
+     "dur": 5.4,
+     "title": "Probeer dit",
+     "sub": "eerst.",
+     "items": [
+      [
+       "Ververs je playlist",
+       "Providers wijzigen links vaak"
+      ],
+      [
+       "Check je abonnement",
+       "Verlopen = zwart beeld"
+      ],
+      [
+       "Maak een favorietenlijst",
+       "Alleen de zenders die werken"
+      ]
+     ]
+    },
+    {
+     "type": "s_device",
+     "dur": 2.8,
+     "asset": "atv_gids",
+     "lines": [
+      "Alleen zenders",
+      "*die werken.*"
+     ],
+     "label": "APPLE TV  ·  TV-GIDS",
+     "tint": [
+      45,
+      45,
+      170
+     ],
+     "z1": 1.12,
+     "fx": 0.5
+    },
+    {
+     "type": "s_end",
+     "dur": 3.0,
+     "lines": [
+      "Ik gebruik zelf",
+      "*Kanalo.*"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "2026-11-10_18_buffer-4g",
+   "publish": "2026-11-10T18:00:00",
+   "lang": "en",
+   "seed": 12,
+   "title": "IPTV keeps buffering on your phone? 3 fixes",
+   "caption": "Buffering on your phone but fine on wifi at home? Try these three before you give up. Save it 📌 I use Kanalo on iPhone and Apple TV. #iptv #iptvplayer #iptvtips #appletv #techtok",
+   "scenes": [
+    {
+     "type": "s_hook",
+     "dur": 2.8,
+     "lines": [
+      "IPTV keeps",
+      "buffering on",
+      "*your phone?*"
+     ],
+     "foot": "3 quick fixes ↓",
+     "ad": "Buffering…",
+     "mode": "buffer"
+    },
+    {
+     "type": "tips",
+     "site": true,
+     "dur": 5.4,
+     "title": "3 quick",
+     "sub": "fixes.",
+     "items": [
+      [
+       "Drop to HD on mobile data",
+       "4K needs ~25 Mbit/s"
+      ],
+      [
+       "Turn off Low Data Mode",
+       "Settings → Mobile Data → Options"
+      ],
+      [
+       "Restart the stream once",
+       "Many servers switch you to a faster node"
+      ]
+     ]
+    },
+    {
+     "type": "s_photo",
+     "dur": 3.0,
+     "lines": [
+      "Smooth *again.*"
+     ],
+     "sub": "On iPhone, iPad and Apple TV."
+    },
+    {
+     "type": "s_end",
+     "dur": 3.0,
+     "lines": [
+      "What I use:",
+      "*Kanalo.*"
+     ],
+     "a": "Free · no ads · no account"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-11_10_nl-instellen",
+   "publish": "2026-11-11T10:00:00",
+   "lang": "nl",
+   "seed": 13,
+   "title": "IPTV op je iPhone instellen in 1 minuut",
+   "caption": "IPTV op je iPhone lijkt lastig, maar het is in een minuut klaar. Alleen je M3U-link of Xtream-gegevens nodig. Ik gebruik zelf Kanalo (gratis, geen account). #iptv #iptvtips #appletv #iptvnederland #techtok",
+   "scenes": [
+    {
+     "type": "s_hook",
+     "dur": 2.8,
+     "lines": [
+      "IPTV op je",
+      "iPhone instellen?",
+      "*Lijkt lastig.*"
+     ],
+     "foot": "Is het niet ↓",
+     "ad": "Server · Gebruiker · Wachtwoord",
+     "mode": "list"
+    },
+    {
+     "type": "tips",
+     "site": true,
+     "dur": 5.4,
+     "title": "In 3 stappen",
+     "sub": "klaar.",
+     "items": [
+      [
+       "Pak je M3U-link of Xtream-login",
+       "Die krijg je van je provider"
+      ],
+      [
+       "Open een IPTV-speler",
+       "Zonder account, zonder reclame"
+      ],
+      [
+       "Plakken en op play",
+       "Zenders, films en series staan klaar"
+      ]
+     ]
+    },
+    {
+     "type": "s_device",
+     "dur": 2.8,
+     "asset": "atv_home",
+     "lines": [
+      "Ook op",
+      "*je Apple TV.*"
+     ],
+     "label": "APPLE TV  ·  HOME",
+     "tint": [
+      45,
+      45,
+      170
+     ],
+     "fx": 0.3
+    },
+    {
+     "type": "s_end",
+     "dur": 3.0,
+     "lines": [
+      "Ik gebruik zelf",
+      "*Kanalo.*"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "2026-11-11_14_appletv-settings",
+   "publish": "2026-11-11T14:00:00",
+   "lang": "en",
+   "seed": 21,
+   "title": "Watching IPTV on Apple TV? Change these 3 settings",
+   "caption": "3 Apple TV settings that make IPTV look and play better. Takes 30 seconds. Save it 📌 I use Kanalo as my player on Apple TV. #iptv #iptvplayer #iptvtips #appletv #techtok",
+   "scenes": [
+    {
+     "type": "s_hook",
+     "dur": 2.8,
+     "lines": [
+      "IPTV on",
+      "Apple TV?",
+      "*Change these 3.*"
+     ],
+     "foot": "30 seconds ↓",
+     "ad": "Settings",
+     "mode": "list"
+    },
+    {
+     "type": "tips",
+     "site": true,
+     "dur": 5.6,
+     "title": "Apple TV",
+     "sub": "settings.",
+     "items": [
+      [
+       "Match Content: on",
+       "Video and Audio → Match Content"
+      ],
+      [
+       "Use a cable if you can",
+       "Ethernet beats wifi for live TV"
+      ],
+      [
+       "Reduce Loud Sounds: on",
+       "Video and Audio → Audio"
+      ]
+     ]
+    },
+    {
+     "type": "s_device",
+     "dur": 2.8,
+     "asset": "atv_home",
+     "lines": [
+      "Better picture.",
+      "*Same playlist.*"
+     ],
+     "label": "APPLE TV  ·  HOME",
+     "tint": [
+      45,
+      45,
+      170
+     ],
+     "fx": 0.3
+    },
+    {
+     "type": "s_end",
+     "dur": 3.0,
+     "lines": [
+      "What I use:",
+      "*Kanalo.*"
+     ],
+     "a": "Free · no ads · no account"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-11_18_privacy",
+   "publish": "2026-11-11T18:00:00",
+   "lang": "en",
+   "seed": 14,
+   "title": "Does your IPTV app know your login?",
+   "caption": "Some IPTV apps make you create an account and store your playlist login on their servers. Check before you paste it. Kanalo needs no account, your login stays on your device. #iptv #iptvplayer #iptvtips #appletv #techtok",
+   "scenes": [
+    {
+     "type": "s_hook",
+     "dur": 2.8,
+     "lines": [
+      "Does your",
+      "IPTV app know",
+      "*your login?*"
+     ],
+     "foot": "Check this ↓",
+     "price": "Account required",
+     "ad": "Sign up to continue",
+     "mode": "login"
+    },
+    {
+     "type": "tips",
+     "site": true,
+     "dur": 5.4,
+     "title": "Check before",
+     "sub": "you paste it.",
+     "items": [
+      [
+       "Needs an account?",
+       "Your playlist can end up on their server"
+      ],
+      [
+       "Check the privacy label",
+       "App Store → App Privacy"
+      ],
+      [
+       "Better: no account at all",
+       "Login stays on your device"
+      ]
+     ]
+    },
+    {
+     "type": "s_device",
+     "dur": 2.8,
+     "asset": "atv_home",
+     "lines": [
+      "Your playlist.",
+      "*Your device.*"
+     ],
+     "label": "APPLE TV  ·  HOME",
+     "tint": [
+      45,
+      45,
+      170
+     ],
+     "fx": 0.3
+    },
+    {
+     "type": "s_end",
+     "dur": 3.0,
+     "lines": [
+      "What I use:",
+      "*Kanalo.*"
+     ],
+     "a": "Free · no ads · no account"
+    }
+   ]
+  }
+ ]
+}

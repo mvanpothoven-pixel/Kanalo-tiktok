@@ -304,9 +304,14 @@ def qr_img(n=25, cell=12):
     return _qr
 
 def sc_qr(t, d, p):
-    img = BGS["violet"].copy()
-    caption(img, p.get("top", "iPhone to Apple TV"), p.get("sub", "with one scan."), t, y=260)
-    tw, th = 960, 560; x0, y0 = (W - tw) // 2, 560
+    if p.get("site"):
+        img = site_bg((60, 50, 170), cy=0.6, strength=0.25); header(img)
+        headline(img, p["lines"], 440, 96, t)
+        tw, th = 960, 560; x0, y0 = (W - tw) // 2, 720
+    else:
+        img = BGS["violet"].copy()
+        caption(img, p.get("top", "iPhone to Apple TV"), p.get("sub", "with one scan."), t, y=260)
+        tw, th = 960, 560; x0, y0 = (W - tw) // 2, 560
     rrect(img, (x0 - 18, y0 - 18, x0 + tw + 18, y0 + th + 18), 42, (34, 32, 40))
     swap = ease(prog(t, 2.7, 3.1))
     rrect(img, (x0, y0, x0 + tw, y0 + th), 26, (14, 12, 22))
@@ -491,6 +496,8 @@ def segs(line):
 def headline(img, lines, y, size, t=9.0, instant=False, x=80, gap=1.16, red=False):
     """Lines with *accent* parts (Lora italic, brand gradient, or red for problems). Left aligned like the site."""
     d0 = ImageDraw.Draw(img)
+    def lw(ln, sz): return sum(d0.textlength(tx, font=FL(int(sz * 1.08)) if ac else F(sz, "Medium")) for tx, ac in segs(ln))
+    while size > 50 and max(lw(ln, size) for ln in lines) > W - 2 * x: size -= 4
     for i, ln in enumerate(lines):
         q = 1.0 if instant else ease(prog(t, 0.05 + i * 0.18, 0.4 + i * 0.18))
         if q <= 0: continue
@@ -517,27 +524,54 @@ def tile(img, box, c, alpha=1.0):
     g = g.resize((w, h)); m = Image.new("L", (w, h), 0)
     ImageDraw.Draw(m).rounded_rectangle([0, 0, w - 1, h - 1], 60, fill=int(255 * alpha)); img.paste(g, (x0, y0), m)
 
-def fake_old_app(img, box, t, price="€4,99 / maand", ad="RECLAME  ·  0:30"):
-    """Generic ad-filled player (no real brand): dim video frame, spinner, yellow ad bar, price badge."""
+def fake_old_app(img, box, t, price="€4,99 / maand", ad="RECLAME  ·  0:30", mode="ad", bar=None):
+    """Generic problem app (no real brand). mode: ad | buffer | login | guide | list."""
     x0, y0, x1, y1 = box
     rrect(img, (x0 - 16, y0 - 16, x1 + 16, y1 + 16), 58, (36, 34, 44))
     rrect(img, (x0, y0, x1, y1), 44, (22, 20, 28))
-    vy1 = y0 + (y1 - y0) * 0.5
-    paste_round(img, hgrad(400, 200, (60, 50, 70), (30, 26, 40)), (x0 + 30, y0 + 90, x1 - 30, vy1), 24)
-    spinner(img, (x0 + x1) / 2, (y0 + 90 + vy1) / 2, 44, t)
-    rrect(img, (x0 + 30, vy1 + 30, x1 - 30, vy1 + 130), 22, (250, 205, 40))
-    secs = max(0, 30 - int(t * 2))
-    text(img, ad.replace("0:30", f"0:{secs:02d}"), (x0 + x1) / 2, vy1 + 80, 42, fill=(20, 20, 20), w="ExtraBold", maxw=x1 - x0 - 80)
+    vy1 = y0 + (y1 - y0) * 0.5; cx = (x0 + x1) / 2; vcy = (y0 + 90 + vy1) / 2
+    if mode in ("ad", "buffer"):
+        paste_round(img, hgrad(400, 200, (60, 50, 70), (30, 26, 40)), (x0 + 30, y0 + 90, x1 - 30, vy1), 24)
+        spinner(img, cx, vcy, 44, t)
+        if mode == "buffer":
+            text(img, f"{min(9.9, 2.0 + t * 2.6):.1f}s".replace(".", ","), cx, vcy + 100, 44, fill=RED, w="Black")
+    elif mode == "login":
+        rrect(img, (x0 + 30, y0 + 90, x1 - 30, vy1), 24, (34, 32, 44))
+        keys = "abcdefghijklmnopqrstuvwxyz0123"; kw = (x1 - x0 - 100) / 10; sel = int(t * 3) % 30
+        for k, ch in enumerate(keys):
+            kx = x0 + 50 + (k % 10) * kw; ky = y0 + 120 + (k // 10) * 70
+            if k == sel: rrect(img, (kx, ky, kx + kw - 8, ky + 58), 10, WHITE)
+            text(img, ch, kx + (kw - 8) / 2, ky + 29, 32, fill=(20, 20, 20) if k == sel else (200, 200, 210), w="SemiBold")
+    elif mode == "guide":
+        for k in range(4):
+            yy = y0 + 100 + k * 58
+            rrect(img, (x0 + 30, yy, x0 + 150, yy + 46), 10, (46, 44, 56))
+            rrect(img, (x0 + 165, yy, x1 - 30, yy + 46), 10, (34, 32, 44))
+            text(img, p_guide_txt[0], x0 + 185, yy + 23, 28, fill=(140, 136, 150), w="Medium", anchor="lm")
+    elif mode == "list":
+        for k in range(5):
+            yy = y0 + 95 + k * 46
+            text(img, f"|{k + 1:03d}| CH {k + 1} FHD ▸ ▸ ▸", x0 + 40, yy + 20, 28, fill=(150, 146, 160), w="Medium", anchor="lm")
+    if ad:
+        col = (250, 205, 40) if mode == "ad" else (58, 56, 70)
+        rrect(img, (x0 + 30, vy1 + 30, x1 - 30, vy1 + 130), 22, col)
+        secs = max(0, 30 - int(t * 2)); s_ = ad.replace("0:30", f"0:{secs:02d}") if mode == "ad" else ad
+        if mode == "login": s_ = ad + ("_" if int(t * 2) % 2 else " ")
+        text(img, s_, cx, vy1 + 80, 40, fill=(20, 20, 20) if mode == "ad" else WHITE, w="ExtraBold", maxw=x1 - x0 - 80)
     for k in range(3):
         rrect(img, (x0 + 30, vy1 + 170 + k * 70, x1 - 30 - k * 90, vy1 + 200 + k * 70), 12, (46, 44, 56))
-    bx, by = x1 - 20, y0 + 40
-    rrect(img, (bx - 330, by - 10, bx + 40, by + 80), 45, RED)
-    text(img, price, bx - 145, by + 35, 40, w="ExtraBold", maxw=340)
+    if price:
+        bx, by = x1 - 20, y0 + 40
+        rrect(img, (bx - 330, by - 10, bx + 40, by + 80), 45, RED)
+        text(img, price, bx - 145, by + 35, 40, w="ExtraBold", maxw=340)
+
+p_guide_txt = ["Geen informatie"]
 
 def sc_s_hook(t, d, p):
     img = site_bg((150, 30, 40), cy=0.72, strength=0.3); header(img)
     headline(img, p["lines"], 470, p.get("size", 104), t, instant=True, red=True)
-    fake_old_app(img, (230, 900, 850, 1560), t, p.get("price", "€4,99 / maand"), p.get("ad", "RECLAME  ·  0:30"))
+    p_guide_txt[0] = p.get("guide_txt", "Geen informatie")
+    fake_old_app(img, (230, 900, 850, 1560), t, p.get("price"), p.get("ad"), p.get("mode", "ad"))
     if p.get("foot"): text(img, p["foot"], W/2, 1680, 46, fill=(215, 205, 230), w="Medium")
     return img
 
