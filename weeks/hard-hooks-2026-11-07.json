@@ -1,0 +1,34 @@
+{"videos":[
+{"id":"2026-11-07_14_stop-paying","publish":"2026-11-07T14:00:00","lang":"en","seed":31,
+ "title":"STOP paying for IPTV players full of ads!",
+ "caption":"STOP paying for IPTV players full of ads 🛑 Your playlist works in any player. Kanalo is free, no ads, no account, made for iPhone, iPad & Apple TV. #iptv #iptvplayer #appletv #iptvtips #techtok",
+ "scenes":[
+  {"type":"s_device","dur":2.6,"instant":true,"red":true,"asset":"atv_home","lines":["STOP paying for","IPTV players","*full of ads!*"],"size":100,"label":"APPLE TV  ·  HOME","tint":[150,40,120],"fx":0.3},
+  {"type":"bill","site":true,"dur":3.2,"hl":["What you","*pay now:*"],"note":"a typical IPTV app","items":[["Subscription","€4.99 /mo"],["Remove ads","€2.99"],["Extra features","€9.99"]],"total_label":"Per year:","total":"± €72"},
+  {"type":"s_device","dur":2.6,"asset":"atv_movies","lines":["Same playlist.","*Zero ads.*"],"label":"APPLE TV  ·  MOVIES","tint":[45,45,170],"z1":1.12,"fx":0.5},
+  {"type":"s_end","dur":2.4,"lines":["Free on the","*App Store.*"],"a":"Kanalo · iPhone · iPad · Apple TV"}]},
+{"id":"2026-11-08_14_nl-stop-betalen","publish":"2026-11-08T14:00:00","lang":"nl","seed":32,
+ "title":"STOP met betalen voor een IPTV-app vol reclame!",
+ "caption":"STOP met betalen voor een IPTV-app vol reclame 🛑 Je playlist werkt in elke speler. Kanalo is gratis, zonder reclame en zonder account, voor iPhone, iPad & Apple TV. #iptv #iptvnederland #appletv #iptvtips #techtok",
+ "scenes":[
+  {"type":"s_device","dur":2.6,"instant":true,"red":true,"asset":"atv_home","lines":["STOP met betalen","voor een IPTV-app","*vol reclame!*"],"size":96,"label":"APPLE TV  ·  HOME","tint":[150,40,120],"fx":0.3},
+  {"type":"bill","site":true,"dur":3.2,"hl":["Wat je","*nu betaalt:*"],"note":"bij een gemiddelde IPTV-app","items":[["Abonnement","€4,99 /mnd"],["Reclame weg","€2,99"],["Extra functies","€9,99"]],"total_label":"Per jaar:","total":"± €72"},
+  {"type":"s_device","dur":2.6,"asset":"atv_movies","lines":["Zelfde playlist.","*Nul reclame.*"],"label":"APPLE TV  ·  FILMS","tint":[45,45,170],"z1":1.12,"fx":0.5},
+  {"type":"s_end","dur":2.4,"lines":["Gratis in de","*App Store.*"],"a":"Kanalo · iPhone · iPad · Apple TV"}]},
+{"id":"2026-11-09_14_still-paying","publish":"2026-11-09T14:00:00","lang":"en","seed":33,
+ "title":"Still paying for an IPTV player full of ads? 👀",
+ "caption":"Still paying for an IPTV player full of ads? 👀 Once you try one without, there's no going back. Kanalo: free, no ads, iPhone, iPad & Apple TV. #iptv #iptvplayer #appletv #iptvtips #techtok",
+ "scenes":[
+  {"type":"s_device","dur":2.6,"instant":true,"red":true,"asset":"atv_movies","lines":["Still paying for","an IPTV player","*full of ads?*"],"size":100,"label":"APPLE TV  ·  MOVIES","tint":[150,40,120],"z1":1.08,"fx":0.5},
+  {"type":"s_photo","dur":2.6,"lines":["Just *watch.*"],"sub":"No ads in between."},
+  {"type":"s_device","dur":2.6,"asset":"atv_gids","lines":["A guide that","*just loads.*"],"label":"APPLE TV  ·  TV GUIDE","tint":[45,45,170],"z1":1.12,"fx":0.5},
+  {"type":"s_end","dur":2.4,"lines":["Free on the","*App Store.*"],"a":"Kanalo · iPhone · iPad · Apple TV"}]},
+{"id":"2026-11-10_14_nl-nog-steeds","publish":"2026-11-10T14:00:00","lang":"nl","seed":34,
+ "title":"Betaal je nog steeds voor een IPTV-app vol reclame? 👀",
+ "caption":"Betaal je nog steeds voor een IPTV-app vol reclame? 👀 Als je eenmaal zonder kijkt, wil je niet meer terug. Kanalo: gratis, geen reclame, iPhone, iPad & Apple TV. #iptv #iptvnederland #appletv #iptvtips #techtok",
+ "scenes":[
+  {"type":"s_device","dur":2.6,"instant":true,"red":true,"asset":"atv_movies","lines":["Betaal je nog","steeds voor reclame","*in je IPTV-app?*"],"size":96,"label":"APPLE TV  ·  FILMS","tint":[150,40,120],"z1":1.08,"fx":0.5},
+  {"type":"s_photo","dur":2.6,"lines":["Gewoon *kijken.*"],"sub":"Zonder reclame tussendoor."},
+  {"type":"s_device","dur":2.6,"asset":"atv_gids","lines":["Een gids die","*gewoon laadt.*"],"label":"APPLE TV  ·  TV-GIDS","tint":[45,45,170],"z1":1.12,"fx":0.5},
+  {"type":"s_end","dur":2.4,"lines":["Gratis in de","*App Store.*"],"a":"Kanalo · iPhone · iPad · Apple TV"}]}
+]}

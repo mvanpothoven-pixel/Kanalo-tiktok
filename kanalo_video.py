@@ -587,8 +587,8 @@ def sc_s_photo(t, d, p):
 def sc_s_device(t, d, p):
     c = tuple(p.get("tint", (50, 50, 170)))
     img = site_bg(); header(img)
-    headline(img, p["lines"], 470, p.get("size", 104), t)
-    ty0 = 760 + int(60 * (1 - ease(prog(t, 0, 0.5))))
+    headline(img, p["lines"], 470, p.get("size", 104), t, instant=p.get("instant", False), red=p.get("red", False))
+    ty0 = 760 + (0 if p.get("instant") else int(60 * (1 - ease(prog(t, 0, 0.5)))))
     tile(img, (60, ty0, 1020, ty0 + 820), c)
     src = ASSETS[p.get("asset", "atv_home")]; tw = 860; th = int(tw * src.size[1] / src.size[0])
     x0 = (W - tw) // 2; y0 = ty0 + (820 - th) // 2 - 30
