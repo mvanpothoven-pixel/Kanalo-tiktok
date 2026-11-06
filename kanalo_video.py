@@ -58,7 +58,7 @@ BGS = {
 }
 
 def load(n): return Image.open(os.path.join(HERE, "assets", n)).convert("RGB")
-ASSETS = {n: load(n + ".png") for n in ["logo", "atv_home", "atv_gids", "atv_movies", "iphone_detail", "rec_settings", "site_couch"]}
+ASSETS = {n: load(n + ".png") for n in ["logo", "atv_home", "atv_gids", "atv_movies", "iphone_detail", "rec_settings", "site_couch", "as_movies", "as_manage", "as_detail", "as_subs"]}
 
 # ---------- drawing helpers ----------
 def text(img, s, cx, cy, size, fill=WHITE, alpha=1.0, w="Bold", anchor="mm", grad=False, maxw=980):
@@ -611,6 +611,21 @@ def sc_s_end(t, d, p):
         text(img, "kanalo.app", W/2, 1360, 60, w="Bold", fill=(12, 12, 16), alpha=q3)
     return img
 
+def sc_s_phone(t, d, p):
+    """App Store phone screenshot in a glowing tile, slow scroll."""
+    c = tuple(p.get("tint", (120, 50, 170)))
+    img = site_bg(); header(img)
+    headline(img, p["lines"], 470, p.get("size", 100), t, instant=p.get("instant", False), red=p.get("red", False))
+    ty0 = 700 + (0 if p.get("instant") else int(50 * (1 - ease(prog(t, 0, 0.5)))))
+    tile(img, (130, ty0, 950, ty0 + 1060), c)
+    src = ASSETS[p.get("asset", "as_movies")]
+    pw = 560; ph = int(pw * src.size[1] / src.size[0]); vis = 980
+    sc = src.resize((pw, ph), Image.LANCZOS)
+    off = int(max(0, ph - vis) * ease(prog(t, 0.4, d)) * p.get("scroll", 0.6))
+    x0 = (W - pw) // 2; y0 = ty0 + 40
+    paste_round(img, sc.crop((0, off, pw, off + vis)), (x0, y0, x0 + pw, y0 + vis), 46)
+    return img
+
 SOFT = {"en": ("I use Kanalo for this.", "Free · no ads · iPhone, iPad & Apple TV"),
         "nl": ("Ik gebruik hier Kanalo voor.", "Gratis · geen reclame · iPhone, iPad & Apple TV")}
 def sc_soft(t, d, p):
@@ -629,7 +644,7 @@ def sc_soft(t, d, p):
 SCENES = dict(hook=sc_hook, oldapp=sc_oldapp, wait=sc_wait, reveal=sc_reveal, tv=sc_tv, phone=sc_phone,
               list=sc_list, compare=sc_compare, steps=sc_steps, qr=sc_qr, price=sc_price, cta=sc_cta,
               screen=sc_screen, tips=sc_tips, soft=sc_soft, bill=sc_bill,
-              s_hook=sc_s_hook, s_photo=sc_s_photo, s_device=sc_s_device, s_end=sc_s_end)
+              s_hook=sc_s_hook, s_photo=sc_s_photo, s_device=sc_s_device, s_end=sc_s_end, s_phone=sc_s_phone)
 
 def frames(video):
     for sc in video["scenes"]:

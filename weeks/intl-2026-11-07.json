@@ -1,0 +1,320 @@
+{
+ "videos": [
+  {
+   "id": "2026-11-07_12_fr-arrete",
+   "publish": "2026-11-07T12:00:00",
+   "lang": "fr",
+   "seed": 41,
+   "title": "ARRÊTE de payer pour une app IPTV pleine de pubs !",
+   "caption": "ARRÊTE de payer pour une app IPTV pleine de pubs 🛑 Ta playlist marche dans n'importe quel lecteur. Kanalo est gratuit, sans pub, sans compte, pour iPhone, iPad & Apple TV. #iptv #iptvfrance #appletv #iptvplayer #astuce",
+   "scenes": [
+    {
+     "type": "s_phone",
+     "dur": 2.6,
+     "instant": true,
+     "red": true,
+     "asset": "as_movies",
+     "lines": [
+      "ARRÊTE de payer",
+      "pour une app IPTV",
+      "*pleine de pubs !*"
+     ],
+     "size": 96,
+     "tint": [
+      150,
+      40,
+      120
+     ],
+     "scroll": 0.3
+    },
+    {
+     "type": "bill",
+     "site": true,
+     "dur": 3.2,
+     "hl": [
+      "Ce que tu",
+      "*paies :*"
+     ],
+     "note": "pour une app IPTV classique",
+     "items": [
+      [
+       "Abonnement",
+       "4,99 €/mois"
+      ],
+      [
+       "Sans pub",
+       "2,99 €"
+      ],
+      [
+       "Options",
+       "9,99 €"
+      ]
+     ],
+     "total_label": "Par an :",
+     "total": "± 72 €"
+    },
+    {
+     "type": "s_phone",
+     "dur": 2.8,
+     "asset": "as_detail",
+     "lines": [
+      "Même playlist.",
+      "*Zéro pub.*"
+     ],
+     "tint": [
+      45,
+      45,
+      170
+     ],
+     "scroll": 0.5
+    },
+    {
+     "type": "s_end",
+     "dur": 2.4,
+     "lines": [
+      "Gratuit sur",
+      "*l'App Store.*"
+     ],
+     "a": "Kanalo · iPhone · iPad · Apple TV"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-08_12_de-hoer-auf",
+   "publish": "2026-11-08T12:00:00",
+   "lang": "de",
+   "seed": 42,
+   "title": "HÖR AUF, für IPTV-Apps voller Werbung zu zahlen!",
+   "caption": "HÖR AUF, für IPTV-Apps voller Werbung zu zahlen 🛑 Deine Playlist läuft in jedem Player. Kanalo ist kostenlos, ohne Werbung, ohne Konto, für iPhone, iPad & Apple TV. #iptv #iptvdeutschland #appletv #iptvplayer #technik",
+   "scenes": [
+    {
+     "type": "s_phone",
+     "dur": 2.6,
+     "instant": true,
+     "red": true,
+     "asset": "as_movies",
+     "lines": [
+      "HÖR AUF, für",
+      "IPTV-Apps voller",
+      "*Werbung zu zahlen!*"
+     ],
+     "size": 92,
+     "tint": [
+      150,
+      40,
+      120
+     ],
+     "scroll": 0.3
+    },
+    {
+     "type": "bill",
+     "site": true,
+     "dur": 3.2,
+     "hl": [
+      "Was du",
+      "*zahlst:*"
+     ],
+     "note": "bei einer typischen IPTV-App",
+     "items": [
+      [
+       "Abo",
+       "4,99 €/Monat"
+      ],
+      [
+       "Werbefrei",
+       "2,99 €"
+      ],
+      [
+       "Extras",
+       "9,99 €"
+      ]
+     ],
+     "total_label": "Pro Jahr:",
+     "total": "± 72 €"
+    },
+    {
+     "type": "s_phone",
+     "dur": 2.8,
+     "asset": "as_manage",
+     "lines": [
+      "Gleiche Playlist.",
+      "*Null Werbung.*"
+     ],
+     "tint": [
+      45,
+      45,
+      170
+     ],
+     "scroll": 0.5
+    },
+    {
+     "type": "s_end",
+     "dur": 2.4,
+     "lines": [
+      "Gratis im",
+      "*App Store.*"
+     ],
+     "a": "Kanalo · iPhone · iPad · Apple TV"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-09_12_es-deja",
+   "publish": "2026-11-09T12:00:00",
+   "lang": "es",
+   "seed": 43,
+   "title": "¡DEJA de pagar por apps IPTV llenas de anuncios!",
+   "caption": "¡DEJA de pagar por apps IPTV llenas de anuncios! 🛑 Tu playlist funciona en cualquier reproductor. Kanalo es gratis, sin anuncios y sin cuenta, para iPhone, iPad y Apple TV. #iptv #iptvespaña #appletv #iptvplayer #trucos",
+   "scenes": [
+    {
+     "type": "s_phone",
+     "dur": 2.6,
+     "instant": true,
+     "red": true,
+     "asset": "as_movies",
+     "lines": [
+      "¡DEJA de pagar",
+      "por apps IPTV",
+      "*llenas de anuncios!*"
+     ],
+     "size": 92,
+     "tint": [
+      150,
+      40,
+      120
+     ],
+     "scroll": 0.3
+    },
+    {
+     "type": "bill",
+     "site": true,
+     "dur": 3.2,
+     "hl": [
+      "Lo que",
+      "*pagas:*"
+     ],
+     "note": "en una app IPTV típica",
+     "items": [
+      [
+       "Suscripción",
+       "4,99 €/mes"
+      ],
+      [
+       "Sin anuncios",
+       "2,99 €"
+      ],
+      [
+       "Extras",
+       "9,99 €"
+      ]
+     ],
+     "total_label": "Al año:",
+     "total": "± 72 €"
+    },
+    {
+     "type": "s_phone",
+     "dur": 2.8,
+     "asset": "as_subs",
+     "lines": [
+      "Misma playlist.",
+      "*Cero anuncios.*"
+     ],
+     "tint": [
+      45,
+      45,
+      170
+     ],
+     "scroll": 0.2
+    },
+    {
+     "type": "s_end",
+     "dur": 2.4,
+     "lines": [
+      "Gratis en",
+      "*App Store.*"
+     ],
+     "a": "Kanalo · iPhone · iPad · Apple TV"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-10_12_it-smetti",
+   "publish": "2026-11-10T12:00:00",
+   "lang": "it",
+   "seed": 44,
+   "title": "SMETTI di pagare per app IPTV piene di pubblicità!",
+   "caption": "SMETTI di pagare per app IPTV piene di pubblicità 🛑 La tua playlist funziona in qualsiasi player. Kanalo è gratis, senza pubblicità e senza account, per iPhone, iPad e Apple TV. #iptv #iptvitalia #appletv #iptvplayer #trucchi",
+   "scenes": [
+    {
+     "type": "s_phone",
+     "dur": 2.6,
+     "instant": true,
+     "red": true,
+     "asset": "as_movies",
+     "lines": [
+      "SMETTI di pagare",
+      "per app IPTV",
+      "*piene di pubblicità!*"
+     ],
+     "size": 92,
+     "tint": [
+      150,
+      40,
+      120
+     ],
+     "scroll": 0.3
+    },
+    {
+     "type": "bill",
+     "site": true,
+     "dur": 3.2,
+     "hl": [
+      "Quanto",
+      "*paghi:*"
+     ],
+     "note": "con una tipica app IPTV",
+     "items": [
+      [
+       "Abbonamento",
+       "4,99 €/mese"
+      ],
+      [
+       "Senza pubblicità",
+       "2,99 €"
+      ],
+      [
+       "Extra",
+       "9,99 €"
+      ]
+     ],
+     "total_label": "All'anno:",
+     "total": "± 72 €"
+    },
+    {
+     "type": "s_phone",
+     "dur": 2.8,
+     "asset": "as_detail",
+     "lines": [
+      "Stessa playlist.",
+      "*Zero pubblicità.*"
+     ],
+     "tint": [
+      45,
+      45,
+      170
+     ],
+     "scroll": 0.5
+    },
+    {
+     "type": "s_end",
+     "dur": 2.4,
+     "lines": [
+      "Gratis su",
+      "*App Store.*"
+     ],
+     "a": "Kanalo · iPhone · iPad · Apple TV"
+    }
+   ]
+  }
+ ]
+}
