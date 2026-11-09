@@ -9,7 +9,7 @@ os.makedirs(OUT, exist_ok=True)
 GREY = (170, 168, 185)
 
 
-def phone_mock(screen, width=520, tilt=0):
+def phone_mock(screen, width=520, tilt=0, island=True):
     s = screen
     h = int(width * s.height / s.width)
     pad = 90; bez = 18
@@ -30,7 +30,7 @@ def phone_mock(screen, width=520, tilt=0):
     img.paste(s.resize((width, h), Image.LANCZOS).convert("RGBA"), (pad + bez, pad + bez), m)
     # dynamic island
     iw = int(width * 0.3)
-    d.rounded_rectangle([W / 2 - iw / 2, pad + bez + 16, W / 2 + iw / 2, pad + bez + 16 + int(width * 0.085)], 40, fill=(0, 0, 0, 255))
+    if island: d.rounded_rectangle([W / 2 - iw / 2, pad + bez + 16, W / 2 + iw / 2, pad + bez + 16 + int(width * 0.085)], 40, fill=(0, 0, 0, 255))
     if tilt:
         img = img.rotate(tilt, resample=Image.BICUBIC, expand=True)
     return img
@@ -92,6 +92,9 @@ def endcard(lang):
 if __name__ == "__main__":
     phone_mock(kv.load("as_movies.png")).save(os.path.join(OUT, "phone_movies.png"))
     phone_mock(kv.load("iphone_detail.png")).save(os.path.join(OUT, "phone_detail.png"))
+    import guide_screen as gs
+    for lg in ("en", "nl"):
+        phone_mock(gs.render(lg), island=False).save(os.path.join(OUT, f"phone_gids_{lg}.png"))
     for lg, t in {"en": "No ads. Ever.", "nl": "Nooit reclame.", "fr": "Zéro pub.", "de": "Keine Werbung.",
                   "es": "Sin anuncios.", "it": "Zero pubblicità."}.items():
         badge(t).save(os.path.join(OUT, f"badge_{lg}.png"))
