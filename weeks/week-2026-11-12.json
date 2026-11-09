@@ -1,0 +1,2001 @@
+{
+ "videos": [
+  {
+   "id": "2026-11-12_10_fr-ad-mid-film",
+   "publish": "2026-11-12T10:00:00",
+   "lang": "fr",
+   "style": "hard",
+   "tpl": "HB",
+   "seed": 101,
+   "title": "Une pub en plein milieu de ton film IPTV ?! 😤",
+   "caption": "Une pub en plein milieu de ton film ?! 😤 Ce n'est pas ta playlist, c'est l'app. Kanalo lit ta propre playlist sans aucune pub, sur iPhone, iPad & Apple TV. #iptv #iptvfrance #appletv #iptvplayer #astuce",
+   "scenes": [
+    {
+     "type": "s_phone",
+     "dur": 2.6,
+     "instant": true,
+     "red": true,
+     "asset": "as_detail",
+     "lines": [
+      "Une PUB en plein",
+      "milieu de ton film",
+      "*IPTV ?!*"
+     ],
+     "size": 82,
+     "tint": [
+      150,
+      40,
+      120
+     ],
+     "scroll": 0.3
+    },
+    {
+     "type": "s_photo",
+     "dur": 2.6,
+     "lines": [
+      "Juste *regarder.*"
+     ],
+     "sub": "Sans pub au milieu."
+    },
+    {
+     "type": "s_phone",
+     "dur": 2.8,
+     "asset": "as_movies",
+     "lines": [
+      "Films & séries,",
+      "*sans coupure.*"
+     ],
+     "tint": [
+      45,
+      45,
+      170
+     ],
+     "scroll": 0.5
+    },
+    {
+     "type": "s_end",
+     "dur": 2.4,
+     "lines": [
+      "Gratuit sur",
+      "*l'App Store.*"
+     ],
+     "a": "Kanalo · iPhone · iPad · Apple TV"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-12_12_de-still-paying",
+   "publish": "2026-11-12T12:00:00",
+   "lang": "de",
+   "style": "hard",
+   "tpl": "HA",
+   "seed": 102,
+   "title": "Zahlst du noch für eine IPTV-App voller Werbung? 👀",
+   "caption": "Zahlst du noch für eine IPTV-App voller Werbung? 👀 Wer einmal ohne schaut, will nicht zurück. Kanalo: kostenlos, ohne Werbung, für iPhone, iPad & Apple TV. #iptv #iptvdeutschland #appletv #iptvplayer #technik",
+   "scenes": [
+    {
+     "type": "s_device",
+     "dur": 2.6,
+     "instant": true,
+     "red": true,
+     "asset": "atv_movies",
+     "lines": [
+      "Zahlst du NOCH",
+      "für eine IPTV-App",
+      "*voller Werbung?*"
+     ],
+     "size": 92,
+     "label": "APPLE TV  ·  FILME",
+     "tint": [
+      150,
+      40,
+      120
+     ],
+     "z1": 1.08,
+     "fx": 0.5
+    },
+    {
+     "type": "s_photo",
+     "dur": 2.6,
+     "lines": [
+      "Einfach *schauen.*"
+     ],
+     "sub": "Ohne Werbung dazwischen."
+    },
+    {
+     "type": "s_device",
+     "dur": 2.6,
+     "asset": "atv_gids",
+     "lines": [
+      "Ein TV-Guide, der",
+      "*einfach lädt.*"
+     ],
+     "label": "APPLE TV  ·  TV-GUIDE",
+     "tint": [
+      45,
+      45,
+      170
+     ],
+     "z1": 1.12,
+     "fx": 0.5
+    },
+    {
+     "type": "s_end",
+     "dur": 2.4,
+     "lines": [
+      "Gratis im",
+      "*App Store.*"
+     ],
+     "a": "Kanalo · iPhone · iPad · Apple TV"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-12_14_es-empty-guide",
+   "publish": "2026-11-12T14:00:00",
+   "lang": "es",
+   "style": "tip",
+   "tpl": "T1",
+   "seed": 103,
+   "title": "¿Guía TV vacía en tu app IPTV? Así se arregla",
+   "caption": "¿Tu guía TV dice «Sin información»? Casi siempre es una de estas 3 causas. Guárdalo 📌 Yo uso Kanalo, carga la guía en segundo plano. #iptv #iptvespaña #appletv #iptvplayer #trucos",
+   "scenes": [
+    {
+     "type": "s_device",
+     "dur": 2.6,
+     "instant": true,
+     "red": true,
+     "asset": "atv_gids",
+     "lines": [
+      "¿Tu guía TV",
+      "dice",
+      "*«Sin información»?*"
+     ],
+     "size": 92,
+     "label": "APPLE TV  ·  GUÍA TV",
+     "tint": [
+      150,
+      40,
+      120
+     ],
+     "z1": 1.08,
+     "fx": 0.5
+    },
+    {
+     "type": "tips",
+     "site": true,
+     "dur": 5.4,
+     "title": "3 causas",
+     "sub": "+ la solución.",
+     "items": [
+      [
+       "Sin enlace EPG",
+       "Pide la URL XMLTV a tu proveedor"
+      ],
+      [
+       "IDs de canal distintos",
+       "El tvg-id tiene que coincidir"
+      ],
+      [
+       "Zona horaria incorrecta",
+       "Ajusta la diferencia (ej. +1 h)"
+      ]
+     ]
+    },
+    {
+     "type": "s_device",
+     "dur": 2.6,
+     "asset": "atv_gids",
+     "lines": [
+      "Una guía que",
+      "*simplemente carga.*"
+     ],
+     "label": "APPLE TV  ·  GUÍA TV",
+     "tint": [
+      45,
+      45,
+      170
+     ],
+     "z1": 1.12,
+     "fx": 0.5
+    },
+    {
+     "type": "s_end",
+     "dur": 2.4,
+     "lines": [
+      "Gratis en la",
+      "*App Store.*"
+     ],
+     "a": "Kanalo · iPhone · iPad · Apple TV"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-12_18_en-stop-ads",
+   "publish": "2026-11-12T18:00:00",
+   "lang": "en",
+   "style": "hard",
+   "tpl": "HD",
+   "seed": 104,
+   "title": "STOP watching ads in your IPTV app! 🛑",
+   "caption": "STOP watching ads in your IPTV app 🛑 Your playlist (M3U or Xtream) works in any player. Kanalo: free, no ads, no account. #iptv #iptvusa #appletv #iptvplayer #techtok",
+   "scenes": [
+    {
+     "type": "s_phone",
+     "dur": 2.6,
+     "instant": true,
+     "red": true,
+     "asset": "as_movies",
+     "lines": [
+      "STOP watching",
+      "ads in your",
+      "*IPTV app!*"
+     ],
+     "size": 82,
+     "tint": [
+      150,
+      40,
+      120
+     ],
+     "scroll": 0.3
+    },
+    {
+     "type": "s_device",
+     "dur": 2.6,
+     "asset": "atv_movies",
+     "lines": [
+      "Your playlist works",
+      "*in any player.*"
+     ],
+     "label": "APPLE TV  ·  MOVIES",
+     "tint": [
+      45,
+      45,
+      170
+     ],
+     "z1": 1.12,
+     "fx": 0.5
+    },
+    {
+     "type": "s_photo",
+     "dur": 2.6,
+     "lines": [
+      "Just *watch.*"
+     ],
+     "sub": "No ads in between."
+    },
+    {
+     "type": "s_end",
+     "dur": 2.4,
+     "lines": [
+      "Free on the",
+      "*App Store.*"
+     ],
+     "a": "Kanalo · iPhone · iPad · Apple TV"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-13_10_it-still-paying",
+   "publish": "2026-11-13T10:00:00",
+   "lang": "it",
+   "style": "hard",
+   "tpl": "HA",
+   "seed": 105,
+   "title": "Paghi ancora per un'app IPTV piena di pubblicità? 👀",
+   "caption": "Paghi ancora per un'app IPTV piena di pubblicità? 👀 Quando provi senza, non torni più indietro. Kanalo: gratis, senza pubblicità, per iPhone, iPad e Apple TV. #iptv #iptvitalia #appletv #iptvplayer #trucchi",
+   "scenes": [
+    {
+     "type": "s_device",
+     "dur": 2.6,
+     "instant": true,
+     "red": true,
+     "asset": "atv_movies",
+     "lines": [
+      "Paghi ANCORA",
+      "per un'app IPTV",
+      "*piena di pubblicità?*"
+     ],
+     "size": 92,
+     "label": "APPLE TV  ·  FILM",
+     "tint": [
+      150,
+      40,
+      120
+     ],
+     "z1": 1.08,
+     "fx": 0.5
+    },
+    {
+     "type": "s_photo",
+     "dur": 2.6,
+     "lines": [
+      "Solo *guardare.*"
+     ],
+     "sub": "Senza pubblicità in mezzo."
+    },
+    {
+     "type": "s_device",
+     "dur": 2.6,
+     "asset": "atv_gids",
+     "lines": [
+      "Una guida che",
+      "*si carica e basta.*"
+     ],
+     "label": "APPLE TV  ·  GUIDA TV",
+     "tint": [
+      45,
+      45,
+      170
+     ],
+     "z1": 1.12,
+     "fx": 0.5
+    },
+    {
+     "type": "s_end",
+     "dur": 2.4,
+     "lines": [
+      "Gratis",
+      "*sull'App Store.*"
+     ],
+     "a": "Kanalo · iPhone · iPad · Apple TV"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-13_12_fr-72-a-year",
+   "publish": "2026-11-13T12:00:00",
+   "lang": "fr",
+   "style": "hard",
+   "tpl": "HC",
+   "seed": 106,
+   "title": "72 € par an pour un lecteur IPTV ?! 🤯",
+   "caption": "72 € par an juste pour un lecteur IPTV ?! 🤯 Le lecteur n'améliore pas ta playlist, il la lit. Kanalo est gratuit et sans pub, pour iPhone, iPad & Apple TV. #iptv #iptvfrance #appletv #iptvplayer #astuce",
+   "scenes": [
+    {
+     "type": "s_device",
+     "dur": 2.6,
+     "instant": true,
+     "red": true,
+     "asset": "atv_home",
+     "lines": [
+      "72 € par an",
+      "pour un lecteur",
+      "*IPTV ?!*"
+     ],
+     "size": 92,
+     "label": "APPLE TV  ·  ACCUEIL",
+     "tint": [
+      150,
+      40,
+      120
+     ],
+     "z1": 1.08,
+     "fx": 0.5
+    },
+    {
+     "type": "bill",
+     "site": true,
+     "dur": 3.2,
+     "hl": [
+      "Ce que tu",
+      "*paies :*"
+     ],
+     "note": "pour une app IPTV classique",
+     "items": [
+      [
+       "Abonnement",
+       "4,99 €/mois"
+      ],
+      [
+       "Sans pub",
+       "2,99 €"
+      ],
+      [
+       "Options",
+       "9,99 €"
+      ]
+     ],
+     "total_label": "Par an :",
+     "total": "± 72 €"
+    },
+    {
+     "type": "s_phone",
+     "dur": 2.8,
+     "asset": "as_movies",
+     "lines": [
+      "Lecteur gratuit.",
+      "*Zéro pub.*"
+     ],
+     "tint": [
+      45,
+      45,
+      170
+     ],
+     "scroll": 0.5
+    },
+    {
+     "type": "s_end",
+     "dur": 2.4,
+     "lines": [
+      "Gratuit sur",
+      "*l'App Store.*"
+     ],
+     "a": "Kanalo · iPhone · iPad · Apple TV"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-13_14_nl-ad-mid-film",
+   "publish": "2026-11-13T14:00:00",
+   "lang": "nl",
+   "style": "hard",
+   "tpl": "HB",
+   "seed": 107,
+   "title": "Reclame midden in je IPTV-film?! 😤",
+   "caption": "Reclame midden in je film?! 😤 Dat ligt niet aan je playlist, maar aan de app. Kanalo speelt je eigen playlist zonder reclame, op iPhone, iPad & Apple TV. #iptv #iptvnederland #appletv #iptvplayer #techtok",
+   "scenes": [
+    {
+     "type": "s_phone",
+     "dur": 2.6,
+     "instant": true,
+     "red": true,
+     "asset": "as_detail",
+     "lines": [
+      "RECLAME midden",
+      "in je",
+      "*IPTV-film?!*"
+     ],
+     "size": 82,
+     "tint": [
+      150,
+      40,
+      120
+     ],
+     "scroll": 0.3
+    },
+    {
+     "type": "s_photo",
+     "dur": 2.6,
+     "lines": [
+      "Gewoon *kijken.*"
+     ],
+     "sub": "Zonder reclame tussendoor."
+    },
+    {
+     "type": "s_phone",
+     "dur": 2.8,
+     "asset": "as_movies",
+     "lines": [
+      "Films & series,",
+      "*zonder onderbreking.*"
+     ],
+     "tint": [
+      45,
+      45,
+      170
+     ],
+     "scroll": 0.5
+    },
+    {
+     "type": "s_end",
+     "dur": 2.4,
+     "lines": [
+      "Gratis in de",
+      "*App Store.*"
+     ],
+     "a": "Kanalo · iPhone · iPad · Apple TV"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-13_18_de-qr-login",
+   "publish": "2026-11-13T18:00:00",
+   "lang": "de",
+   "style": "tip",
+   "tpl": "T4",
+   "seed": 108,
+   "title": "IPTV-Login mit der Fernbedienung tippen? Musst du nicht",
+   "caption": "Deinen langen Xtream-Login Buchstabe für Buchstabe mit der Fernbedienung tippen? 😩 Geht auch per iPhone: QR-Code scannen, fertig. Kanalo macht das kostenlos. #iptv #iptvdeutschland #appletv #iptvplayer #technik",
+   "scenes": [
+    {
+     "type": "s_device",
+     "dur": 2.6,
+     "instant": true,
+     "red": true,
+     "asset": "atv_home",
+     "lines": [
+      "Tippst du deinen",
+      "Login noch mit",
+      "*der Fernbedienung?*"
+     ],
+     "size": 92,
+     "label": "APPLE TV  ·  START",
+     "tint": [
+      150,
+      40,
+      120
+     ],
+     "z1": 1.08,
+     "fx": 0.5
+    },
+    {
+     "type": "qr",
+     "site": true,
+     "dur": 4.2,
+     "lines": [
+      "Einmal scannen",
+      "*mit dem iPhone.*"
+     ],
+     "tv1": "Playlist hinzufügen",
+     "tv2": "Vom iPhone",
+     "tv3": "Mit der Kamera scannen",
+     "sent": "Playlists gesendet",
+     "label": "NICHTS AM TV TIPPEN"
+    },
+    {
+     "type": "s_photo",
+     "dur": 2.6,
+     "lines": [
+      "Einfach *schauen.*"
+     ],
+     "sub": "Ohne Werbung dazwischen."
+    },
+    {
+     "type": "s_end",
+     "dur": 2.4,
+     "lines": [
+      "Gratis im",
+      "*App Store.*"
+     ],
+     "a": "Kanalo · iPhone · iPad · Apple TV"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-14_10_es-still-paying",
+   "publish": "2026-11-14T10:00:00",
+   "lang": "es",
+   "style": "hard",
+   "tpl": "HA",
+   "seed": 109,
+   "title": "¿Sigues pagando por una app IPTV llena de anuncios? 👀",
+   "caption": "¿Sigues pagando por una app IPTV llena de anuncios? 👀 Cuando la pruebas sin anuncios, no vuelves atrás. Kanalo: gratis, sin anuncios, para iPhone, iPad y Apple TV. #iptv #iptvespaña #appletv #iptvplayer #trucos",
+   "scenes": [
+    {
+     "type": "s_device",
+     "dur": 2.6,
+     "instant": true,
+     "red": true,
+     "asset": "atv_movies",
+     "lines": [
+      "¿SIGUES pagando",
+      "por una app IPTV",
+      "*llena de anuncios?*"
+     ],
+     "size": 92,
+     "label": "APPLE TV  ·  PELÍCULAS",
+     "tint": [
+      150,
+      40,
+      120
+     ],
+     "z1": 1.08,
+     "fx": 0.5
+    },
+    {
+     "type": "s_photo",
+     "dur": 2.6,
+     "lines": [
+      "Solo *mirar.*"
+     ],
+     "sub": "Sin anuncios en medio."
+    },
+    {
+     "type": "s_device",
+     "dur": 2.6,
+     "asset": "atv_gids",
+     "lines": [
+      "Una guía que",
+      "*simplemente carga.*"
+     ],
+     "label": "APPLE TV  ·  GUÍA TV",
+     "tint": [
+      45,
+      45,
+      170
+     ],
+     "z1": 1.12,
+     "fx": 0.5
+    },
+    {
+     "type": "s_end",
+     "dur": 2.4,
+     "lines": [
+      "Gratis en la",
+      "*App Store.*"
+     ],
+     "a": "Kanalo · iPhone · iPad · Apple TV"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-14_12_en-atv-settings",
+   "publish": "2026-11-14T12:00:00",
+   "lang": "en",
+   "style": "tip",
+   "tpl": "T6",
+   "seed": 110,
+   "title": "IPTV on Apple TV looks off? Change these 3 settings",
+   "caption": "IPTV on your Apple TV looks off? 3 settings that make it look and sound better. Save it 📌 I use Kanalo as my player on Apple TV. #iptv #iptvusa #appletv #iptvplayer #techtok",
+   "scenes": [
+    {
+     "type": "s_device",
+     "dur": 2.6,
+     "instant": true,
+     "red": true,
+     "asset": "atv_movies",
+     "lines": [
+      "IPTV on Apple TV",
+      "looks off?",
+      "*Change this.*"
+     ],
+     "size": 92,
+     "label": "APPLE TV  ·  MOVIES",
+     "tint": [
+      150,
+      40,
+      120
+     ],
+     "z1": 1.08,
+     "fx": 0.5
+    },
+    {
+     "type": "tips",
+     "site": true,
+     "dur": 5.4,
+     "title": "Apple TV",
+     "sub": "settings.",
+     "items": [
+      [
+       "Match Content: on",
+       "Video and Audio → Match Content"
+      ],
+      [
+       "Use a cable if you can",
+       "Ethernet beats wifi for live TV"
+      ],
+      [
+       "Reduce Loud Sounds: on",
+       "Video and Audio → Audio"
+      ]
+     ]
+    },
+    {
+     "type": "s_device",
+     "dur": 2.6,
+     "asset": "atv_movies",
+     "lines": [
+      "Films & series,",
+      "*no interruptions.*"
+     ],
+     "label": "APPLE TV  ·  MOVIES",
+     "tint": [
+      45,
+      45,
+      170
+     ],
+     "z1": 1.12,
+     "fx": 0.5
+    },
+    {
+     "type": "s_end",
+     "dur": 2.4,
+     "lines": [
+      "Free on the",
+      "*App Store.*"
+     ],
+     "a": "Kanalo · iPhone · iPad · Apple TV"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-14_14_fr-buffering",
+   "publish": "2026-11-14T14:00:00",
+   "lang": "fr",
+   "style": "tip",
+   "tpl": "T5",
+   "seed": 111,
+   "title": "Ton IPTV bloque sans arrêt ? 3 solutions",
+   "caption": "Ton IPTV bloque sans arrêt ? Essaie ces 3 solutions avant d'abandonner. Enregistre 📌 J'utilise Kanalo sur iPhone et Apple TV. #iptv #iptvfrance #appletv #iptvplayer #astuce",
+   "scenes": [
+    {
+     "type": "s_phone",
+     "dur": 2.6,
+     "instant": true,
+     "red": true,
+     "asset": "as_movies",
+     "lines": [
+      "Ton IPTV",
+      "*bloque sans arrêt ?*"
+     ],
+     "size": 96,
+     "tint": [
+      150,
+      40,
+      120
+     ],
+     "scroll": 0.3
+    },
+    {
+     "type": "tips",
+     "site": true,
+     "dur": 5.4,
+     "title": "3 solutions",
+     "sub": "rapides.",
+     "items": [
+      [
+       "Wi-Fi 5 GHz ou câble",
+       "Le 2,4 GHz sature vite"
+      ],
+      [
+       "Passe en HD",
+       "La 4K demande ~25 Mbit/s"
+      ],
+      [
+       "Relance le flux une fois",
+       "Souvent un serveur plus rapide"
+      ]
+     ]
+    },
+    {
+     "type": "s_photo",
+     "dur": 2.6,
+     "lines": [
+      "Juste *regarder.*"
+     ],
+     "sub": "Sans pub au milieu."
+    },
+    {
+     "type": "s_end",
+     "dur": 2.4,
+     "lines": [
+      "Gratuit sur",
+      "*l'App Store.*"
+     ],
+     "a": "Kanalo · iPhone · iPad · Apple TV"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-14_18_de-ad-mid-film",
+   "publish": "2026-11-14T18:00:00",
+   "lang": "de",
+   "style": "hard",
+   "tpl": "HB",
+   "seed": 112,
+   "title": "Werbung mitten in deinem IPTV-Film?! 😤",
+   "caption": "Werbung mitten im Film?! 😤 Das liegt nicht an deiner Playlist, sondern an der App. Kanalo spielt deine eigene Playlist ohne Werbung, auf iPhone, iPad & Apple TV. #iptv #iptvdeutschland #appletv #iptvplayer #technik",
+   "scenes": [
+    {
+     "type": "s_phone",
+     "dur": 2.6,
+     "instant": true,
+     "red": true,
+     "asset": "as_detail",
+     "lines": [
+      "WERBUNG mitten",
+      "in deinem",
+      "*IPTV-Film?!*"
+     ],
+     "size": 82,
+     "tint": [
+      150,
+      40,
+      120
+     ],
+     "scroll": 0.3
+    },
+    {
+     "type": "s_photo",
+     "dur": 2.6,
+     "lines": [
+      "Einfach *schauen.*"
+     ],
+     "sub": "Ohne Werbung dazwischen."
+    },
+    {
+     "type": "s_phone",
+     "dur": 2.8,
+     "asset": "as_movies",
+     "lines": [
+      "Filme & Serien,",
+      "*ohne Unterbrechung.*"
+     ],
+     "tint": [
+      45,
+      45,
+      170
+     ],
+     "scroll": 0.5
+    },
+    {
+     "type": "s_end",
+     "dur": 2.4,
+     "lines": [
+      "Gratis im",
+      "*App Store.*"
+     ],
+     "a": "Kanalo · iPhone · iPad · Apple TV"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-15_10_fr-still-paying",
+   "publish": "2026-11-15T10:00:00",
+   "lang": "fr",
+   "style": "hard",
+   "tpl": "HA",
+   "seed": 113,
+   "title": "Tu paies encore pour une app IPTV pleine de pubs ? 👀",
+   "caption": "Tu paies encore pour une app IPTV pleine de pubs ? 👀 Une fois sans pub, tu ne reviens plus en arrière. Kanalo : gratuit, sans pub, pour iPhone, iPad & Apple TV. #iptv #iptvfrance #appletv #iptvplayer #astuce",
+   "scenes": [
+    {
+     "type": "s_device",
+     "dur": 2.6,
+     "instant": true,
+     "red": true,
+     "asset": "atv_movies",
+     "lines": [
+      "Tu paies ENCORE",
+      "pour une app IPTV",
+      "*pleine de pubs ?*"
+     ],
+     "size": 92,
+     "label": "APPLE TV  ·  FILMS",
+     "tint": [
+      150,
+      40,
+      120
+     ],
+     "z1": 1.08,
+     "fx": 0.5
+    },
+    {
+     "type": "s_photo",
+     "dur": 2.6,
+     "lines": [
+      "Juste *regarder.*"
+     ],
+     "sub": "Sans pub au milieu."
+    },
+    {
+     "type": "s_device",
+     "dur": 2.6,
+     "asset": "atv_gids",
+     "lines": [
+      "Un guide qui",
+      "*charge, tout simplement.*"
+     ],
+     "label": "APPLE TV  ·  GUIDE TV",
+     "tint": [
+      45,
+      45,
+      170
+     ],
+     "z1": 1.12,
+     "fx": 0.5
+    },
+    {
+     "type": "s_end",
+     "dur": 2.4,
+     "lines": [
+      "Gratuit sur",
+      "*l'App Store.*"
+     ],
+     "a": "Kanalo · iPhone · iPad · Apple TV"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-15_12_it-black-screen",
+   "publish": "2026-11-15T12:00:00",
+   "lang": "it",
+   "style": "tip",
+   "tpl": "T2",
+   "seed": 114,
+   "title": "I canali IPTV non partono? Prova prima questo",
+   "caption": "Schermo nero su metà dei canali? Prova prima queste 3 cose, prima di dare la colpa all'app. Salvalo 📌 #iptv #iptvitalia #appletv #iptvplayer #trucchi",
+   "scenes": [
+    {
+     "type": "s_device",
+     "dur": 2.6,
+     "instant": true,
+     "red": true,
+     "asset": "atv_home",
+     "lines": [
+      "Schermo nero",
+      "su metà dei",
+      "*tuoi canali?*"
+     ],
+     "size": 92,
+     "label": "APPLE TV  ·  HOME",
+     "tint": [
+      150,
+      40,
+      120
+     ],
+     "z1": 1.08,
+     "fx": 0.5
+    },
+    {
+     "type": "tips",
+     "site": true,
+     "dur": 5.4,
+     "title": "Prova prima",
+     "sub": "questo.",
+     "items": [
+      [
+       "Aggiorna la playlist",
+       "I fornitori cambiano spesso i link"
+      ],
+      [
+       "Controlla l'abbonamento",
+       "Scaduto = schermo nero"
+      ],
+      [
+       "Crea una lista preferiti",
+       "Solo i canali che funzionano"
+      ]
+     ]
+    },
+    {
+     "type": "s_photo",
+     "dur": 2.6,
+     "lines": [
+      "Solo *guardare.*"
+     ],
+     "sub": "Senza pubblicità in mezzo."
+    },
+    {
+     "type": "s_end",
+     "dur": 2.4,
+     "lines": [
+      "Gratis",
+      "*sull'App Store.*"
+     ],
+     "a": "Kanalo · iPhone · iPad · Apple TV"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-15_14_es-ad-mid-film",
+   "publish": "2026-11-15T14:00:00",
+   "lang": "es",
+   "style": "hard",
+   "tpl": "HB",
+   "seed": 115,
+   "title": "¿Un anuncio en mitad de tu peli IPTV?! 😤",
+   "caption": "¿Un anuncio en mitad de la peli?! 😤 No es tu playlist, es la app. Kanalo reproduce tu propia playlist sin anuncios, en iPhone, iPad y Apple TV. #iptv #iptvespaña #appletv #iptvplayer #trucos",
+   "scenes": [
+    {
+     "type": "s_phone",
+     "dur": 2.6,
+     "instant": true,
+     "red": true,
+     "asset": "as_detail",
+     "lines": [
+      "¿Un ANUNCIO en",
+      "mitad de tu",
+      "*peli IPTV?!*"
+     ],
+     "size": 82,
+     "tint": [
+      150,
+      40,
+      120
+     ],
+     "scroll": 0.3
+    },
+    {
+     "type": "s_photo",
+     "dur": 2.6,
+     "lines": [
+      "Solo *mirar.*"
+     ],
+     "sub": "Sin anuncios en medio."
+    },
+    {
+     "type": "s_phone",
+     "dur": 2.8,
+     "asset": "as_movies",
+     "lines": [
+      "Pelis y series,",
+      "*sin cortes.*"
+     ],
+     "tint": [
+      45,
+      45,
+      170
+     ],
+     "scroll": 0.5
+    },
+    {
+     "type": "s_end",
+     "dur": 2.4,
+     "lines": [
+      "Gratis en la",
+      "*App Store.*"
+     ],
+     "a": "Kanalo · iPhone · iPad · Apple TV"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-15_18_en-ad-mid-film",
+   "publish": "2026-11-15T18:00:00",
+   "lang": "en",
+   "style": "hard",
+   "tpl": "HB",
+   "seed": 116,
+   "title": "An ad in the middle of your IPTV movie?! 😤",
+   "caption": "An ad right in the middle of the movie?! 😤 That's not your playlist, it's the app. Kanalo plays your own playlist with zero ads on iPhone, iPad & Apple TV. #iptv #iptvusa #appletv #iptvplayer #techtok",
+   "scenes": [
+    {
+     "type": "s_phone",
+     "dur": 2.6,
+     "instant": true,
+     "red": true,
+     "asset": "as_detail",
+     "lines": [
+      "An AD in the",
+      "middle of your",
+      "*IPTV movie?!*"
+     ],
+     "size": 82,
+     "tint": [
+      150,
+      40,
+      120
+     ],
+     "scroll": 0.3
+    },
+    {
+     "type": "s_photo",
+     "dur": 2.6,
+     "lines": [
+      "Just *watch.*"
+     ],
+     "sub": "No ads in between."
+    },
+    {
+     "type": "s_phone",
+     "dur": 2.8,
+     "asset": "as_movies",
+     "lines": [
+      "Films & series,",
+      "*no interruptions.*"
+     ],
+     "tint": [
+      45,
+      45,
+      170
+     ],
+     "scroll": 0.5
+    },
+    {
+     "type": "s_end",
+     "dur": 2.4,
+     "lines": [
+      "Free on the",
+      "*App Store.*"
+     ],
+     "a": "Kanalo · iPhone · iPad · Apple TV"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-16_10_de-72-a-year",
+   "publish": "2026-11-16T10:00:00",
+   "lang": "de",
+   "style": "hard",
+   "tpl": "HC",
+   "seed": 117,
+   "title": "72 € im Jahr für einen IPTV-Player?! 🤯",
+   "caption": "72 € im Jahr nur für einen IPTV-Player?! 🤯 Der Player macht deine Playlist nicht besser, er spielt sie nur ab. Kanalo ist kostenlos und ohne Werbung. #iptv #iptvdeutschland #appletv #iptvplayer #technik",
+   "scenes": [
+    {
+     "type": "s_device",
+     "dur": 2.6,
+     "instant": true,
+     "red": true,
+     "asset": "atv_home",
+     "lines": [
+      "72 € im Jahr",
+      "für einen",
+      "*IPTV-Player?!*"
+     ],
+     "size": 92,
+     "label": "APPLE TV  ·  START",
+     "tint": [
+      150,
+      40,
+      120
+     ],
+     "z1": 1.08,
+     "fx": 0.5
+    },
+    {
+     "type": "bill",
+     "site": true,
+     "dur": 3.2,
+     "hl": [
+      "Was du",
+      "*zahlst:*"
+     ],
+     "note": "bei einer typischen IPTV-App",
+     "items": [
+      [
+       "Abo",
+       "4,99 €/Monat"
+      ],
+      [
+       "Werbefrei",
+       "2,99 €"
+      ],
+      [
+       "Extras",
+       "9,99 €"
+      ]
+     ],
+     "total_label": "Pro Jahr:",
+     "total": "± 72 €"
+    },
+    {
+     "type": "s_phone",
+     "dur": 2.8,
+     "asset": "as_movies",
+     "lines": [
+      "Gratis Player.",
+      "*Null Werbung.*"
+     ],
+     "tint": [
+      45,
+      45,
+      170
+     ],
+     "scroll": 0.5
+    },
+    {
+     "type": "s_end",
+     "dur": 2.4,
+     "lines": [
+      "Gratis im",
+      "*App Store.*"
+     ],
+     "a": "Kanalo · iPhone · iPad · Apple TV"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-16_12_nl-1000-channels",
+   "publish": "2026-11-16T12:00:00",
+   "lang": "nl",
+   "style": "tip",
+   "tpl": "T7",
+   "seed": 118,
+   "title": "Scrol jij ook langs 1.000 IPTV-zenders? Doe dit",
+   "caption": "Scrol jij ook langs 1.000 zenders om die ene te vinden? 3 snelle fixes. Sla op 📌 Ik gebruik zelf Kanalo op iPhone en Apple TV. #iptv #iptvnederland #appletv #iptvplayer #techtok",
+   "scenes": [
+    {
+     "type": "s_device",
+     "dur": 2.6,
+     "instant": true,
+     "red": true,
+     "asset": "atv_home",
+     "lines": [
+      "Scrol jij ook",
+      "langs",
+      "*1.000 zenders?*"
+     ],
+     "size": 92,
+     "label": "APPLE TV  ·  HOME",
+     "tint": [
+      150,
+      40,
+      120
+     ],
+     "z1": 1.08,
+     "fx": 0.5
+    },
+    {
+     "type": "tips",
+     "site": true,
+     "dur": 5.4,
+     "title": "3 snelle",
+     "sub": "fixes.",
+     "items": [
+      [
+       "Maak een favorietenlijst",
+       "Je top 20 zenders bovenaan"
+      ],
+      [
+       "Zoeken, niet scrollen",
+       "3 letters typen, klaar"
+      ],
+      [
+       "Vraag een kleinere lijst",
+       "Veel providers filteren per land"
+      ]
+     ]
+    },
+    {
+     "type": "s_device",
+     "dur": 2.6,
+     "asset": "atv_gids",
+     "lines": [
+      "Een gids die",
+      "*gewoon laadt.*"
+     ],
+     "label": "APPLE TV  ·  TV-GIDS",
+     "tint": [
+      45,
+      45,
+      170
+     ],
+     "z1": 1.12,
+     "fx": 0.5
+    },
+    {
+     "type": "s_end",
+     "dur": 2.4,
+     "lines": [
+      "Gratis in de",
+      "*App Store.*"
+     ],
+     "a": "Kanalo · iPhone · iPad · Apple TV"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-16_14_it-72-a-year",
+   "publish": "2026-11-16T14:00:00",
+   "lang": "it",
+   "style": "hard",
+   "tpl": "HC",
+   "seed": 119,
+   "title": "72 € all'anno per un player IPTV?! 🤯",
+   "caption": "72 € all'anno solo per un player IPTV?! 🤯 Il player non migliora la tua playlist, la riproduce e basta. Kanalo è gratis e senza pubblicità. #iptv #iptvitalia #appletv #iptvplayer #trucchi",
+   "scenes": [
+    {
+     "type": "s_device",
+     "dur": 2.6,
+     "instant": true,
+     "red": true,
+     "asset": "atv_home",
+     "lines": [
+      "72 € all'anno",
+      "per un player",
+      "*IPTV?!*"
+     ],
+     "size": 92,
+     "label": "APPLE TV  ·  HOME",
+     "tint": [
+      150,
+      40,
+      120
+     ],
+     "z1": 1.08,
+     "fx": 0.5
+    },
+    {
+     "type": "bill",
+     "site": true,
+     "dur": 3.2,
+     "hl": [
+      "Quanto",
+      "*paghi:*"
+     ],
+     "note": "con una tipica app IPTV",
+     "items": [
+      [
+       "Abbonamento",
+       "4,99 €/mese"
+      ],
+      [
+       "Senza pubblicità",
+       "2,99 €"
+      ],
+      [
+       "Extra",
+       "9,99 €"
+      ]
+     ],
+     "total_label": "All'anno:",
+     "total": "± 72 €"
+    },
+    {
+     "type": "s_phone",
+     "dur": 2.8,
+     "asset": "as_movies",
+     "lines": [
+      "Player gratis.",
+      "*Zero pubblicità.*"
+     ],
+     "tint": [
+      45,
+      45,
+      170
+     ],
+     "scroll": 0.5
+    },
+    {
+     "type": "s_end",
+     "dur": 2.4,
+     "lines": [
+      "Gratis",
+      "*sull'App Store.*"
+     ],
+     "a": "Kanalo · iPhone · iPad · Apple TV"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-16_18_fr-empty-guide",
+   "publish": "2026-11-16T18:00:00",
+   "lang": "fr",
+   "style": "tip",
+   "tpl": "T1",
+   "seed": 120,
+   "title": "Guide TV vide ? Voici la solution",
+   "caption": "Ton guide TV affiche « Aucune information » ? C'est presque toujours l'une de ces 3 causes. Enregistre 📌 J'utilise Kanalo, il charge le guide en arrière-plan. #iptv #iptvfrance #appletv #iptvplayer #astuce",
+   "scenes": [
+    {
+     "type": "s_device",
+     "dur": 2.6,
+     "instant": true,
+     "red": true,
+     "asset": "atv_gids",
+     "lines": [
+      "Ton guide TV",
+      "affiche",
+      "*« Aucune info » ?*"
+     ],
+     "size": 92,
+     "label": "APPLE TV  ·  GUIDE TV",
+     "tint": [
+      150,
+      40,
+      120
+     ],
+     "z1": 1.08,
+     "fx": 0.5
+    },
+    {
+     "type": "tips",
+     "site": true,
+     "dur": 5.4,
+     "title": "3 causes",
+     "sub": "+ la solution.",
+     "items": [
+      [
+       "Pas de lien EPG",
+       "Demande l'URL XMLTV à ton fournisseur"
+      ],
+      [
+       "IDs de chaînes différents",
+       "Le tvg-id doit correspondre"
+      ],
+      [
+       "Mauvais fuseau horaire",
+       "Règle le décalage (ex. +1 h)"
+      ]
+     ]
+    },
+    {
+     "type": "s_device",
+     "dur": 2.6,
+     "asset": "atv_gids",
+     "lines": [
+      "Un guide qui",
+      "*charge, tout simplement.*"
+     ],
+     "label": "APPLE TV  ·  GUIDE TV",
+     "tint": [
+      45,
+      45,
+      170
+     ],
+     "z1": 1.12,
+     "fx": 0.5
+    },
+    {
+     "type": "s_end",
+     "dur": 2.4,
+     "lines": [
+      "Gratuit sur",
+      "*l'App Store.*"
+     ],
+     "a": "Kanalo · iPhone · iPad · Apple TV"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-17_10_es-stop-ads",
+   "publish": "2026-11-17T10:00:00",
+   "lang": "es",
+   "style": "hard",
+   "tpl": "HD",
+   "seed": 121,
+   "title": "¡Basta de anuncios en tu app IPTV! 🛑",
+   "caption": "¡Basta de anuncios en tu app IPTV! 🛑 Tu playlist (M3U o Xtream) funciona en cualquier reproductor. Kanalo: gratis, sin anuncios, sin cuenta. #iptv #iptvespaña #appletv #iptvplayer #trucos",
+   "scenes": [
+    {
+     "type": "s_phone",
+     "dur": 2.6,
+     "instant": true,
+     "red": true,
+     "asset": "as_movies",
+     "lines": [
+      "¡BASTA de",
+      "anuncios en tu",
+      "*app IPTV!*"
+     ],
+     "size": 82,
+     "tint": [
+      150,
+      40,
+      120
+     ],
+     "scroll": 0.3
+    },
+    {
+     "type": "s_device",
+     "dur": 2.6,
+     "asset": "atv_movies",
+     "lines": [
+      "Tu playlist funciona",
+      "*en cualquier app.*"
+     ],
+     "label": "APPLE TV  ·  PELÍCULAS",
+     "tint": [
+      45,
+      45,
+      170
+     ],
+     "z1": 1.12,
+     "fx": 0.5
+    },
+    {
+     "type": "s_photo",
+     "dur": 2.6,
+     "lines": [
+      "Solo *mirar.*"
+     ],
+     "sub": "Sin anuncios en medio."
+    },
+    {
+     "type": "s_end",
+     "dur": 2.4,
+     "lines": [
+      "Gratis en la",
+      "*App Store.*"
+     ],
+     "a": "Kanalo · iPhone · iPad · Apple TV"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-17_12_en-1000-channels",
+   "publish": "2026-11-17T12:00:00",
+   "lang": "en",
+   "style": "tip",
+   "tpl": "T7",
+   "seed": 122,
+   "title": "Scrolling past 1,000 IPTV channels? Do this",
+   "caption": "Scrolling past 1,000 channels to find the one you watch? 3 quick fixes. Save it 📌 I use Kanalo on iPhone and Apple TV. #iptv #iptvusa #appletv #iptvplayer #techtok",
+   "scenes": [
+    {
+     "type": "s_device",
+     "dur": 2.6,
+     "instant": true,
+     "red": true,
+     "asset": "atv_home",
+     "lines": [
+      "Scrolling past",
+      "*1,000 channels?*"
+     ],
+     "size": 100,
+     "label": "APPLE TV  ·  HOME",
+     "tint": [
+      150,
+      40,
+      120
+     ],
+     "z1": 1.08,
+     "fx": 0.5
+    },
+    {
+     "type": "tips",
+     "site": true,
+     "dur": 5.4,
+     "title": "3 quick",
+     "sub": "fixes.",
+     "items": [
+      [
+       "Make a favourites list",
+       "Your top 20 channels first"
+      ],
+      [
+       "Search, don't scroll",
+       "Type 3 letters, done"
+      ],
+      [
+       "Ask for a smaller list",
+       "Many providers filter by country"
+      ]
+     ]
+    },
+    {
+     "type": "s_device",
+     "dur": 2.6,
+     "asset": "atv_gids",
+     "lines": [
+      "A guide that",
+      "*just loads.*"
+     ],
+     "label": "APPLE TV  ·  TV GUIDE",
+     "tint": [
+      45,
+      45,
+      170
+     ],
+     "z1": 1.12,
+     "fx": 0.5
+    },
+    {
+     "type": "s_end",
+     "dur": 2.4,
+     "lines": [
+      "Free on the",
+      "*App Store.*"
+     ],
+     "a": "Kanalo · iPhone · iPad · Apple TV"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-17_14_nl-72-a-year",
+   "publish": "2026-11-17T14:00:00",
+   "lang": "nl",
+   "style": "hard",
+   "tpl": "HC",
+   "seed": 123,
+   "title": "€72 per jaar voor een IPTV-speler?! 🤯",
+   "caption": "€72 per jaar alleen voor een IPTV-speler?! 🤯 De speler maakt je playlist niet beter, hij speelt hem alleen af. Kanalo is gratis en zonder reclame. #iptv #iptvnederland #appletv #iptvplayer #techtok",
+   "scenes": [
+    {
+     "type": "s_device",
+     "dur": 2.6,
+     "instant": true,
+     "red": true,
+     "asset": "atv_home",
+     "lines": [
+      "€72 per jaar",
+      "voor een",
+      "*IPTV-speler?!*"
+     ],
+     "size": 92,
+     "label": "APPLE TV  ·  HOME",
+     "tint": [
+      150,
+      40,
+      120
+     ],
+     "z1": 1.08,
+     "fx": 0.5
+    },
+    {
+     "type": "bill",
+     "site": true,
+     "dur": 3.2,
+     "hl": [
+      "Wat je",
+      "*nu betaalt:*"
+     ],
+     "note": "bij een gemiddelde IPTV-app",
+     "items": [
+      [
+       "Abonnement",
+       "€4,99 /mnd"
+      ],
+      [
+       "Reclame weg",
+       "€2,99"
+      ],
+      [
+       "Extra functies",
+       "€9,99"
+      ]
+     ],
+     "total_label": "Per jaar:",
+     "total": "± €72"
+    },
+    {
+     "type": "s_phone",
+     "dur": 2.8,
+     "asset": "as_movies",
+     "lines": [
+      "Gratis speler.",
+      "*Nul reclame.*"
+     ],
+     "tint": [
+      45,
+      45,
+      170
+     ],
+     "scroll": 0.5
+    },
+    {
+     "type": "s_end",
+     "dur": 2.4,
+     "lines": [
+      "Gratis in de",
+      "*App Store.*"
+     ],
+     "a": "Kanalo · iPhone · iPad · Apple TV"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-17_18_fr-stop-ads",
+   "publish": "2026-11-17T18:00:00",
+   "lang": "fr",
+   "style": "hard",
+   "tpl": "HD",
+   "seed": 124,
+   "title": "STOP aux pubs dans ton appli IPTV ! 🛑",
+   "caption": "STOP aux pubs dans ton appli IPTV 🛑 Ta playlist (M3U ou Xtream) marche dans n'importe quel lecteur. Kanalo : gratuit, sans pub, sans compte. #iptv #iptvfrance #appletv #iptvplayer #astuce",
+   "scenes": [
+    {
+     "type": "s_phone",
+     "dur": 2.6,
+     "instant": true,
+     "red": true,
+     "asset": "as_movies",
+     "lines": [
+      "STOP aux pubs",
+      "dans ton",
+      "*appli IPTV !*"
+     ],
+     "size": 82,
+     "tint": [
+      150,
+      40,
+      120
+     ],
+     "scroll": 0.3
+    },
+    {
+     "type": "s_device",
+     "dur": 2.6,
+     "asset": "atv_movies",
+     "lines": [
+      "Ta playlist marche",
+      "*partout.*"
+     ],
+     "label": "APPLE TV  ·  FILMS",
+     "tint": [
+      45,
+      45,
+      170
+     ],
+     "z1": 1.12,
+     "fx": 0.5
+    },
+    {
+     "type": "s_photo",
+     "dur": 2.6,
+     "lines": [
+      "Juste *regarder.*"
+     ],
+     "sub": "Sans pub au milieu."
+    },
+    {
+     "type": "s_end",
+     "dur": 2.4,
+     "lines": [
+      "Gratuit sur",
+      "*l'App Store.*"
+     ],
+     "a": "Kanalo · iPhone · iPad · Apple TV"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-18_10_it-buffering",
+   "publish": "2026-11-18T10:00:00",
+   "lang": "it",
+   "style": "tip",
+   "tpl": "T5",
+   "seed": 125,
+   "title": "La tua IPTV si blocca sempre? 3 soluzioni",
+   "caption": "La tua IPTV si blocca sempre? Prova queste 3 soluzioni prima di arrenderti. Salvalo 📌 Io uso Kanalo su iPhone e Apple TV. #iptv #iptvitalia #appletv #iptvplayer #trucchi",
+   "scenes": [
+    {
+     "type": "s_phone",
+     "dur": 2.6,
+     "instant": true,
+     "red": true,
+     "asset": "as_movies",
+     "lines": [
+      "La tua IPTV",
+      "*si blocca sempre?*"
+     ],
+     "size": 96,
+     "tint": [
+      150,
+      40,
+      120
+     ],
+     "scroll": 0.3
+    },
+    {
+     "type": "tips",
+     "site": true,
+     "dur": 5.4,
+     "title": "3 soluzioni",
+     "sub": "veloci.",
+     "items": [
+      [
+       "Wi-Fi 5 GHz o cavo",
+       "Il 2,4 GHz si satura presto"
+      ],
+      [
+       "Passa all'HD",
+       "Il 4K chiede ~25 Mbit/s"
+      ],
+      [
+       "Riavvia lo stream",
+       "Spesso trovi un server più veloce"
+      ]
+     ]
+    },
+    {
+     "type": "s_photo",
+     "dur": 2.6,
+     "lines": [
+      "Solo *guardare.*"
+     ],
+     "sub": "Senza pubblicità in mezzo."
+    },
+    {
+     "type": "s_end",
+     "dur": 2.4,
+     "lines": [
+      "Gratis",
+      "*sull'App Store.*"
+     ],
+     "a": "Kanalo · iPhone · iPad · Apple TV"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-18_12_de-black-screen",
+   "publish": "2026-11-18T12:00:00",
+   "lang": "de",
+   "style": "tip",
+   "tpl": "T2",
+   "seed": 126,
+   "title": "IPTV-Sender laden nicht? Probier das zuerst",
+   "caption": "Schwarzes Bild bei der Hälfte deiner Sender? Probier zuerst diese 3 Dinge, bevor du der App die Schuld gibst. Speichern 📌 #iptv #iptvdeutschland #appletv #iptvplayer #technik",
+   "scenes": [
+    {
+     "type": "s_device",
+     "dur": 2.6,
+     "instant": true,
+     "red": true,
+     "asset": "atv_home",
+     "lines": [
+      "Schwarzes Bild",
+      "bei der Hälfte",
+      "*deiner Sender?*"
+     ],
+     "size": 92,
+     "label": "APPLE TV  ·  START",
+     "tint": [
+      150,
+      40,
+      120
+     ],
+     "z1": 1.08,
+     "fx": 0.5
+    },
+    {
+     "type": "tips",
+     "site": true,
+     "dur": 5.4,
+     "title": "Probier das",
+     "sub": "zuerst.",
+     "items": [
+      [
+       "Playlist aktualisieren",
+       "Anbieter ändern Links ständig"
+      ],
+      [
+       "Abo prüfen",
+       "Abgelaufen = schwarzes Bild"
+      ],
+      [
+       "Favoritenliste anlegen",
+       "Nur Sender, die laufen"
+      ]
+     ]
+    },
+    {
+     "type": "s_photo",
+     "dur": 2.6,
+     "lines": [
+      "Einfach *schauen.*"
+     ],
+     "sub": "Ohne Werbung dazwischen."
+    },
+    {
+     "type": "s_end",
+     "dur": 2.4,
+     "lines": [
+      "Gratis im",
+      "*App Store.*"
+     ],
+     "a": "Kanalo · iPhone · iPad · Apple TV"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-18_14_en-black-screen",
+   "publish": "2026-11-18T14:00:00",
+   "lang": "en",
+   "style": "tip",
+   "tpl": "T2",
+   "seed": 127,
+   "title": "IPTV channels not loading? Try this first",
+   "caption": "Black screen on half your channels? Try these 3 things before you blame the app. Save it 📌 #iptv #iptvusa #appletv #iptvplayer #techtok",
+   "scenes": [
+    {
+     "type": "s_device",
+     "dur": 2.6,
+     "instant": true,
+     "red": true,
+     "asset": "atv_home",
+     "lines": [
+      "Black screen",
+      "on half your",
+      "*channels?*"
+     ],
+     "size": 92,
+     "label": "APPLE TV  ·  HOME",
+     "tint": [
+      150,
+      40,
+      120
+     ],
+     "z1": 1.08,
+     "fx": 0.5
+    },
+    {
+     "type": "tips",
+     "site": true,
+     "dur": 5.4,
+     "title": "Try this",
+     "sub": "first.",
+     "items": [
+      [
+       "Refresh your playlist",
+       "Providers change links all the time"
+      ],
+      [
+       "Check your subscription",
+       "Expired = black screen"
+      ],
+      [
+       "Make a favourites list",
+       "Only the channels that work"
+      ]
+     ]
+    },
+    {
+     "type": "s_photo",
+     "dur": 2.6,
+     "lines": [
+      "Just *watch.*"
+     ],
+     "sub": "No ads in between."
+    },
+    {
+     "type": "s_end",
+     "dur": 2.4,
+     "lines": [
+      "Free on the",
+      "*App Store.*"
+     ],
+     "a": "Kanalo · iPhone · iPad · Apple TV"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-18_18_es-m3u-xtream",
+   "publish": "2026-11-18T18:00:00",
+   "lang": "es",
+   "style": "tip",
+   "tpl": "T3",
+   "seed": 128,
+   "title": "¿M3U o Xtream? La diferencia en 15 segundos",
+   "caption": "¿Tu proveedor te dio un enlace M3U y datos Xtream? Esta es la diferencia en 15 segundos. Los dos funcionan en Kanalo. #iptv #iptvespaña #appletv #iptvplayer #trucos",
+   "scenes": [
+    {
+     "type": "s_phone",
+     "dur": 2.6,
+     "instant": true,
+     "red": true,
+     "asset": "as_manage",
+     "lines": [
+      "¿M3U o Xtream?",
+      "*¿Cuál es mejor?*"
+     ],
+     "size": 96,
+     "tint": [
+      150,
+      40,
+      120
+     ],
+     "scroll": 0.3
+    },
+    {
+     "type": "tips",
+     "site": true,
+     "dur": 5.4,
+     "title": "La diferencia",
+     "sub": "en 15 segundos.",
+     "items": [
+      [
+       "M3U = un enlace largo",
+       "Todo en un archivo grande"
+      ],
+      [
+       "Xtream = servidor + login",
+       "Pelis y series cargan aparte, más rápido"
+      ],
+      [
+       "¿Tienes los dos? Xtream",
+       "Actualiza más rápido"
+      ]
+     ]
+    },
+    {
+     "type": "s_phone",
+     "dur": 2.8,
+     "asset": "as_manage",
+     "lines": [
+      "Los dos funcionan",
+      "*en Kanalo.*"
+     ],
+     "tint": [
+      45,
+      45,
+      170
+     ],
+     "scroll": 0.5
+    },
+    {
+     "type": "s_end",
+     "dur": 2.4,
+     "lines": [
+      "Gratis en la",
+      "*App Store.*"
+     ],
+     "a": "Kanalo · iPhone · iPad · Apple TV"
+    }
+   ]
+  }
+ ]
+}
