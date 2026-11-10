@@ -55,7 +55,7 @@ def kanalo_icon(s=300):
     return im
 
 
-POS = [(75, 300), (405, 300), (735, 300)]  # icon top-lefts (icon canvas 310 px)
+POS = [(65, 380), (745, 260), (195, 70)]  # icon top-lefts (icon canvas 310 px)
 
 if __name__ == "__main__":
     out = sys.argv[1]; os.makedirs(out, exist_ok=True)
