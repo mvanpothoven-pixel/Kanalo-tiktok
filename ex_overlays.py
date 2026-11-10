@@ -55,7 +55,7 @@ def kanalo_icon(s=300):
     return im
 
 
-POS = [(45, 330), (385, 330), (725, 330)]  # icon top-lefts (icon canvas 310 px)
+POS = [(75, 300), (405, 300), (735, 300)]  # icon top-lefts (icon canvas 310 px)
 
 if __name__ == "__main__":
     out = sys.argv[1]; os.makedirs(out, exist_ok=True)
@@ -64,9 +64,9 @@ if __name__ == "__main__":
         for i, ((name, emo, c1, c2), cap) in enumerate(zip(APPS, caps)):
             for cross in (False, True):
                 im = Image.new("RGBA", (W, H), (0, 0, 0, 0)); x, y = POS[i]
-                im.alpha_composite(icon(name, emo, c1, c2, cross=cross), (x, y))
+                im.alpha_composite(icon(name, emo, c1, c2, s=190, cross=cross), (x, y))
                 im.save(f"{out}/ex_a{i}{'x' if cross else ''}_{lg}.png")
-            c = Image.new("RGBA", (W, H), (0, 0, 0, 0)); pill(c, cap, W / 2, 680, 50, fg=(255, 255, 255, 255), bg=(20, 20, 26, 230)); c.save(f"{out}/ex_c{i}_{lg}.png")
-        f = Image.new("RGBA", (W, H), (0, 0, 0, 0)); k = kanalo_icon(); f.alpha_composite(k, ((W - k.width) // 2, 300))
-        pill(f, fin, W / 2, 300 + k.height + 10, 54); f.save(f"{out}/ex_fin_{lg}.png")
+            c = Image.new("RGBA", (W, H), (0, 0, 0, 0)); pill(c, cap, W / 2, 1290, 52, fg=(255, 255, 255, 255), bg=(20, 20, 26, 230)); c.save(f"{out}/ex_c{i}_{lg}.png")
+        f = Image.new("RGBA", (W, H), (0, 0, 0, 0)); k = kanalo_icon(210); f.alpha_composite(k, ((W - k.width) // 2, 130))
+        pill(f, fin, W / 2, 1290, 56); f.save(f"{out}/ex_fin_{lg}.png")
     print("ok")
