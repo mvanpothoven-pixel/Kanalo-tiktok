@@ -3,18 +3,18 @@ import os, sys
 from vlc_overlays import card
 
 HOOK = {
-    "en": ["My grandma (78) set up IPTV", "faster than me 💀"],
-    "nl": ["Mijn oma (78) had IPTV", "sneller werkend dan ik 💀"],
-    "fr": ["Ma grand-mère (78 ans) a lancé", "l'IPTV plus vite que moi 💀"],
-    "es": ["Mi abuela (78) puso el IPTV", "más rápido que yo 💀"],
-    "de": ["Oma (78) hatte IPTV", "schneller am Laufen als ich 💀"],
+    "en": ["POV: your IPTV app plays", "4 ads. Again. 😤"],
+    "nl": ["POV: je IPTV-app geeft", "wéér 4 reclames 😤"],
+    "fr": ["POV : ton appli IPTV te met", "encore 4 pubs 😤"],
+    "es": ["POV: tu app de IPTV te pone", "otra vez 4 anuncios 😤"],
+    "de": ["POV: deine IPTV-App zeigt", "schon wieder 4 Werbungen 😤"],
 }
 PAY = {
-    "en": ["She just uses Kanalo.", "No ads. No hassle."],
-    "nl": ["Ze gebruikt gewoon Kanalo.", "Geen reclame. Geen gedoe."],
-    "fr": ["Elle utilise juste Kanalo.", "Zéro pub. Zéro prise de tête."],
-    "es": ["Ella usa Kanalo.", "Sin anuncios. Sin líos."],
-    "de": ["Sie nutzt einfach Kanalo.", "Keine Werbung. Kein Stress."],
+    "en": ["Grandma (78) just uses Kanalo 👵", "No ads. Ever."],
+    "nl": ["Oma (78) gebruikt gewoon Kanalo 👵", "Geen reclame. Nooit."],
+    "fr": ["Mamie (78 ans) utilise Kanalo 👵", "Zéro pub. Jamais."],
+    "es": ["La abuela (78) usa Kanalo 👵", "Sin anuncios. Nunca."],
+    "de": ["Oma (78) nutzt einfach Kanalo 👵", "Keine Werbung. Nie."],
 }
 
 if __name__ == "__main__":
