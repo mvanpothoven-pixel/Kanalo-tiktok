@@ -17,11 +17,11 @@ PAY = {
     "de": ["Kanalo Pro. Für immer gratis.", "Nur die ersten 100."],
 }
 CTA = {
-    "en": ["kanalo.app → link in bio 👆"],
-    "nl": ["kanalo.app → link in bio 👆"],
-    "fr": ["kanalo.app → lien en bio 👆"],
-    "es": ["kanalo.app → enlace en la bio 👆"],
-    "de": ["kanalo.app → Link in der Bio 👆"],
+    "en": ["kanalo.app · link in bio 👆"],
+    "nl": ["kanalo.app · link in bio 👆"],
+    "fr": ["kanalo.app · lien en bio 👆"],
+    "es": ["kanalo.app · enlace en la bio 👆"],
+    "de": ["kanalo.app · Link in der Bio 👆"],
 }
 
 if __name__ == "__main__":
