@@ -7,10 +7,12 @@ W, H = 1080, 1920
 T = {
     "nl": ("Zo claim je je pass", ["Ga naar kanalo.app", "Claim je gratis code", "Download Kanalo & activeer"], "Op = op · max. 250", "Link in bio 👆"),
     "en": ("How to claim your pass", ["Go to kanalo.app", "Claim your free code", "Download Kanalo & redeem"], "First 250 only", "Link in bio 👆"),
-    "fr": ("Comment obtenir ton pass", ["Va sur kanalo.app", "Récupère ton code gratuit", "Télécharge Kanalo et active"], "Seulement les 250 premiers", "Lien en bio 👆"),
+    "fr": ("Comment obtenir ton abonnement", ["Va sur kanalo.app", "Récupère ton code gratuit", "Télécharge Kanalo et active"], "Seulement les 100 premiers", "Lien en bio 👆"),
     "es": ("Cómo conseguir tu pase", ["Entra en kanalo.app", "Consigue tu código gratis", "Descarga Kanalo y actívalo"], "Solo los 250 primeros", "Enlace en la bio 👆"),
     "de": ("So holst du deinen Pass", ["Geh auf kanalo.app", "Hol dir deinen Gratis-Code", "Kanalo laden & einlösen"], "Nur die ersten 250", "Link in der Bio 👆"),
 }
+
+SUB = {"fr": "1 an de Kanalo Pro offert"}
 
 def card(lang):
     title, steps, note, cta = T[lang]
@@ -23,7 +25,7 @@ def card(lang):
     img.alpha_composite(glow.filter(ImageFilter.GaussianBlur(40)))
     img.paste(lg, ((W - s) // 2, 270), m)
     d.text((W / 2, 600), "Kanalo", font=kv.F(96, "Bold"), fill="white", anchor="mm")
-    d.text((W / 2, 690), "Lifetime Pro Pass", font=kv.F(46, "SemiBold"), fill=(255, 205, 110), anchor="mm")
+    d.text((W / 2, 690), SUB.get(lang, "Lifetime Pro Pass"), font=kv.F(46, "SemiBold"), fill=(255, 205, 110), anchor="mm")
     d.text((W / 2, 830), title, font=kv.F(52, "Bold"), fill="white", anchor="mm")
     for i, st in enumerate(steps):
         y = 940 + i * 130
