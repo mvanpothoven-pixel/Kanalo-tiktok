@@ -13,6 +13,7 @@ T = {
 }
 
 SUB = {"fr": "1 an de Kanalo Pro offert"}
+DESC = {"fr": "L'app IPTV sans pub · iPhone, iPad, Apple TV"}
 
 def card(lang):
     title, steps, note, cta = T[lang]
@@ -26,7 +27,9 @@ def card(lang):
     img.paste(lg, ((W - s) // 2, 270), m)
     d.text((W / 2, 600), "Kanalo", font=kv.F(96, "Bold"), fill="white", anchor="mm")
     d.text((W / 2, 690), SUB.get(lang, "Lifetime Pro Pass"), font=kv.F(46, "SemiBold"), fill=(255, 205, 110), anchor="mm")
-    d.text((W / 2, 830), title, font=kv.F(52, "Bold"), fill="white", anchor="mm")
+    if lang in DESC:
+        d.text((W / 2, 748), DESC[lang], font=kv.F(36, "Regular"), fill=(225, 215, 240), anchor="mm")
+    d.text((W / 2, 850), title, font=kv.F(52, "Bold"), fill="white", anchor="mm")
     for i, st in enumerate(steps):
         y = 940 + i * 130
         ov = Image.new("RGBA", (W, H), (0, 0, 0, 0)); ImageDraw.Draw(ov).rounded_rectangle([110, y - 52, W - 110, y + 52], 52, fill=(255, 255, 255, 34))
