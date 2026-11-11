@@ -27,7 +27,7 @@ CTA = {
 if __name__ == "__main__":
     out = sys.argv[1]; os.makedirs(out, exist_ok=True)
     for lg in HOOK:
-        card(HOOK[lg], size=64, y=1120).save(f"{out}/pass_hook_{lg}.png")
-        card(PAY[lg], size=58, y=1120).save(f"{out}/pass_pay_{lg}.png")
-        card(CTA[lg], size=58, y=1120).save(f"{out}/pass_cta_{lg}.png")
+        card(HOOK[lg], size=64, y=1300).save(f"{out}/pass_hook_{lg}.png")
+        card(PAY[lg], size=58, y=1300).save(f"{out}/pass_pay_{lg}.png")
+        card(CTA[lg], size=58, y=1300).save(f"{out}/pass_cta_{lg}.png")
     print("ok")
