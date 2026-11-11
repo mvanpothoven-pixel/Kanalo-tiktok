@@ -1,13 +1,13 @@
-"""Overlays for 'Grandma gives away 100 lifetime passes' video. Usage: python3 pass_overlays.py OUT_DIR"""
+"""Overlays for '100 lifetime passes giveaway' video. Usage: python3 pass_overlays.py OUT_DIR"""
 import os, sys
 from vlc_overlays import card
 
 HOOK = {
-    "en": ["🎁 Grandma is giving away", "100 free lifetime passes"],
-    "nl": ["🎁 Oma deelt 100 gratis", "lifetime-passes uit"],
-    "fr": ["🎁 Mamie offre 100 pass", "à vie gratuits"],
-    "es": ["🎁 La abuela regala 100", "pases de por vida gratis"],
-    "de": ["🎁 Oma verschenkt 100", "Lifetime-Pässe gratis"],
+    "en": ["🎁 Giving away 100", "free lifetime passes"],
+    "nl": ["🎁 We geven 100 gratis", "lifetime-passes weg"],
+    "fr": ["🎁 On offre 100 pass", "à vie gratuits"],
+    "es": ["🎁 Regalamos 100 pases", "de por vida gratis"],
+    "de": ["🎁 Wir verschenken 100", "Lifetime-Pässe gratis"],
 }
 PAY = {
     "en": ["Kanalo Pro. Free forever.", "Only the first 100."],
