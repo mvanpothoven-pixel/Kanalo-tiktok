@@ -26,6 +26,24 @@ VIDEOS = [
          hook="iPhone & Apple TV.\nOne app.", seed=17),
 ]
 
+
+VIDEOS2 = [
+    dict(id="e1_stoppaying", dev="tv", screens=["atv_movies", "atv_home"], dur=8,
+         hook="STOP paying for an IPTV\nplayer full of ads.", seed=21),
+    dict(id="e2_better", dev="tv", screens=["atv_gids", "atv_home"], dur=8,
+         hook="Your IPTV deserves\na better player.", seed=22),
+    dict(id="e3_movienight", dev="tv", screens=["atv_movies"], dur=7,
+         hook="Movie night,\nsorted.", seed=23),
+    dict(id="e4_noaccount", dev="phone", screens=["as_detail", "as_movies"], dur=8,
+         hook="No account. No ads.\nJust your playlist.", seed=24),
+    dict(id="e5_livetv", dev="tv", screens=["atv_home", "atv_gids"], dur=8,
+         hook="Live TV that actually\nlooks good.", seed=25),
+    dict(id="e6_stillpaying", dev="phone", screens=["as_movies", "as_subs"], dur=8,
+         hook="Wait\u2026 you're still\nwatching ads?", seed=26),
+    dict(id="e7_mike", dev="combo", screens=["atv_home", "as_movies"], dur=8,
+         hook="I'm Mike. I built the\nIPTV player I wanted.", seed=27),
+]
+
 BGIMG = kv.glow_bg((110, 50, 200), cy=0.52, strength=0.75, r=1000).convert("RGB")
 
 
@@ -134,7 +152,7 @@ def render(v, out):
 if __name__ == "__main__":
     out = sys.argv[1]; os.makedirs(out, exist_ok=True)
     ids = sys.argv[2:]
-    for v in VIDEOS:
+    for v in VIDEOS + VIDEOS2:
         if ids and v["id"] not in ids: continue
         if "preview" in ids:
             pass
