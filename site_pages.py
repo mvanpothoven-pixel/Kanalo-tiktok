@@ -93,6 +93,19 @@ h2{font-size:1.3rem;margin:2em 0 .6em}p,li{color:var(--mut)}strong{color:var(--f
 background:linear-gradient(90deg,#7b4cf0,#e0408f,#f07a45)}details{background:var(--card);border-radius:14px;padding:14px 18px;margin:10px 0}
 summary{cursor:pointer;font-weight:600;color:var(--fg)}"""
 
+# Cookieless live visit counter. Sends small beacons to kanalo.app/api/t: a view on load, a ping every
+# 15 s while the tab is visible (for "now on the site"), and a click on the App Store button.
+# No cookies, no storage, no IP or device IDs from the page; skipped when the visitor sends Do Not Track / GPC.
+# Country comes from the server (e.g. the CDN's country header), not from the browser.
+TRACK = """(function(){try{if(navigator.doNotTrack==="1"||navigator.globalPrivacyControl)return;
+var s=Math.random().toString(36).slice(2,12),n=0,u="/api/t",l=document.documentElement.lang||"",r="";
+try{r=document.referrer?new URL(document.referrer).hostname:""}catch(x){}
+function send(e){var b=JSON.stringify({e:e,p:location.pathname,l:l,r:r,s:s});
+if(!(navigator.sendBeacon&&navigator.sendBeacon(u,b)))fetch(u,{method:"POST",body:b,keepalive:true,headers:{"Content-Type":"text/plain"}}).catch(function(){})}
+send("view");var t=setInterval(function(){if(document.visibilityState!=="visible")return;if(++n>120)return clearInterval(t);send("ping")},15000);
+document.addEventListener("click",function(ev){var a=ev.target.closest&&ev.target.closest("a[href*='apps.apple.com']");if(a)send("store")},true);
+}catch(x){}})();"""
+
 
 def page(lg, d):
     alt = "\n".join(f'<link rel="alternate" hreflang="{k}" href="https://kanalo.app/{v}">' for k, v in SLUG.items())
@@ -117,7 +130,7 @@ def page(lg, d):
 <h2>{e(d['price_h'])}</h2><p>{e(d['price'])}</p>
 <h2>FAQ</h2>{''.join(f'<details open><summary>{e(q)}</summary><p>{e(a)}</p></details>' for q, a in d['faq'])}
 <a class="cta" href="{APP}">{e(d['cta'])}</a>
-</main></body></html>"""
+</main><script>{TRACK}</script></body></html>"""
 
 
 if __name__ == "__main__":
