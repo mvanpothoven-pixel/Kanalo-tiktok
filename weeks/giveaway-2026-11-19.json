@@ -1,0 +1,312 @@
+{
+ "videos": [
+  {
+   "id": "2026-11-19_17_de-giveaway-pro-year",
+   "publish": "2026-11-19T17:00:00",
+   "lang": "de",
+   "style": "giveaway",
+   "seed": 241,
+   "title": "🎉 3.000+ Nutzer! Wir verschenken 1 Jahr Kanalo Pro",
+   "caption": "🎉 Über 3.000 Nutzer! Zur Feier verschenken wir 1 Jahr Kanalo Pro. Kanalo ist die werbefreie IPTV-App für iPhone, iPad & Apple TV: eigene Playlist rein und los. 👉 Link in der Bio, E-Mail eingeben, Code holen und in der App einlösen. Nur begrenzte Codes, sei schnell! #iptv #iptvdeutschland #appletv #iptvplayer #gewinnspiel",
+   "fb": "🎉 Über 3.000 Nutzer! Zur Feier verschenken wir 1 Jahr Kanalo Pro. Kanalo ist die werbefreie IPTV-App für iPhone, iPad & Apple TV: eigene Playlist rein und los. 👉 Link in der Bio, E-Mail eingeben, Code holen und in der App einlösen. Nur begrenzte Codes, sei schnell! https://apps.apple.com/app/id6789590971 #iptv #iptvdeutschland #appletv",
+   "scenes": [
+    {
+     "type": "s_device",
+     "dur": 2.8,
+     "instant": true,
+     "asset": "atv_home",
+     "lines": [
+      "3.000+ Nutzer!",
+      "Wir verschenken",
+      "*1 Jahr Pro.*"
+     ],
+     "size": 92,
+     "label": "APPLE TV  ·  START",
+     "tint": [
+      120,
+      50,
+      170
+     ],
+     "z1": 1.08,
+     "fx": 0.5
+    },
+    {
+     "type": "s_phone",
+     "dur": 2.4,
+     "asset": "as_movies",
+     "lines": [
+      "Der IPTV-Player",
+      "*ohne Werbung.*"
+     ],
+     "tint": [
+      45,
+      45,
+      170
+     ],
+     "scroll": 0.5
+    },
+    {
+     "type": "tips",
+     "site": true,
+     "dur": 5.0,
+     "title": "So geht's:",
+     "sub": "gratis, dauert 1 Minute.",
+     "items": [
+      [
+       "Geh auf kanalo.app",
+       "Link in der Bio"
+      ],
+      [
+       "Hol dir deinen Code",
+       "E-Mail eingeben, fertig"
+      ],
+      [
+       "Kanalo laden & einlösen",
+       "1 Jahr Pro geschenkt"
+      ]
+     ]
+    },
+    {
+     "type": "s_end",
+     "dur": 2.6,
+     "lines": [
+      "Link in",
+      "*der Bio.*"
+     ],
+     "a": "Begrenzte Codes · wer zuerst kommt"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-19_20_es-giveaway-pro-year",
+   "publish": "2026-11-19T20:00:00",
+   "lang": "es",
+   "style": "giveaway",
+   "seed": 242,
+   "title": "🎉 ¡3.000+ usuarios! Regalamos 1 año de Kanalo Pro",
+   "caption": "🎉 ¡Más de 3.000 usuarios! Para celebrarlo regalamos 1 año de Kanalo Pro. Kanalo es la app IPTV sin anuncios para iPhone, iPad y Apple TV: añades tu propia playlist y listo. 👉 Enlace en la bio, pon tu e-mail, recibe tu código y actívalo en la app. Códigos limitados, ¡date prisa! #iptv #iptvespaña #appletv #iptvplayer #sorteo",
+   "fb": "🎉 ¡Más de 3.000 usuarios! Para celebrarlo regalamos 1 año de Kanalo Pro. Kanalo es la app IPTV sin anuncios para iPhone, iPad y Apple TV: añades tu propia playlist y listo. 👉 Enlace en la bio, pon tu e-mail, recibe tu código y actívalo en la app. Códigos limitados, ¡date prisa! https://apps.apple.com/app/id6789590971 #iptv #iptvespaña #appletv",
+   "scenes": [
+    {
+     "type": "s_device",
+     "dur": 2.8,
+     "instant": true,
+     "asset": "atv_home",
+     "lines": [
+      "¡3.000+ usuarios!",
+      "Regalamos",
+      "*1 año de Pro.*"
+     ],
+     "size": 92,
+     "label": "APPLE TV  ·  INICIO",
+     "tint": [
+      120,
+      50,
+      170
+     ],
+     "z1": 1.08,
+     "fx": 0.5
+    },
+    {
+     "type": "s_phone",
+     "dur": 2.4,
+     "asset": "as_movies",
+     "lines": [
+      "El reproductor IPTV",
+      "*sin anuncios.*"
+     ],
+     "tint": [
+      45,
+      45,
+      170
+     ],
+     "scroll": 0.5
+    },
+    {
+     "type": "tips",
+     "site": true,
+     "dur": 5.0,
+     "title": "Cómo conseguirlo:",
+     "sub": "gratis, en 1 minuto.",
+     "items": [
+      [
+       "Entra en kanalo.app",
+       "Enlace en la bio"
+      ],
+      [
+       "Consigue tu código",
+       "Pon tu e-mail y listo"
+      ],
+      [
+       "Descarga Kanalo y actívalo",
+       "1 año de Pro gratis"
+      ]
+     ]
+    },
+    {
+     "type": "s_end",
+     "dur": 2.6,
+     "lines": [
+      "Enlace en",
+      "*la bio.*"
+     ],
+     "a": "Códigos limitados · el primero que llegue"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-20_17_it-giveaway-pro-year",
+   "publish": "2026-11-20T17:00:00",
+   "lang": "it",
+   "style": "giveaway",
+   "seed": 243,
+   "title": "🎉 3.000+ utenti! Regaliamo 1 anno di Kanalo Pro",
+   "caption": "🎉 Oltre 3.000 utenti! Per festeggiare regaliamo 1 anno di Kanalo Pro. Kanalo è l'app IPTV senza pubblicità per iPhone, iPad e Apple TV: aggiungi la tua playlist e via. 👉 Link in bio, inserisci la tua e-mail, ricevi il codice e attivalo nell'app. Codici limitati, sbrigati! #iptv #iptvitalia #appletv #iptvplayer #regalo",
+   "fb": "🎉 Oltre 3.000 utenti! Per festeggiare regaliamo 1 anno di Kanalo Pro. Kanalo è l'app IPTV senza pubblicità per iPhone, iPad e Apple TV: aggiungi la tua playlist e via. 👉 Link in bio, inserisci la tua e-mail, ricevi il codice e attivalo nell'app. Codici limitati, sbrigati! https://apps.apple.com/app/id6789590971 #iptv #iptvitalia #appletv",
+   "scenes": [
+    {
+     "type": "s_device",
+     "dur": 2.8,
+     "instant": true,
+     "asset": "atv_home",
+     "lines": [
+      "3.000+ utenti!",
+      "Regaliamo",
+      "*1 anno di Pro.*"
+     ],
+     "size": 92,
+     "label": "APPLE TV  ·  HOME",
+     "tint": [
+      120,
+      50,
+      170
+     ],
+     "z1": 1.08,
+     "fx": 0.5
+    },
+    {
+     "type": "s_phone",
+     "dur": 2.4,
+     "asset": "as_movies",
+     "lines": [
+      "Il player IPTV",
+      "*senza pubblicità.*"
+     ],
+     "tint": [
+      45,
+      45,
+      170
+     ],
+     "scroll": 0.5
+    },
+    {
+     "type": "tips",
+     "site": true,
+     "dur": 5.0,
+     "title": "Come ottenerlo:",
+     "sub": "gratis, in 1 minuto.",
+     "items": [
+      [
+       "Vai su kanalo.app",
+       "Link in bio"
+      ],
+      [
+       "Prendi il tuo codice",
+       "Inserisci l'e-mail e basta"
+      ],
+      [
+       "Scarica Kanalo e attivalo",
+       "1 anno di Pro in regalo"
+      ]
+     ]
+    },
+    {
+     "type": "s_end",
+     "dur": 2.6,
+     "lines": [
+      "Link",
+      "*in bio.*"
+     ],
+     "a": "Codici limitati · chi prima arriva"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-20_20_en-giveaway-pro-year",
+   "publish": "2026-11-20T20:00:00",
+   "lang": "en",
+   "style": "giveaway",
+   "seed": 244,
+   "title": "🎉 3,000+ users! We're giving away 1 year of Kanalo Pro",
+   "caption": "🎉 3,000+ users! To celebrate, we're giving away 1 year of Kanalo Pro. Kanalo is the ad-free IPTV app for iPhone, iPad & Apple TV: add your own playlist and go. 👉 Link in bio, enter your email, get your code and redeem it in the app. Limited codes, be quick! #iptv #iptvusa #appletv #iptvplayer #giveaway",
+   "fb": "🎉 3,000+ users! To celebrate, we're giving away 1 year of Kanalo Pro. Kanalo is the ad-free IPTV app for iPhone, iPad & Apple TV: add your own playlist and go. 👉 Link in bio, enter your email, get your code and redeem it in the app. Limited codes, be quick! https://apps.apple.com/app/id6789590971 #iptv #iptvusa #appletv",
+   "scenes": [
+    {
+     "type": "s_device",
+     "dur": 2.8,
+     "instant": true,
+     "asset": "atv_home",
+     "lines": [
+      "3,000+ users!",
+      "We're giving away",
+      "*1 year of Pro.*"
+     ],
+     "size": 92,
+     "label": "APPLE TV  ·  HOME",
+     "tint": [
+      120,
+      50,
+      170
+     ],
+     "z1": 1.08,
+     "fx": 0.5
+    },
+    {
+     "type": "s_phone",
+     "dur": 2.4,
+     "asset": "as_movies",
+     "lines": [
+      "The IPTV player",
+      "*without ads.*"
+     ],
+     "tint": [
+      45,
+      45,
+      170
+     ],
+     "scroll": 0.5
+    },
+    {
+     "type": "tips",
+     "site": true,
+     "dur": 5.0,
+     "title": "How to claim:",
+     "sub": "free, takes 1 minute.",
+     "items": [
+      [
+       "Go to kanalo.app",
+       "Link in bio"
+      ],
+      [
+       "Get your free code",
+       "Enter your email, done"
+      ],
+      [
+       "Download Kanalo & redeem",
+       "1 year of Pro, on us"
+      ]
+     ]
+    },
+    {
+     "type": "s_end",
+     "dur": 2.6,
+     "lines": [
+      "Link in",
+      "*bio.*"
+     ],
+     "a": "Limited codes · first come, first served"
+    }
+   ]
+  }
+ ]
+}
