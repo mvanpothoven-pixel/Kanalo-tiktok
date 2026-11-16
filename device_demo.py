@@ -8,6 +8,10 @@ import kanalo_video as kv
 W, H, FPS = 1080, 1920, 30
 A = kv.ASSETS
 A["iphone_gids"] = kv.load("iphone_gids.png")
+# English UI for all posts (Mike, 16 Nov): use assets/en/* where available
+for _n in ["atv_home", "atv_movies", "atv_gids", "as_movies", "as_manage", "as_subs", "iphone_gids"]:
+    _p = os.path.join(kv.HERE, "assets", "en", _n + ".png")
+    if os.path.exists(_p): A[_n] = Image.open(_p).convert("RGB")
 
 VIDEOS = [
     dict(id="d1_bestscreen", dev="tv", screens=["atv_home", "atv_movies"], dur=8,

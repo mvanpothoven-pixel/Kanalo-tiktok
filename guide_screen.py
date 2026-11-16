@@ -32,6 +32,20 @@ def chip(d, x, y, s, txt, col):
         d.text((cx, cy), txt, font=kv.F(int(s * 0.26), "Bold"), fill="white", anchor="mm")
 
 
+ROWS_EN = [
+    ("NL", (52, 92, 230), "Northern Lights TV", "20:00", "The Silver Coast", "", 0.74),
+    ("PC", (232, 92, 52), "Polder City", "19:45", "House of Stories", "", 0.88),
+    ("HC", (40, 150, 140), "Harbor Channel", "20:15", "Quiz by the Sea", "", 0.55),
+    ("DUNE", (230, 180, 60), "Dune & Dike", "19:30", "Polder Secrets", "", 0.93),
+    ("\u0394", (120, 80, 230), "Delta TV", "20:20", "Summer Guests on the Coast", "", 0.33),
+    ("CO", (240, 120, 40), "Channel Orange", "20:00", "Live: Football Highlights", "", 0.62),
+    ("M", (60, 160, 90), "Meridian", "20:30", "Still Waters", "", 0.21),
+    ("SS", (50, 120, 220), "Southern Sea TV", "19:55", "The Bike Bridge", "", 0.81),
+    ("LT", (220, 60, 70), "Lighthouse TV", "20:10", "Late Night Live", "", 0.47),
+    ("7", (200, 160, 50), "Mill 7", "20:00", "Live: Motorsport Circuit", "", 0.39),
+]
+
+
 LBL = {"nl": ("Tv-gids", ["Vandaag", "Morgen", "Wo 11", "Do 12"]), "en": ("TV Guide", ["Today", "Tomorrow", "Wed 11", "Thu 12"])}
 
 
@@ -58,7 +72,7 @@ def render(lang="nl"):
         x += w + 20
     # rows
     y = 556; rh = 196
-    for k, (c, col, name, tm, now, nxt, p) in enumerate(ROWS):
+    for k, (c, col, name, tm, now, nxt, p) in enumerate(ROWS_EN if lang == "en" else ROWS):
         if y + rh > H - 60: break
         hl = k == 0
         d.rounded_rectangle([40, y, W - 40, y + rh - 22], 34, fill=(34, 26, 30) if hl else CARD,
