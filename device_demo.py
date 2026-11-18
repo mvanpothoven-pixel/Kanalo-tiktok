@@ -48,6 +48,18 @@ VIDEOS2 = [
          hook="I'm Mike. I built the\nIPTV player I wanted.", seed=27),
 ]
 
+# Nov 18: variants of the 15.9K 'poster, trailer & cast' video, each with its own music style
+VIDEOS3 = [
+    dict(id="f1_posters", dev="phone", screens=["iphone_detail"], scroll=True, dur=8, music="lofi",
+         hook="POV: your IPTV playlist\nfinally has posters.", seed=31),
+    dict(id="f2_trailer", dev="combo", screens=["atv_movies", "iphone_detail"], dur=8, music="synthwave",
+         hook="Trailer. Cast. Rating.\nFor every movie.", seed=32),
+    dict(id="f3_library", dev="phone", screens=["as_movies", "iphone_detail"], dur=8, music="phonk",
+         hook="Not a list of names.\nA real movie library.", seed=33),
+    dict(id="f4_tv", dev="tv", screens=["atv_movies", "atv_home"], dur=8, music="afro",
+         hook="Your IPTV movies,\nbut on the big screen.", seed=34),
+]
+
 BGIMG = kv.glow_bg((110, 50, 200), cy=0.52, strength=0.75, r=1000).convert("RGB")
 
 
@@ -143,8 +155,12 @@ def render(v, out):
         p.stdin.write(frame(v, i / FPS).convert("RGB").tobytes())
     p.stdin.close(); p.wait()
     mus = os.path.join(out, v["id"] + "_m.wav")
-    subprocess.run([sys.executable, os.path.join(kv.HERE, "house_music.py"), mus, str(v["dur"] + 1), str(v["seed"])], check=True,
-                   stdout=subprocess.DEVNULL)
+    if v.get("music"):
+        subprocess.run([sys.executable, os.path.join(kv.HERE, "music_styles.py"), v["music"], mus, str(v["dur"] + 1), str(v["seed"])],
+                       check=True, stdout=subprocess.DEVNULL)
+    else:
+        subprocess.run([sys.executable, os.path.join(kv.HERE, "house_music.py"), mus, str(v["dur"] + 1), str(v["seed"])], check=True,
+                       stdout=subprocess.DEVNULL)
     final = os.path.join(out, v["id"] + ".mp4")
     subprocess.run(["ffmpeg", "-nostdin", "-v", "error", "-y", "-i", tmp, "-i", mus, "-map", "0:v", "-map", "1:a",
                     "-af", f"afade=in:d=0.3,afade=out:st={v['dur'] - 0.8}:d=0.8", "-c:v", "copy", "-c:a", "aac",
@@ -156,7 +172,7 @@ def render(v, out):
 if __name__ == "__main__":
     out = sys.argv[1]; os.makedirs(out, exist_ok=True)
     ids = sys.argv[2:]
-    for v in VIDEOS + VIDEOS2:
+    for v in VIDEOS + VIDEOS2 + VIDEOS3:
         if ids and v["id"] not in ids: continue
         if "preview" in ids:
             pass
