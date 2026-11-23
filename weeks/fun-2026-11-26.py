@@ -29,12 +29,12 @@ T = {
          "POV : Mamie (78 ans) a trouvé un lecteur IPTV sans pub 👵",
          "Mamie (78 ans) a compris avant toi 👵 Ta propre playlist, zéro pub. Kanalo est gratuit sur iPhone, iPad & Apple TV.")},
  3: {  # typing login with the remote, falls asleep
-  "de": (["Ich, wie ich meinen IPTV-Login", "mit der Fernbedienung tippe 😴"], ["Kanalo: QR-Code mit dem", "iPhone scannen. Fertig."],
-         "Ich, wie ich meinen IPTV-Login mit der Fernbedienung tippe 😴",
-         "Jeder, der seinen Xtream-Login schon mal mit der Fernbedienung getippt hat 😴 In Kanalo scannst du einfach einen QR-Code mit dem iPhone."),
-  "es": (["Yo escribiendo mi login IPTV", "con el mando 😴"], ["Kanalo: escanea un QR", "con el iPhone. Listo."],
-         "Yo escribiendo mi login IPTV con el mando 😴",
-         "Todo el que ha escrito su login Xtream con el mando 😴 En Kanalo escaneas un código QR con el iPhone y listo.")},
+  "de": (["Ich, wie ich meinen ewig langen", "Xtream-Login abtippe 😴"], ["Kanalo: QR-Code mit dem", "iPhone scannen. Fertig."],
+         "Ich, wie ich meinen ewig langen Xtream-Login abtippe 😴",
+         "Jeder, der seinen ewig langen Xtream-Login schon mal Zeichen für Zeichen abgetippt hat 😴 In Kanalo scannst du einfach einen QR-Code mit dem iPhone."),
+  "es": (["Yo escribiendo mi login", "Xtream larguísimo 😴"], ["Kanalo: escanea un QR", "con el iPhone. Listo."],
+         "Yo escribiendo mi login Xtream larguísimo 😴",
+         "Todo el que ha escrito su login Xtream larguísimo letra a letra 😴 En Kanalo escaneas un código QR con el iPhone y listo.")},
  4: {  # spits out coffee
   "en": (["When you realise you paid €72", "for an IPTV PLAYER 💀"], ["Kanalo is free.", "No ads. No account."],
          "When you realise you paid €72 for an IPTV PLAYER 💀",
