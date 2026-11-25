@@ -1,0 +1,498 @@
+<title>TableJoy Groeikantoor</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+/* Layout: een Amsterdams grachtenpand in doorsnede. Trapgevel met naambord, twee verdiepingen
+   met elk vier kamers (één assistent per bureau), begane grond met receptie en vergaderzaal.
+   Rechts de uitvoer en het logboek; op de telefoon eronder. */
+:root{
+  --bg:#f4f1ec; --fg:#1d1a17; --mute:#6b645c; --line:#e2dcd3; --card:#ffffff;
+  --brick:#9a4b35; --brick-dark:#7a3826; --frame:#f7f3ec; --room:#f7f3ec; --sign:#1d1a17;
+  --wall:#fff4ea; --wall2:#f1f6fb; --sky:#cfe4f3; --city:#9fb5c6; --wood:#a8693f; --wood-top:#c48450; --chair:#3b3f49; --plate:#fbf7ef;
+  --accent:#ff6f59; --ok:#1f9d5b; --busy:#e39a12; --bad:#d6342a;
+  --f-display:"Figtree",system-ui,sans-serif; --f-body:"Figtree",system-ui,sans-serif; --f-mono:"JetBrains Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#141210; --fg:#f2ede6; --mute:#a59d93; --line:#2e2a26; --card:#1c1916;
+  --brick:#6b3426; --brick-dark:#4e2419; --frame:#d9d2c6; --room:#221d19; --sign:#0c0b0a;
+  --wall:#2a221d; --wall2:#1e242b; --sky:#1f3446; --city:#0f1a24; --wood:#7a4a2b; --wood-top:#8f5a35; --chair:#15171c; --plate:#e9e2d5; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141210; --fg:#f2ede6; --mute:#a59d93; --line:#2e2a26; --card:#1c1916;
+  --brick:#6b3426; --brick-dark:#4e2419; --frame:#d9d2c6; --room:#221d19; --sign:#0c0b0a;
+  --wall:#2a221d; --wall2:#1e242b; --sky:#1f3446; --city:#0f1a24; --wood:#7a4a2b; --wood-top:#8f5a35; --chair:#15171c; --plate:#e9e2d5; color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{background:var(--bg);color:var(--fg);font:16px/1.55 var(--f-body);overflow-x:clip}
+.page{max-width:1280px;margin:0 auto;padding-block:clamp(18px,3vw,34px);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:12px 24px;margin-bottom:20px}
+h1{font:800 clamp(30px,4.4vw,46px)/1.05 var(--f-display);letter-spacing:-.02em;margin:0;text-wrap:balance}
+.sub{color:var(--mute);margin:6px 0 0;max-width:60ch}
+.dash{font:600 14px var(--f-body);color:var(--fg);text-decoration:none;border:1px solid var(--line);background:var(--card);border-radius:20px;padding:8px 14px;min-height:40px;display:inline-flex;align-items:center;gap:8px}
+.dash i{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.dash:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:24px;align-items:start}
+
+/* ---- het pand ---- */
+.pand{max-width:940px}
+.gable{display:block;width:100%;height:auto}
+.facade{background:var(--brick);border-left:10px solid var(--brick-dark);border-right:10px solid var(--brick-dark);padding:4px 14px 0;display:grid;gap:14px}
+.verd{display:grid;gap:6px}
+.vlabel{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;color:#fff;font:600 13px var(--f-body);padding:4px 2px 0}
+.vlabel b{font:500 12px var(--f-mono);letter-spacing:.08em;text-transform:uppercase;opacity:.85}
+.rooms{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.room{background:var(--room);border-radius:6px 6px 3px 3px;padding:6px;display:grid;gap:6px;cursor:pointer;border:0;font:inherit;color:inherit;text-align:left}
+.room:focus-visible,.room.sel{outline:3px solid var(--accent);outline-offset:2px}
+.room svg{display:block;width:100%;height:auto;border-radius:3px}
+.cap{padding:0 4px 4px;display:grid;gap:2px}
+.cap b{font:800 15px var(--f-display);display:flex;align-items:center;gap:6px}
+.cap .role{font:500 11px var(--f-mono);letter-spacing:.04em;color:var(--mute);text-transform:uppercase}
+.cap .st{font-size:13px;color:var(--mute);line-height:1.35;overflow-wrap:anywhere}
+.cap .idea{font-size:13px;line-height:1.35;background:#fff3c4;color:#3b2f00;border-radius:6px;padding:6px 8px}
+.lamp{width:9px;height:9px;border-radius:50%;background:var(--ok);display:inline-block}
+.lamp.busy{background:var(--busy)}
+.ground{background:var(--brick);border-left:10px solid var(--brick-dark);border-right:10px solid var(--brick-dark);border-bottom:12px solid #5c544b;padding:14px;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:14px}
+.hall{background:var(--room);border-radius:6px;padding:14px;display:grid;gap:8px;align-content:start}
+.hall h2{margin:0;font:800 19px var(--f-display);display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.hall h2 span{font:500 11px var(--f-mono);color:var(--mute);letter-spacing:.08em}
+
+.kpis{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.kpi{font:600 13px var(--f-body);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:3px 10px;white-space:nowrap;font-variant-numeric:tabular-nums}
+label{font:600 14px var(--f-body)}
+select,textarea,input{font:16px var(--f-body);width:100%;padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--fg)}
+textarea{min-height:72px;resize:vertical}
+select:focus-visible,textarea:focus-visible,input:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.btn{font:700 15px var(--f-body);min-height:44px;padding:0 18px;border-radius:22px;border:0;background:var(--fg);color:var(--bg);cursor:pointer}
+.btn.accent{background:var(--accent);color:#fff}
+.btn:disabled{opacity:.5;cursor:default}
+.btn.sm{min-height:36px;font-size:14px;padding:0 12px;background:var(--card);color:var(--fg);border:1px solid var(--line)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips button{font:14px var(--f-body);min-height:36px;padding:4px 12px;border-radius:18px;border:1px solid var(--line);background:var(--card);color:var(--fg);cursor:pointer;text-align:left}
+.note{font-size:13px;color:var(--mute);margin:0}
+
+/* ---- zijkolom ---- */
+aside{position:sticky;top:calc(16px + env(safe-area-inset-top,0px));display:grid;gap:16px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.panel h3{margin:0 0 8px;font:800 17px var(--f-display)}
+#outSteps{list-style:none;margin:8px 0;padding:0;display:grid;gap:4px;font:500 12px var(--f-mono);color:var(--mute)}
+#outRes{white-space:pre-wrap;margin:8px 0;padding:10px;border-radius:8px;background:var(--bg);max-height:380px;overflow:auto;font-size:15px}
+#acts{display:grid;gap:8px;margin:8px 0}
+.act{border:1px solid var(--line);border-radius:10px;padding:10px;display:grid;gap:6px;font-size:14px}
+.act .kind{font:500 11px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--mute)}
+.act .txt{white-space:pre-wrap;max-height:120px;overflow:auto}
+.act a{color:var(--accent);font-weight:600}
+#log{list-style:none;margin:0;padding:0;display:grid;gap:8px;max-height:340px;overflow:auto}
+#log li{font-size:14px;line-height:1.4;border-bottom:1px solid var(--line);padding-bottom:8px}
+#log button{all:unset;cursor:pointer;display:block}
+#log button:focus-visible{outline:2px solid var(--accent)}
+#log time{color:var(--mute);font:500 12px var(--f-mono);margin-right:6px}
+.tag{font:700 12px var(--f-body);white-space:nowrap}
+svg text{font-family:var(--f-body)}
+.hands{animation:typing .28s ease-in-out infinite alternate;animation-play-state:paused}
+.busy .hands{animation-play-state:running}
+.bub{opacity:0;transition:opacity .2s}
+.busy .bub{opacity:1}
+.bub circle{animation:dot 1s infinite}
+.bub circle:nth-child(3){animation-delay:.15s}.bub circle:nth-child(4){animation-delay:.3s}
+.screen{animation:glow 2.4s ease-in-out infinite alternate}
+@keyframes typing{to{transform:translateY(2px)}}
+@keyframes dot{50%{opacity:.3}}
+@keyframes glow{to{opacity:.7}}
+@media (prefers-reduced-motion:reduce){.hands,.bub circle,.screen{animation:none}}
+@media (max-width:1020px){.layout{grid-template-columns:minmax(0,1fr)}aside{position:static}.pand{max-width:none}}
+@media (max-width:700px){.rooms{grid-template-columns:repeat(2,minmax(0,1fr))}.ground{grid-template-columns:minmax(0,1fr)}.facade,.ground{border-left-width:6px;border-right-width:6px;padding-left:8px;padding-right:8px}}
+</style>
+
+<div class="page">
+<header>
+  <div>
+    <h1>TableJoy Groeikantoor</h1>
+    <p class="sub">Acht assistenten die maar één ding doen: nieuwe restaurants binnenhalen. Social media, acquisitiemails, advertenties en partners. Bestaande klanten laten ze met rust.</p>
+  </div>
+  <a class="dash" href="https://claude.ai/artifact/UuZJkNoMbD2e8JtrwmQ28r" target="_blank" rel="noopener"><i></i>Tablejoy Live</a>
+</header>
+
+<div class="layout">
+  <main class="pand" aria-label="Het kantoorpand">
+    <svg class="gable" viewBox="0 0 1000 150" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+      <path d="M0 150 V110 H120 V80 H220 V50 H330 V22 H670 V50 H780 V80 H880 V110 H1000 V150 Z" fill="var(--brick)"/>
+      <path d="M0 110 H120 V80 H220 V50 H330 V22 H670 V50 H780 V80 H880 V110 H1000" fill="none" stroke="var(--frame)" stroke-width="5"/>
+      <rect x="360" y="48" width="280" height="70" rx="8" fill="var(--sign)"/>
+      <text x="500" y="92" text-anchor="middle" font-size="34" font-weight="800" fill="#fff">TableJoy</text>
+      <circle cx="604" cy="80" r="6" fill="var(--accent)"/>
+      <text x="500" y="112" text-anchor="middle" font-size="12" font-family="JetBrains Mono,monospace" fill="#fff" opacity=".7" letter-spacing="3">GROEIKANTOOR · ANNO 2026</text>
+      <rect x="160" y="92" width="44" height="20" rx="2" fill="var(--frame)" opacity=".9"/><rect x="796" y="92" width="44" height="20" rx="2" fill="var(--frame)" opacity=".9"/>
+    </svg>
+    <div class="facade">
+      <section class="verd" aria-labelledby="v2"><div class="vlabel"><span id="v2">Marketing en social</span><b>2e verdieping</b></div><div class="rooms" id="rooms-2"></div></section>
+      <section class="verd" aria-labelledby="v1"><div class="vlabel"><span id="v1">Sales en groei</span><b>1e verdieping</b></div><div class="rooms" id="rooms-1"></div></section>
+    </div>
+    <div class="ground">
+      <form class="hall" id="give">
+        <h2>Receptie <span>BEGANE GROND</span></h2>
+        <label for="who">Taak voor</label>
+        <select id="who"></select>
+        <label for="what">Wat moet er gebeuren</label>
+        <textarea id="what" placeholder="Bijv. schrijf een acquisitiemail voor restaurants in Haarlem"></textarea>
+        <div class="chips" id="ideas"></div>
+        <div class="row"><button class="btn" id="go" type="submit">Geef taak</button><button class="btn sm" id="stop" type="button" hidden>Stop</button></div>
+        <p class="note" id="aiNote">De assistenten werken met AI op je Claude-account. De eerste keer vraagt claude.ai toestemming.</p>
+      </form>
+      <section class="hall meet" aria-labelledby="meetTitle">
+        <h2 id="meetTitle">Vergaderzaal <span>BRAINSTORM</span></h2>
+        <p class="note">Het hele team denkt mee: elke assistent komt met een idee om TableJoy te laten groeien, en Sanne kiest de drie beste.</p>
+        <label for="focus">Focus (optioneel)</label>
+        <input id="focus" placeholder="Bijv. meer restaurants in Noord-Holland vóór de zomer">
+        <button class="btn accent" id="brain" type="button">Start brainstorm</button>
+        <div class="kpis" id="kpis"><span class="kpi">Cijfers laden…</span></div>
+      </section>
+    </div>
+  </main>
+
+  <aside>
+    <section class="panel" aria-live="polite">
+      <h3>Uitvoer</h3>
+      <p class="note" id="outEmpty">Nog niets. Geef een taak bij de receptie of start een brainstorm.</p>
+      <div id="outBody" hidden>
+        <div class="row" style="justify-content:space-between"><b id="outWho"></b><span class="tag" id="outTag"></span></div>
+        <p class="note" id="outTask"></p>
+        <ul id="outSteps"></ul>
+        <div id="outRes"></div>
+        <div id="acts"></div>
+        <div class="row"><button class="btn sm" type="button" id="copy">Kopieer</button></div>
+      </div>
+    </section>
+    <section class="panel">
+      <h3>Logboek</h3>
+      <ul id="log"><li class="note">Afgeronde taken verschijnen hier.</li></ul>
+    </section>
+  </aside>
+</div>
+<p class="note" style="margin-top:16px">De assistenten lezen live uit Metricool en uit de verkoopmails-log in OneDrive. Ze versturen zelf niets: mails worden concepten in je Outlook en posts worden concepten in je Metricool-planner. Jij kijkt ze na en verstuurt.</p>
+</div>
+
+<script>
+{
+const MC="Metricool Social Media Management", MS="Microsoft 365", BRAND="8342934";
+const MAILLOG="file:///b!FJw7WHQHBUK5KOalp4wvkhpvLsOaAL1HvPm4vQoVMwcVjYHF-jxpRJ4YqCbXCpR2/Tablejoy dashboard/verkoopmails-log.csv";
+const SOCIAL={
+  instagram:{metrics:["IGEV01","IGEV05","IGEV06","IGEV37","IGEV38"],label:"Instagram per dag (volgers, weergaven, bereik, posts, interacties)"},
+  instagram_posts:{metrics:["IGPO02","IGPO06","IGPO03","IGPO28","IGPO13","IGPO08","IGPO27"],label:"Instagram per post"},
+  instagram_reels:{metrics:["IGRE02","IGRE06","IGRE03","IGRE23","IGRE10","IGRE07","IGRE21"],label:"Instagram per reel"},
+  facebook:{metrics:["FBEV17","FBEV49","FBEV03","FBEV33","FBEV34"],label:"Facebook per dag"},
+  facebook_posts:{metrics:["FBPO02","FBPO06","FBPO03","FBPO11","FBPO13","FBPO08","FBPO14"],label:"Facebook per post"}
+};
+const ABOUT="TableJoy (tablejoy.app) is software voor restaurants: online reserveren via de eigen website in eigen huisstijl, zonder commissie, aanbetaling tegen no-shows, wachtlijst, plattegrond, online bestellen (afhalen/bezorgen), gastprofielen, events met voorverkoop, reviews op één plek, automatische bevestigingen. Setup: plak de link van je website en TableJoy haalt branding, openingstijden en menu op. 30 dagen gratis proberen. Doelgroep: zelfstandige restaurants en horecaondernemers in Nederland. De eigenaar benadert restaurants met verkoopmails en post op Instagram en Facebook.";
+const TEAM=[
+  {f:2,n:"Mila",r:"Contentplanning",skin:"#f2c7a5",hair:"#3b2a20",shirt:"#ff6f59",plant:true,ideas:["Plan 5 posts voor volgende week die restaurants laten proefabonneren","Welke onderwerpen ontbreken nog in de planning?"]},
+  {f:2,n:"Noor",r:"Social cijfers",skin:"#8d5a3b",hair:"#111",shirt:"#1f9d5b",ideas:["Welke posts trokken de afgelopen 30 dagen het meeste bereik?","Op welke dagen en tijden moeten we posten?"]},
+  {f:2,n:"Lotte",r:"Reels en video",skin:"#e8b48a",hair:"#d7a24a",shirt:"#ffb400",mug:true,ideas:["Schrijf 3 reels-scripts over no-shows","Bedenk een videoserie met echte restauranteigenaren"]},
+  {f:2,n:"Daan",r:"Advertenties",skin:"#c68863",hair:"#222",shirt:"#3a6df0",ideas:["Schrijf 3 Meta-advertenties voor restauranteigenaren","Stel een testbudget van € 300 voor en verdeel het"]},
+  {f:1,n:"Sanne",r:"Groeistrategie",skin:"#f0c8a8",hair:"#6b3d1f",shirt:"#8a4fff",ideas:["Maak een groeiplan voor de komende 90 dagen","Wat is onze snelste weg naar 100 nieuwe restaurants?"]},
+  {f:1,n:"Bram",r:"Leads en regio's",skin:"#a8714f",hair:"#111",shirt:"#ff6f59",plant:true,ideas:["Welke regio's hebben we al gemaild en waar gaan we nu heen?","Welke soorten restaurants reageren het best?"]},
+  {f:1,n:"Eva",r:"Acquisitiemails",skin:"#f2c7a5",hair:"#b0472b",shirt:"#1f9d5b",mug:true,ideas:["Schrijf een opvolgmail voor restaurants die nog niet reageerden","Schrijf een nieuwe eerste mail met een sterkere onderwerpregel"]},
+  {f:1,n:"Jules",r:"Partners en PR",skin:"#8d5a3b",hair:"#2b2b2b",shirt:"#ffb400",ideas:["Welke partners (leveranciers, verenigingen) kunnen ons aanbevelen?","Schrijf een persbericht voor vakbladen in de horeca"]}
+];
+
+// ---------- hulpjes ----------
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const amsDate=(d=new Date())=>d.toLocaleDateString("sv-SE",{timeZone:"Europe/Amsterdam"});
+function amsOffset(d){const p=new Intl.DateTimeFormat("en-US",{timeZone:"Europe/Amsterdam",timeZoneName:"longOffset"}).formatToParts(d).find(x=>x.type==="timeZoneName");const m=/GMT([+-]\d\d:\d\d)/.exec(p?.value||"");return m?m[1]:"+01:00"}
+const offOf=iso=>amsOffset(new Date(iso.slice(0,10)+"T12:00:00Z"));
+const dayStart=iso=>iso+"T00:00:00"+offOf(iso), dayEnd=iso=>iso+"T23:59:59"+offOf(iso);
+function addDays(iso,n){const d=new Date(iso+"T12:00:00Z");d.setUTCDate(d.getUTCDate()+n);return d.toISOString().slice(0,10)}
+const hhmm=ts=>new Date(ts).toLocaleTimeString("nl-NL",{hour:"2-digit",minute:"2-digit",timeZone:"Europe/Amsterdam"});
+const shortDT=s=>{const d=new Date(s);return isNaN(d)?s:d.toLocaleString("nl-NL",{weekday:"short",hour:"2-digit",minute:"2-digit"})};
+const DROP=/^(email|e-mail|e_mail|creatorUserMail|creatorUserId|media|mediaAltText|uuid|imageVariants|twitterData|facebookData|instagramData|saveExternalMediaFiles|shortener|autoPublish)$/i;
+function strip(o){if(Array.isArray(o))return o.map(strip);if(o&&typeof o==="object"){const r={};for(const[k,v]of Object.entries(o))if(!DROP.test(k))r[k]=strip(v);return r}return o}
+const small=(o,max=24000)=>{const s=JSON.stringify(strip(o));return s.length>max?s.slice(0,max)+"…(ingekort)":s};
+function parseMails(text){
+  const lines=String(text||"").split(/\r?\n/).filter(l=>l.trim()&&!/^\[/.test(l.trim()));
+  if(lines.length<2)return [];
+  const head=lines[0].split(";").map(h=>h.trim());
+  return lines.slice(1).map(l=>{const c=l.split(";");const o={};head.forEach((h,i)=>o[h]=(c[i]||"").trim());return o});
+}
+const mailOf=r=>r["E-mail"]||r.Email||r.email||"";
+const publicRow=r=>{const o={};for(const[k,v]of Object.entries(r))if(!/mail/i.test(k))o[k]=v;return o};
+
+// ---------- kamers tekenen ----------
+function skyline(){
+  // grachtenpanden met trap- en halsgevels achter het raam
+  const h=[[34,30],[52,22],[70,34],[88,26],[106,30],[124,20],[142,32],[160,24],[178,28],[196,22]];
+  return h.map(([x,t],i)=>{const top=92-t;return i%2?`<path d="M${x} 92 V${top+6} H${x+4} V${top} H${x+12} V${top+6} H${x+16} V92Z" fill="var(--city)"/>`:`<path d="M${x} 92 V${top+8} L${x+8} ${top} L${x+16} ${top+8} V92Z" fill="var(--city)"/>`}).join("");
+}
+function roomSVG(a,i){
+  return `<svg viewBox="0 0 240 190" role="img" aria-label="${esc(a.n)} aan het bureau">
+  <rect width="240" height="190" fill="${a.f===2?"var(--wall)":"var(--wall2)"}"/>
+  <rect x="30" y="12" width="180" height="82" rx="3" fill="var(--sky)"/>${skyline()}
+  <rect x="30" y="12" width="180" height="82" rx="3" fill="none" stroke="var(--frame)" stroke-width="6"/>
+  <line x1="120" y1="12" x2="120" y2="94" stroke="var(--frame)" stroke-width="5"/><line x1="30" y1="50" x2="210" y2="50" stroke="var(--frame)" stroke-width="4"/>
+  ${a.plant?`<g><rect x="200" y="104" width="22" height="24" rx="3" fill="#7a4a2b"/><ellipse cx="204" cy="98" rx="9" ry="14" fill="#3f8f4e"/><ellipse cx="218" cy="96" rx="8" ry="15" fill="#2f7a40"/><ellipse cx="211" cy="90" rx="7" ry="13" fill="#4ea05e"/></g>`:""}
+  <g transform="translate(120 128) scale(1.4) translate(-120 -128)">
+  <rect x="86" y="74" width="68" height="64" rx="14" fill="var(--chair)"/>
+  <rect x="94" y="100" width="52" height="40" rx="17" fill="${a.shirt}"/>
+  <rect x="113" y="92" width="14" height="12" rx="4" fill="${a.skin}"/>
+  <circle cx="120" cy="80" r="17" fill="${a.skin}"/>
+  <path d="M103 79a17 17 0 0 1 34-3c-6-7-20-9-34 3z" fill="${a.hair}"/>
+  <circle cx="114" cy="82" r="1.8" fill="#2a2320"/><circle cx="126" cy="82" r="1.8" fill="#2a2320"/>
+  <path d="M115 89q5 4 10 0" stroke="#2a2320" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+  <path d="M96 126 L101 102 H139 L144 126Z" fill="#c9ced6"/><circle cx="120" cy="114" r="3.5" fill="var(--accent)" class="screen"/>
+  <g class="hands"><rect x="90" y="121" width="16" height="8" rx="4" fill="${a.skin}"/><rect x="134" y="121" width="16" height="8" rx="4" fill="${a.skin}"/></g>
+  </g>
+  <rect x="10" y="126" width="220" height="12" rx="3" fill="var(--wood-top)"/>
+  <rect x="18" y="138" width="204" height="52" fill="var(--wood)"/>
+  ${a.mug?`<g><rect x="164" y="112" width="14" height="15" rx="3" fill="#fff" stroke="#8a8378"/><path d="M178 116 q6 3 0 8" stroke="#8a8378" fill="none" stroke-width="2"/></g>`:`<g><rect x="160" y="118" width="26" height="8" rx="1" fill="#fff" stroke="#d8d2c8"/><rect x="163" y="114" width="24" height="5" rx="1" fill="#f6efe2" stroke="#d8d2c8"/></g>`}
+  <rect x="84" y="150" width="72" height="22" rx="3" fill="var(--plate)" stroke="#d8cfbf"/>
+  <text x="120" y="166" text-anchor="middle" font-size="13" font-weight="800" fill="#2a2320">${esc(a.n)}</text>
+  <g class="bub" transform="translate(152,18)"><rect width="40" height="22" rx="11" fill="var(--accent)"/><path d="M8 20 l-4 9 l12 -7z" fill="var(--accent)"/><circle cx="12" cy="11" r="2.6" fill="#fff"/><circle cx="20" cy="11" r="2.6" fill="#fff"/><circle cx="28" cy="11" r="2.6" fill="#fff"/></g>
+  </svg>`;
+}
+const agents=TEAM.map((a,i)=>({...a,id:"a"+i,status:"Live data laden…",busy:false,step:"",idea:""}));
+const A=n=>agents.find(a=>a.n===n);
+for(const f of [2,1]){
+  document.getElementById("rooms-"+f).innerHTML=agents.filter(a=>a.f===f).map(a=>`<button type="button" class="room" id="room-${a.id}" data-id="${a.id}">${roomSVG(a)}<div class="cap"><b><span class="lamp" id="lamp-${a.id}"></span>${esc(a.n)}</b><span class="role">${esc(a.r)}</span><span class="st" id="st-${a.id}"></span><span class="idea" id="idea-${a.id}" hidden></span></div></button>`).join("");
+}
+function paint(a){
+  document.getElementById("room-"+a.id).classList.toggle("busy",a.busy);
+  document.getElementById("lamp-"+a.id).classList.toggle("busy",a.busy);
+  document.getElementById("st-"+a.id).textContent=a.busy?"Bezig: "+(a.step||"denkt na…"):a.status;
+  const ie=document.getElementById("idea-"+a.id);ie.hidden=!a.idea;ie.textContent=a.idea?"Idee: "+a.idea:"";
+}
+const paintAll=()=>agents.forEach(paint);
+paintAll();
+let sel=null;
+document.querySelector(".facade").addEventListener("click",e=>{const r=e.target.closest(".room");if(!r)return;sel=r.dataset.id;whoSel.value=sel;ideasRender();document.querySelectorAll(".room").forEach(x=>x.classList.toggle("sel",x.dataset.id===sel));document.getElementById("what").focus({preventScroll:true})});
+
+// ---------- live data ----------
+let mcp=null,sample=null,db=null;
+const live={};
+function errText(e,s){switch(e&&e.code){case "needs_reauth":return s+" opnieuw verbinden in Instellingen → Connectors";case "server_not_connected":case "selection_required":return s+" is niet verbonden";case "not_in_manifest":case "consent_required":return "Geen toegang tot "+s;case "blocked_by_policy":case "approval_required":return s+" is geblokkeerd";default:return s+" is even niet bereikbaar"}}
+const AUTHZ=/^(needs_reauth|server_not_connected|blocked_by_policy|approval_required|not_in_manifest|selection_required|consent_required)$/;
+const isPending=p=>(p.providers||[]).some(x=>x.status==="PENDING");
+function renderLive(){
+  const ml=live.mails,ps=live.posts,today=amsDate(),wkAgo=addDays(today,-7),k=[];
+  if(ml){
+    const week=ml.filter(r=>(r.Datum||"")>=wkAgo),rep=ml.filter(r=>r.Reactie),open=ml.filter(r=>!r.Reactie);
+    const places=[...new Set(ml.slice(-40).map(r=>r.Plaats).filter(Boolean))].slice(-3);
+    k.push(ml.length+" restaurants benaderd",week.length+" deze week",rep.length+(rep.length===1?" reactie":" reacties"));
+    A("Sanne").status=ml.length+" restaurants benaderd · "+rep.length+" reacties";
+    A("Bram").status=places.length?"Laatst gemaild: "+places.join(", "):"Nog geen regio's benaderd";
+    A("Eva").status=week.length+" mails deze week · "+open.length+" wachten op reactie";
+  }else if(live.mailErr){k.push(live.mailErr);["Sanne","Bram","Eva"].forEach(n=>A(n).status=live.mailErr)}
+  if(ps){
+    const pend=ps.filter(isPending),pub=ps.filter(p=>!isPending(p));
+    k.push(pend.length+(pend.length===1?" post":" posts")+" gepland");
+    A("Mila").status=pend.length?pend.length+(pend.length===1?" post":" posts")+" gepland · volgende "+shortDT(pend[0].publicationDate?.dateTime):"Niets gepland komende week";
+    A("Noor").status=pub.length+(pub.length===1?" post":" posts")+" gepubliceerd afgelopen week";
+  }else if(live.postErr){k.push(live.postErr);["Mila","Noor"].forEach(n=>A(n).status=live.postErr)}
+  A("Lotte").status="Schrijft scripts voor reels";
+  A("Daan").status="Bedenkt advertenties voor horecaondernemers";
+  A("Jules").status="Zoekt partners die ons kunnen aanbevelen";
+  const el=document.getElementById("kpis");el.innerHTML="";
+  for(const t of k){const s=document.createElement("span");s.className="kpi";s.textContent=t;el.append(s)}
+  paintAll();
+}
+function startWatches(){
+  const today=amsDate();
+  mcp.watchTool(MS,"read_resource",{uri:MAILLOG},ev=>{
+    if(ev.type==="data"){const p=ev.result.payload;live.mails=parseMails(typeof p==="string"?p:JSON.stringify(p));live.mailErr=null}
+    else{if(AUTHZ.test(ev.error.code))live.mails=null;live.mailErr=errText(ev.error,MS)}
+    renderLive()},{refetchInterval:600000});
+  mcp.watchTool(MC,"getScheduledPosts",{brandId:BRAND,fromDate:dayStart(addDays(today,-7)),toDate:dayEnd(addDays(today,14)),timezone:"Europe/Amsterdam"},ev=>{
+    if(ev.type==="data"){live.posts=(ev.result.payload?.data||[]).slice().sort((x,y)=>String(x.publicationDate?.dateTime).localeCompare(String(y.publicationDate?.dateTime)));live.postErr=null}
+    else{if(AUTHZ.test(ev.error.code))live.posts=null;live.postErr=errText(ev.error,MC)}
+    renderLive()},{refetchInterval:600000});
+}
+
+// ---------- tools (alleen lezen) ----------
+let current=null;
+async function read(server,tool,input,a,label,signal){
+  if(a){a.step=label;paint(a)}
+  if(current&&current.status==="bezig"){current.steps.push((a?a.n+" ":"")+label);stepUI((a?a.n+" ":"")+label)}
+  if(!mcp)throw new Error("Geen toegang tot de koppelingen in deze weergave");
+  try{return (await mcp.callTool(server,tool,input,{signal})).payload}
+  catch(e){throw new Error(errText(e,server)+(e.code==="tool_error"&&e.message?": "+e.message:""))}
+}
+function tools(a,signal){
+  return [
+    {name:"verkoopmails",description:"De verkoopmails-log: restaurants (prospects) die al een acquisitiemail kregen, met datum, plaats en reactie (leeg = nog geen reactie). Gebruik dit om niemand dubbel te mailen en om te zien welke regio's en soorten zaken reageren.",
+      execute:async()=>{const p=await read(MS,"read_resource",{uri:MAILLOG},a,"leest de verkoopmails-log",signal);const rows=parseMails(typeof p==="string"?p:JSON.stringify(p));live.mails=rows;return small({aantal:rows.length,met_reactie:rows.filter(r=>r.Reactie).length,rijen:rows.slice(-300).map(publicRow)})}},
+    {name:"ingeplande_posts",description:"Posts in de Metricool-planner van TableJoy tussen twee datums (YYYY-MM-DD), met tekst, tijdstip en status (PUBLISHED of PENDING).",
+      inputSchema:{type:"object",properties:{van:{type:"string"},tot:{type:"string"}},required:["van","tot"]},
+      execute:async i=>{const p=await read(MC,"getScheduledPosts",{brandId:BRAND,fromDate:dayStart(String(i.van)),toDate:dayEnd(String(i.tot)),timezone:"Europe/Amsterdam"},a,"bekijkt de planner",signal);return small((p?.data||[]).map(x=>({tijd:x.publicationDate?.dateTime,tekst:x.text,status:(x.providers||[]).map(n=>n.network+": "+n.status)})))}},
+    {name:"social_cijfers",description:"Statistieken uit Metricool voor TableJoy. bron: "+Object.entries(SOCIAL).map(([k,v])=>k+" = "+v.label).join("; ")+". van en tot als YYYY-MM-DD.",
+      inputSchema:{type:"object",properties:{bron:{type:"string",enum:Object.keys(SOCIAL)},van:{type:"string"},tot:{type:"string"}},required:["bron","van","tot"]},
+      execute:async i=>{const s=SOCIAL[String(i.bron)];if(!s)throw new Error("Onbekende bron");return small(await read(MC,"getAnalyticsDataByMetrics",{brandId:BRAND,from:dayStart(String(i.van)),to:dayEnd(String(i.tot)),metrics:s.metrics},a,"leest "+s.label.toLowerCase(),signal))}}
+  ];
+}
+const RULES=`Regels:
+- Het doel is GROEI: nieuwe restaurants als klant winnen. Doe niets met bestaande klanten, hun reserveringen of hun gasten.
+- Gebruik je tools voor echte gegevens voordat je iets zegt over posts, bereik of verkoopmails. Verzin geen cijfers. Mail geen restaurant dat al in de verkoopmails-log staat met een nieuwe eerste mail; opvolgen mag wel.
+- Je verstuurt zelf niets. Mails en posts die je voorstelt worden concepten die de eigenaar nakijkt.
+- Kort, concreet, zonder inleiding. Nederlands, informeel maar professioneel (je/jij).`;
+const ACTS=`Stel je kant-en-klare mails of posts voor, sluit dan af met precies één blok:
+\`\`\`acties
+[{"type":"mail","restaurant":"<naam uit de verkoopmails-log, of leeg>","onderwerp":"...","tekst":"..."},
+ {"type":"post","datum":"YYYY-MM-DDTHH:MM","tekst":"..."}]
+\`\`\`
+Hooguit 8 acties. Datums voor posts in de toekomst. Laat het blok weg als er niets te versturen is.`;
+const today=()=>new Date().toLocaleDateString("nl-NL",{weekday:"long",year:"numeric",month:"long",day:"numeric",timeZone:"Europe/Amsterdam"})+" ("+amsDate()+")";
+
+// ---------- taken ----------
+const whoSel=document.getElementById("who"),what=document.getElementById("what"),go=document.getElementById("go"),stopBtn=document.getElementById("stop"),brain=document.getElementById("brain"),aiNote=document.getElementById("aiNote");
+whoSel.innerHTML=[2,1].map(f=>`<optgroup label="${f===2?"Marketing en social":"Sales en groei"}">${agents.filter(a=>a.f===f).map(a=>`<option value="${a.id}">${esc(a.n)} · ${esc(a.r)}</option>`).join("")}</optgroup>`).join("");
+function ideasRender(){const a=agents.find(x=>x.id===whoSel.value);document.getElementById("ideas").innerHTML=a.ideas.map(t=>`<button type="button">${esc(t)}</button>`).join("")}
+document.getElementById("ideas").addEventListener("click",e=>{const b=e.target.closest("button");if(b){what.value=b.textContent;what.focus()}});
+whoSel.addEventListener("change",()=>{sel=whoSel.value;ideasRender();document.querySelectorAll(".room").forEach(x=>x.classList.toggle("sel",x.dataset.id===sel))});
+ideasRender();
+
+const outBody=document.getElementById("outBody"),outRes=document.getElementById("outRes"),outSteps=document.getElementById("outSteps"),outTag=document.getElementById("outTag"),actsEl=document.getElementById("acts");
+function stepUI(t){const li=document.createElement("li");li.textContent="→ "+t;outSteps.append(li)}
+function showOut(t){
+  document.getElementById("outEmpty").hidden=true;outBody.hidden=false;
+  document.getElementById("outWho").textContent=t.agent;
+  document.getElementById("outTask").textContent=t.text;
+  outSteps.innerHTML="";(t.steps||[]).forEach(stepUI);
+  outRes.textContent=t.result||"";
+  const st={bezig:["Bezig","var(--busy)"],klaar:["Klaar","var(--ok)"],fout:["Niet gelukt","var(--bad)"],gestopt:["Gestopt","var(--mute)"]}[t.status]||["",""];
+  outTag.textContent=st[0];outTag.style.color=st[1];
+  renderActs(t);
+}
+function splitActs(text){
+  const m=/```acties\s*([\s\S]*?)```/.exec(text||"");
+  if(!m)return {body:text,acts:[]};
+  let acts=[];try{acts=JSON.parse(m[1])}catch(e){acts=[]}
+  if(!Array.isArray(acts))acts=[];
+  return {body:text.replace(m[0],"").trim(),acts:acts.filter(x=>x&&(x.type==="mail"||x.type==="post")&&typeof x.tekst==="string").slice(0,8)};
+}
+document.getElementById("copy").addEventListener("click",async e=>{try{await navigator.clipboard.writeText(outRes.textContent);e.target.textContent="Gekopieerd"}catch(err){const r=document.createRange();r.selectNodeContents(outRes);const s=getSelection();s.removeAllRanges();s.addRange(r);e.target.textContent="Geselecteerd"}setTimeout(()=>e.target.textContent="Kopieer",1800)});
+
+// Concepten maken: alleen na een klik van de eigenaar.
+function renderActs(t){
+  actsEl.innerHTML="";
+  (t.acts||[]).forEach((x,i)=>{
+    const box=document.createElement("div");box.className="act";
+    const kind=document.createElement("span");kind.className="kind";
+    const to=x.type==="mail"&&x.restaurant&&live.mails?live.mails.find(r=>(r.Restaurant||"").toLowerCase()===String(x.restaurant).toLowerCase()):null;
+    kind.textContent=x.type==="mail"?"Mail"+(x.restaurant?" · "+x.restaurant:"")+(to?" · adres uit de log":""):"Post · "+(x.datum||"");
+    const txt=document.createElement("div");txt.className="txt";txt.textContent=(x.onderwerp?x.onderwerp+"\n\n":"")+x.tekst;
+    const b=document.createElement("button");b.type="button";b.className="btn sm";
+    const res=document.createElement("span");res.className="note";
+    const done=x._done;
+    b.textContent=done?"Concept gemaakt":(x.type==="mail"?"Maak concept in Outlook":"Zet als concept in Metricool");
+    b.disabled=!!done||!mcp;
+    if(done&&done.startsWith("https://")){const l=document.createElement("a");l.href=done;l.target="_blank";l.rel="noopener";l.textContent="Openen";res.append(l)}
+    b.onclick=async()=>{
+      b.disabled=true;b.textContent="Bezig…";
+      try{
+        let url="";
+        if(x.type==="mail"){
+          const html=String(x.tekst).split(/\n{2,}/).map(p=>"<p>"+esc(p).replace(/\n/g,"<br>")+"</p>").join("");
+          const input={subject:String(x.onderwerp||"TableJoy").slice(0,255),body:html,bodyType:"html"};
+          const addr=to&&mailOf(to);if(addr&&/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(addr))input.to=[addr];
+          const r=(await mcp.callTool(MS,"outlook_create_draft",input)).payload;url=r?.webLink||r?.web_link||"";
+        }else{
+          let dt=String(x.datum||"").slice(0,16);if(!/^\d{4}-\d\d-\d\dT\d\d:\d\d$/.test(dt)||new Date(dt)<new Date())dt=addDays(amsDate(),1)+"T10:00";
+          const info={autoPublish:true,draft:true,descendants:[],firstCommentText:"",hasNotReadNotes:false,media:[],mediaAltText:[],shortener:false,smartLinkData:{ids:[]},
+            providers:[{network:"facebook"}],publicationDate:{dateTime:dt+":00",timezone:"Europe/Amsterdam"},text:String(x.tekst),facebookData:{type:"POST"}};
+          const r=(await mcp.callTool(MC,"createScheduledPost",{blogId:BRAND,date:dt+":00"+offOf(dt),info:JSON.stringify(info)})).payload;
+          url=(JSON.stringify(r).match(/https:\/\/[^"\s]*metricool[^"\s]*/)||[""])[0];
+        }
+        x._done=url||"ok";b.textContent="Concept gemaakt";
+        res.textContent=x.type==="mail"?"Staat in je Outlook-concepten. ":"Staat als concept in je Metricool-planner (Facebook). Voeg een beeld toe voor Instagram. ";
+        if(url.startsWith("https://")){const l=document.createElement("a");l.href=url;l.target="_blank";l.rel="noopener";l.textContent="Openen";res.append(l)}
+        saveTask(t);
+      }catch(e){b.disabled=false;b.textContent="Opnieuw proberen";res.textContent=e.code==="tool_error"&&e.message?e.message:errText(e,x.type==="mail"?MS:MC)}
+    };
+    const row=document.createElement("div");row.className="row";row.append(b,res);
+    box.append(kind,txt,row);actsEl.append(box);
+  });
+}
+
+let ctl=null;
+const refs=new WeakMap();
+async function saveTask(t){if(!db)return;try{let r=refs.get(t);if(!r){r=t._id?db.collection("tasks").doc(t._id):db.collection("tasks").doc();refs.set(t,r)}const {_id,...d}=t;await r.set(JSON.parse(JSON.stringify(d)))}catch(e){}}
+function sampleErr(e){
+  switch(e.code){
+    case "not_granted":case "sampling_disabled":case "not_declared":case "capability_disabled":case "capability_removed":hideAI();return "AI is niet toegestaan in deze weergave.";
+    case "rate_limited":return "Even te veel verzoeken, of je gebruikslimiet is bereikt. Probeer het later opnieuw.";
+    case "session_expired":return "Log opnieuw in op claude.ai en probeer het nog eens.";
+    case "refused":return "Claude wilde dit niet uitvoeren. Formuleer de taak anders.";
+    case "prompt_too_large":return "Te veel data tegelijk. Vraag om een kortere periode.";
+    case "invalid_json":return "Het antwoord kwam niet in het goede formaat terug. Probeer het opnieuw.";
+    default:return "Er ging iets mis. Probeer het opnieuw.";
+  }
+}
+function hideAI(){go.disabled=true;brain.disabled=true;aiNote.textContent="AI is niet beschikbaar of niet toegestaan in deze weergave. De live cijfers blijven werken."}
+function lock(on){go.disabled=on;brain.disabled=on;stopBtn.hidden=!on}
+stopBtn.addEventListener("click",()=>ctl?.abort());
+
+async function runTask(a,text){
+  const t={kind:"taak",agent:a.n+" · "+a.r,text,status:"bezig",result:"",steps:[],acts:[],at:Date.now()};
+  current=t;a.busy=true;a.step="denkt na…";paint(a);showOut(t);outRes.textContent="Denkt na…";lock(true);ctl=new AbortController();saveTask(t);
+  const prompt=`Je bent ${a.n}, ${a.r} bij TableJoy. ${ABOUT}\n\nVandaag is ${today()}.\n\n${RULES}\n\n${ACTS}\n\nTaak van de eigenaar: ${text}`;
+  try{
+    const r=await sample(prompt,{signal:ctl.signal,tools:tools(a,ctl.signal),onText:({text})=>{outRes.textContent=splitActs(text).body;a.step="schrijft…";paint(a)}});
+    const s=splitActs(r.text);t.result=s.body+(r.truncated?"\n\n(Afgebroken: vraag om minder tegelijk.)":"");t.acts=s.acts;t.status="klaar";
+  }catch(e){t.result=splitActs(e.text||"").body;t.status=e.code==="cancelled"?"gestopt":"fout";if(e.code!=="cancelled")t.result+=(t.result?"\n\n":"")+sampleErr(e)}
+  a.busy=false;a.step="";paint(a);lock(false);ctl=null;
+  if(current===t)showOut(t);
+  await saveTask(t);if(!db){mem.unshift(t);renderLog(mem)}
+}
+document.getElementById("give").addEventListener("submit",e=>{
+  e.preventDefault();const text=what.value.trim();if(!text||ctl)return;
+  if(!sample){aiNote.textContent="AI is nog niet beschikbaar in deze weergave.";return}
+  what.value="";runTask(agents.find(x=>x.id===whoSel.value),text);
+});
+
+// ---------- brainstorm in de vergaderzaal ----------
+brain.addEventListener("click",async()=>{
+  if(ctl||!sample)return;
+  const focus=document.getElementById("focus").value.trim();
+  const t={kind:"brainstorm",agent:"Vergaderzaal · hele team",text:"Brainstorm: hoe laten we TableJoy groeien?"+(focus?" Focus: "+focus:""),status:"bezig",result:"",steps:[],acts:[],at:Date.now()};
+  current=t;agents.forEach(a=>{a.busy=true;a.idea="";a.step="denkt mee…"});paintAll();showOut(t);outRes.textContent="Het team denkt na…";lock(true);ctl=new AbortController();saveTask(t);
+  const team=agents.map(a=>`${a.n} (${a.r})`).join(", ");
+  const prompt=`Je leidt een brainstorm van het groeiteam van TableJoy. ${ABOUT}\n\nVandaag is ${today()}.\n\nHet team: ${team}.\n${focus?"Focus van de eigenaar: "+focus+"\n":""}\n${RULES}\n\nBekijk eerst de echte cijfers met je tools (verkoopmails-log en social cijfers van de afgelopen 30 dagen). Laat dan ELKE teamlid vanuit de eigen rol één concreet, nieuw idee geven om meer restaurants als klant te winnen, met een eerste stap die deze week kan. Daarna kiest Sanne (groeistrategie) de 3 ideeën met de meeste impact en zegt waarom.\n\nAntwoord met alleen JSON in deze vorm:\n{"ideeen":[{"naam":"Mila","idee":"...","eerste_stap":"..."}],"top3":[{"naam":"...","waarom":"..."}],"samenvatting":"twee zinnen"}`;
+  try{
+    const r=await sample.json(prompt,{signal:ctl.signal,tools:tools(null,ctl.signal)});
+    const ideas=Array.isArray(r?.ideeen)?r.ideeen:[];
+    for(const x of ideas){const a=A(String(x?.naam||""));if(a)a.idea=String(x.idee||"").slice(0,180)}
+    const lines=[];if(r?.samenvatting)lines.push(String(r.samenvatting),"");
+    if(Array.isArray(r?.top3)&&r.top3.length){lines.push("Top 3 van Sanne:");r.top3.forEach((x,i)=>lines.push(`${i+1}. ${x.naam}: ${x.waarom}`));lines.push("")}
+    lines.push("Alle ideeën:");ideas.forEach(x=>lines.push(`• ${x.naam}: ${x.idee}\n  Eerste stap: ${x.eerste_stap}`));
+    t.result=lines.join("\n");t.status="klaar";t.ideas=ideas.map(x=>({naam:String(x.naam||""),idee:String(x.idee||"")}));
+  }catch(e){t.status=e.code==="cancelled"?"gestopt":"fout";t.result=e.code==="cancelled"?"":sampleErr(e)}
+  agents.forEach(a=>{a.busy=false;a.step=""});paintAll();lock(false);ctl=null;
+  if(current===t)showOut(t);
+  await saveTask(t);if(!db){mem.unshift(t);renderLog(mem)}
+});
+
+// ---------- logboek ----------
+let mem=[],logItems=[];
+const logEl=document.getElementById("log");
+function renderLog(items){
+  logItems=items;
+  if(!items.length){logEl.innerHTML='<li class="note">Afgeronde taken verschijnen hier.</li>';return}
+  logEl.innerHTML="";
+  items.forEach((t,i)=>{const li=document.createElement("li"),b=document.createElement("button");b.type="button";b.dataset.i=i;
+    const tm=document.createElement("time");tm.textContent=hhmm(t.at);
+    const dot=document.createElement("span");dot.className="lamp";dot.style.marginRight="6px";dot.style.background=t.status==="klaar"?"var(--ok)":t.status==="bezig"?"var(--busy)":"var(--bad)";
+    b.append(tm,dot,document.createTextNode(String(t.agent||"").split(" · ")[0]+": "+String(t.text||"").slice(0,90)));li.append(b);logEl.append(li)});
+}
+logEl.addEventListener("click",e=>{const b=e.target.closest("button[data-i]");if(!b)return;const t=JSON.parse(JSON.stringify(logItems[+b.dataset.i]));current=t;showOut(t);
+  if(t.kind==="brainstorm"&&Array.isArray(t.ideas)){agents.forEach(a=>a.idea="");t.ideas.forEach(x=>{const a=A(x.naam);if(a)a.idea=x.idee});paintAll()}});
+
+// ---------- opstarten ----------
+(async()=>{
+  const [m,s,d]=await Promise.all(["mcp","sample","db"].map(n=>Promise.resolve(window.claude?.use?.(n)).catch(()=>null)));
+  mcp=m;sample=s;db=d;
+  if(mcp)startWatches();else{agents.forEach(a=>a.status="Geen toegang tot de koppelingen in deze weergave");document.getElementById("kpis").innerHTML='<span class="kpi">Live cijfers niet beschikbaar hier</span>';paintAll()}
+  if(!sample)hideAI();
+  if(db)db.collection("tasks").orderBy("at","desc").limit(30).onSnapshot(snap=>{
+    const items=snap.docs.map(x=>({...x.data(),_id:x.id}));renderLog(items);
+    const lastB=items.find(t=>t.kind==="brainstorm"&&t.status==="klaar"&&Array.isArray(t.ideas));
+    if(lastB&&!ctl&&!agents.some(a=>a.idea)){lastB.ideas.forEach(x=>{const a=A(x.naam);if(a)a.idea=x.idee});paintAll()}
+  },()=>{db=null;renderLog(mem)});
+})();
+}
+</script>
