@@ -1,0 +1,505 @@
+<title>Kantoorpand</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+/* Layout: een doorsnede van één kantoorpand. Dak met naambord, 2e verdieping TableJoy,
+   1e verdieping Kanalo, begane grond = receptie waar je taken afgeeft. Rechts: uitvoer + logboek. */
+:root{
+  --bg:#f3f5f8; --fg:#121722; --mute:#5a6474; --line:#dde2ea; --card:#ffffff; --panel:#ffffff;
+  --facade:#c9ced8; --facade-dark:#9aa2b1; --roof:#2a3142; --glass:#dbe9f7;
+  --tj:#ff6f59; --tj-wall:#fff1e6; --tj-floor:#c98b5a; --tj-desk:#8a5a36; --tj-screen:#ffd3c8;
+  --kn:#38d6ff; --kn-ink:#0f1830; --kn-wall:#e8f6ff; --kn-floor:#2b3a5c; --kn-desk:#1c2742; --kn-screen:#38d6ff;
+  --lobby:#eef0e8; --lobby-floor:#b8b3a6;
+  --ok:#00a05a; --warn:#d98a00; --bad:#d6342a;
+  --f-display:"Figtree",system-ui,sans-serif; --f-body:"Figtree",system-ui,sans-serif; --f-mono:"JetBrains Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0d1016; --fg:#eef1f6; --mute:#9aa4b2; --line:#262d38; --card:#161b23; --panel:#141920;
+  --facade:#3a4150; --facade-dark:#2a303c; --roof:#05070b; --glass:#1c2a3a;
+  --tj-wall:#2a1f1c; --kn-wall:#111a2e; --lobby:#1b1d19; --lobby-floor:#3b3933; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0d1016; --fg:#eef1f6; --mute:#9aa4b2; --line:#262d38; --card:#161b23; --panel:#141920;
+  --facade:#3a4150; --facade-dark:#2a303c; --roof:#05070b; --glass:#1c2a3a;
+  --tj-wall:#2a1f1c; --kn-wall:#111a2e; --lobby:#1b1d19; --lobby-floor:#3b3933; color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{background:var(--bg);color:var(--fg);font:16px/1.55 var(--f-body);overflow-x:clip}
+.page{max-width:1280px;margin:0 auto;padding-block:clamp(20px,3vw,36px);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:12px 24px}
+h1{font:800 clamp(30px,4.4vw,46px)/1.05 var(--f-display);letter-spacing:-.02em;margin:0;text-wrap:balance}
+.sub{color:var(--mute);margin:6px 0 0;max-width:62ch}
+.links{display:flex;flex-wrap:wrap;gap:8px}
+.links a{font:600 14px var(--f-body);color:var(--fg);text-decoration:none;border:1px solid var(--line);background:var(--card);border-radius:20px;padding:8px 14px;min-height:40px;display:inline-flex;align-items:center;gap:6px}
+.links a:focus-visible{outline:2px solid var(--kn);outline-offset:2px}
+.links i{width:8px;height:8px;border-radius:50%;display:inline-block}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:24px;margin-top:24px;align-items:start}
+
+/* ---- het pand ---- */
+.building{background:var(--facade);border:6px solid var(--facade-dark);border-top:0;border-radius:0 0 6px 6px;padding:0 14px 0;position:relative}
+.roof{margin:0 -20px;background:var(--roof);color:#fff;border-radius:6px 6px 0 0;padding:12px 18px;display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.roof b{font:800 17px var(--f-display);letter-spacing:.18em;text-transform:uppercase}
+.roof small{font:500 12px var(--f-mono);opacity:.75}
+.floor{margin:14px 0 0;background:var(--card);border-radius:4px;overflow:hidden;box-shadow:0 1px 0 var(--facade-dark)}
+.fhead{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:6px 12px;padding:10px 14px;color:#fff}
+.fhead h2{margin:0;font:800 19px var(--f-display);display:flex;gap:10px;align-items:baseline}
+.fhead h2 span{font:500 12px var(--f-mono);opacity:.85;letter-spacing:.04em}
+.tj .fhead{background:var(--tj)}
+.kn .fhead{background:var(--kn-ink)}
+.kn .fhead h2 em{color:var(--kn);font-style:normal}
+.kpis{display:flex;flex-wrap:wrap;gap:6px}
+.kpi{font:600 13px var(--f-body);background:rgba(255,255,255,.16);border-radius:12px;padding:3px 10px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.scene{display:block;width:100%;height:auto;cursor:pointer}
+.cards{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;padding:10px;background:var(--bg)}
+.c{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 10px;cursor:pointer;font:inherit;color:inherit;text-align:left;min-height:44px}
+.c:focus-visible,.c.sel{outline:2px solid var(--acc);outline-offset:1px}
+.tj{--acc:var(--tj)}.kn{--acc:var(--kn)}
+.c b{display:block;font-size:14px;line-height:1.3}
+.c .st{display:block;font-size:13px;color:var(--mute);margin-top:2px;overflow-wrap:anywhere}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:1px}
+.lobby{margin:14px 0 0;background:var(--lobby);border-radius:4px 4px 0 0;padding:14px;display:grid;grid-template-columns:120px minmax(0,1fr);gap:16px;align-items:end;border-bottom:10px solid var(--lobby-floor)}
+.lobby h2{margin:0 0 6px;font:800 19px var(--f-display);display:flex;gap:10px;align-items:baseline}
+.lobby h2 span{font:500 12px var(--f-mono);color:var(--mute)}
+.door{height:150px;border:5px solid var(--facade-dark);border-bottom:0;background:var(--glass);border-radius:4px 4px 0 0;position:relative}
+.door::after{content:"";position:absolute;left:50%;top:0;bottom:0;border-left:3px solid var(--facade-dark)}
+.give{display:grid;gap:8px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+label{font:600 14px var(--f-body)}
+select,textarea{font:16px var(--f-body);width:100%;padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--fg)}
+textarea{min-height:76px;resize:vertical}
+select:focus-visible,textarea:focus-visible,button:focus-visible{outline:2px solid var(--kn);outline-offset:2px}
+.btn{font:700 15px var(--f-body);min-height:44px;padding:0 18px;border-radius:22px;border:0;background:var(--fg);color:var(--bg);cursor:pointer}
+.btn:disabled{opacity:.5;cursor:default}
+.btn.sm{min-height:36px;font-size:14px;padding:0 12px;background:var(--card);color:var(--fg);border:1px solid var(--line)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips button{font:14px var(--f-body);min-height:36px;padding:0 12px;border-radius:18px;border:1px solid var(--line);background:var(--card);color:var(--fg);cursor:pointer;text-align:left}
+.note{font-size:13px;color:var(--mute);margin:0}
+
+/* ---- zijkolom ---- */
+aside{position:sticky;top:calc(16px + env(safe-area-inset-top,0px));display:grid;gap:16px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.panel h3{margin:0 0 8px;font:800 17px var(--f-display)}
+#out .who{font-weight:700}
+#out .steps{list-style:none;margin:8px 0;padding:0;display:grid;gap:4px;font:500 12px var(--f-mono);color:var(--mute)}
+#out .res{white-space:pre-wrap;margin:8px 0;padding:10px;border-radius:8px;background:var(--bg);max-height:340px;overflow:auto;font-size:15px}
+#log{list-style:none;margin:0;padding:0;display:grid;gap:8px;max-height:360px;overflow:auto}
+#log li{font-size:14px;line-height:1.4;border-bottom:1px solid var(--line);padding-bottom:8px}
+#log button{all:unset;cursor:pointer;display:block}
+#log button:focus-visible{outline:2px solid var(--kn)}
+#log time{color:var(--mute);font:500 12px var(--f-mono);margin-right:6px}
+.tag{font:700 12px var(--f-body);white-space:nowrap}
+.foot{margin-top:16px}
+svg text{font-family:var(--f-body)}
+.arm{animation:type .35s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:left center}
+.glow{animation:glow 1.8s ease-in-out infinite alternate}
+@keyframes type{to{transform:rotate(-8deg)}}
+@keyframes glow{to{opacity:.55}}
+@media (prefers-reduced-motion:reduce){.arm,.glow{animation:none}}
+@media (max-width:980px){.layout{grid-template-columns:minmax(0,1fr)}aside{position:static}}
+@media (max-width:640px){.cards{grid-template-columns:minmax(0,1fr)}.lobby{grid-template-columns:minmax(0,1fr)}.door{display:none}.building{padding:0 8px}.roof{margin:0 -14px}}
+</style>
+
+<div class="page">
+<header>
+  <div>
+    <h1>Kantoorpand</h1>
+    <p class="sub">Tien AI-assistenten voor TableJoy en Kanalo. Ze lezen dezelfde live bronnen als je dashboards. Geef ze bij de receptie een taak.</p>
+  </div>
+  <nav class="links" aria-label="Dashboards">
+    <a href="https://claude.ai/artifact/UuZJkNoMbD2e8JtrwmQ28r" target="_blank" rel="noopener"><i style="background:var(--tj)"></i>Tablejoy Live</a>
+    <a href="https://claude.ai/artifact/8v2kDEvzS8L5jdP55UGfi4" target="_blank" rel="noopener"><i style="background:var(--kn)"></i>Kanalo Live</a>
+  </nav>
+</header>
+
+<div class="layout">
+  <main class="building" aria-label="Kantoorpand">
+    <div class="roof"><b>TableJoy · Kanalo</b><small id="clock">—</small></div>
+    <div id="floors"></div>
+    <section class="lobby" id="lobby" aria-labelledby="lobbyTitle">
+      <div class="door" aria-hidden="true"></div>
+      <form class="give" id="give">
+        <h2 id="lobbyTitle">Receptie <span>BEGANE GROND</span></h2>
+        <div class="row">
+          <div style="flex:1 1 220px"><label for="who">Aan wie</label><select id="who"></select></div>
+        </div>
+        <label for="what">Wat moet er gebeuren</label>
+        <textarea id="what" placeholder="Bijv. vat de open bugrapporten samen en zet ze op prioriteit"></textarea>
+        <div class="chips" id="ideas"></div>
+        <div class="row"><button class="btn" id="go" type="submit">Geef taak</button><button class="btn sm" id="stop" type="button" hidden>Stop</button></div>
+        <p class="note" id="aiNote">De assistenten werken met AI op jouw Claude-account. De eerste taak vraagt toestemming.</p>
+      </form>
+    </section>
+  </main>
+
+  <aside>
+    <section class="panel" id="out" aria-live="polite">
+      <h3>Uitvoer</h3>
+      <p class="note" id="outEmpty">Nog geen taak. Kies een assistent bij de receptie.</p>
+      <div id="outBody" hidden>
+        <div class="row" style="justify-content:space-between"><span class="who" id="outWho"></span><span class="tag" id="outTag"></span></div>
+        <div id="outTask" class="note"></div>
+        <ul class="steps" id="outSteps"></ul>
+        <div class="res" id="outRes"></div>
+        <div class="row"><button class="btn sm" type="button" id="copy">Kopieer</button></div>
+      </div>
+    </section>
+    <section class="panel">
+      <h3>Logboek</h3>
+      <ul id="log"><li class="note">Afgeronde taken verschijnen hier.</li></ul>
+    </section>
+  </aside>
+</div>
+<p class="note foot" id="foot">Cijfers op de verdiepingen komen live uit Kanalo, Metricool en de verkoopmails-log in OneDrive. De assistenten versturen of wijzigen niets: je krijgt concepten en overzichten.</p>
+</div>
+
+<script>
+{
+// ---------- vaste gegevens ----------
+const KN="Kanalo", MC="Metricool Social Media Management", MS="Microsoft 365";
+const BRAND={tj:"8342934",kn:"7872847"};
+const MAILLOG="file:///b!FJw7WHQHBUK5KOalp4wvkhpvLsOaAL1HvPm4vQoVMwcVjYHF-jxpRJ4YqCbXCpR2/Tablejoy dashboard/verkoopmails-log.csv";
+const SOCIAL={
+  instagram:{brand:"tj",metrics:["IGEV01","IGEV05","IGEV06","IGEV37","IGEV38"],label:"Instagram per dag (volgers, weergaven, bereik, posts, interacties)"},
+  instagram_posts:{brand:"tj",metrics:["IGPO02","IGPO06","IGPO03","IGPO28","IGPO13","IGPO08","IGPO27"],label:"Instagram per post"},
+  facebook:{brand:"tj",metrics:["FBEV17","FBEV49","FBEV03","FBEV33","FBEV34"],label:"Facebook per dag"},
+  facebook_posts:{brand:"tj",metrics:["FBPO02","FBPO06","FBPO03","FBPO11","FBPO13","FBPO08","FBPO14"],label:"Facebook per post"},
+  tiktok_posts:{brand:"kn",metrics:["TKPO02","TKPO03","TKPO05","TKPO07","TKPO08","TKPO09","TKPO10"],label:"Kanalo TikTok per video"},
+  kanalo_instagram_reels:{brand:"kn",metrics:["IGRE02","IGRE06","IGRE03","IGRE23","IGRE10","IGRE07","IGRE21"],label:"Kanalo Instagram-reels"}
+};
+const CO={
+  tj:{name:"TableJoy",floor:"2E VERDIEPING",acc:"var(--tj)",wall:"var(--tj-wall)",fl:"var(--tj-floor)",desk:"var(--tj-desk)",screen:"var(--tj-screen)",
+    about:"TableJoy (tablejoy.app) is software voor restaurants: online reserveren met aanbetaling tegen no-shows, wachtlijst, plattegrond, online bestellen, gastprofielen en reviews. Gratis proefperiode van 30 dagen. De eigenaar benadert restaurants per e-mail (verkoopmails) en post op Instagram en Facebook.",
+    agents:[
+      {n:"Bram",r:"Verkoop",ideas:["Welke restaurants hebben gereageerd op de verkoopmails?","Schrijf een vriendelijke opvolgmail voor wie nog niet reageerde"]},
+      {n:"Mila",r:"Contentplanning",ideas:["Welke posts staan de komende 7 dagen gepland?","Bedenk 3 nieuwe posts die nog ontbreken in de planning"]},
+      {n:"Noor",r:"Social media",ideas:["Hoe deed Instagram het de afgelopen 7 dagen?","Welke post scoorde het best deze maand en waarom?"]},
+      {n:"Tess",r:"Reserveringen",ideas:["Schrijf een bevestigingsmail voor een reservering met aanbetaling","Schrijf een no-show-beleid voor op de website"]},
+      {n:"Jules",r:"Klantvragen en reviews",ideas:["Reageer op een review over lange wachttijd","Maak 5 veelgestelde vragen over TableJoy met antwoord"]}]},
+  kn:{name:"Kanalo",floor:"1E VERDIEPING",acc:"var(--kn)",wall:"var(--kn-wall)",fl:"var(--kn-floor)",desk:"var(--kn-desk)",screen:"var(--kn-screen)",
+    about:"Kanalo is een IPTV-speler voor iPhone, iPad, Apple TV en Mac met een Pro-abonnement (maand of jaar) en proefperiode via de App Store. Bedragen zijn in euro's, bruto (incl. btw, vóór Apple-commissie). Kanalo is ALLEEN een speler: gebruikers voegen zelf hun eigen M3U- of Xtream-playlist toe. Beloof nooit gratis zenders, films of sport, noem geen bronnen of aanbieders van playlists en geen echte zendernamen.",
+    agents:[
+      {n:"Finn",r:"Playlist-support",ideas:["Leg uit hoe je een M3U-playlist toevoegt","Welke supportvragen over afspelen kwamen er deze maand?"]},
+      {n:"Sara",r:"Bugrapporten",ideas:["Vat de open bugrapporten samen met prioriteit","Is er een terugkerend probleem in de nieuwste versie?"]},
+      {n:"Ravi",r:"Abonnementen",ideas:["Hoe staan MRR en proefperiodes ervoor?","Wie zegde deze week op en wat valt op?"]},
+      {n:"Daan",r:"Cijfers en omzet",ideas:["Geef een dagrapport van vandaag","Vergelijk deze maand met vorige maand"]},
+      {n:"Lotte",r:"TikTok-content",ideas:["Welke TikTok-video's scoorden het best deze maand?","Bedenk 3 hooks voor nieuwe TikToks"]}]}
+};
+
+// ---------- hulpjes ----------
+const R=Math.random, pad=n=>String(n).padStart(2,"0");
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const eur=v=>typeof v==="number"?"€ "+v.toLocaleString("nl-NL",{minimumFractionDigits:2,maximumFractionDigits:2}):"—";
+const num=v=>typeof v==="number"?v.toLocaleString("nl-NL"):"—";
+const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+function amsDate(d=new Date()){return d.toLocaleDateString("sv-SE",{timeZone:"Europe/Amsterdam"})}
+function amsOffset(d=new Date()){const p=new Intl.DateTimeFormat("en-US",{timeZone:"Europe/Amsterdam",timeZoneName:"longOffset"}).formatToParts(d).find(x=>x.type==="timeZoneName");const m=/GMT([+-]\d\d:\d\d)/.exec(p?.value||"");return m?m[1]:"+01:00"}
+function addDays(iso,n){const d=new Date(iso+"T12:00:00Z");d.setUTCDate(d.getUTCDate()+n);return d.toISOString().slice(0,10)}
+const dayStart=iso=>iso+"T00:00:00"+amsOffset(new Date(iso+"T12:00:00Z"));
+const dayEnd=iso=>iso+"T23:59:59"+amsOffset(new Date(iso+"T12:00:00Z"));
+function hhmm(ts){return new Date(ts).toLocaleTimeString("nl-NL",{hour:"2-digit",minute:"2-digit",timeZone:"Europe/Amsterdam"})}
+function shortDT(s){const d=new Date(s);return isNaN(d)?s:d.toLocaleString("nl-NL",{weekday:"short",hour:"2-digit",minute:"2-digit"})}
+function tick(){document.getElementById("clock").textContent=new Date().toLocaleString("nl-NL",{weekday:"long",hour:"2-digit",minute:"2-digit",timeZone:"Europe/Amsterdam"})}
+tick();setInterval(tick,30000);
+
+// Persoonsgegevens eruit voordat Claude het ziet.
+const DROP=/^(email|e-mail|e_mail|device_id|ip|device_name|creatorUserMail|creatorUserId|original_transaction_id|media|mediaAltText|uuid|imageVariants|twitterData|facebookData|instagramData|saveExternalMediaFiles|shortener|autoPublish)$/i;
+function strip(o){if(Array.isArray(o))return o.map(strip);if(o&&typeof o==="object"){const r={};for(const[k,v]of Object.entries(o))if(!DROP.test(k))r[k]=strip(v);return r}return o}
+function small(o,max=24000){let s=JSON.stringify(strip(o));return s.length>max?s.slice(0,max)+"…(ingekort)":s}
+
+function parseMails(text){
+  const lines=String(text||"").split(/\r?\n/).filter(l=>l.trim()&&!/^\[/.test(l.trim()));
+  if(!lines.length)return [];
+  const head=lines[0].split(";").map(h=>h.trim());
+  return lines.slice(1).map(l=>{const c=l.split(";");const o={};head.forEach((h,i)=>{if(!/mail/i.test(h))o[h]=(c[i]||"").trim()});return o});
+}
+
+// ---------- het pand tekenen ----------
+const W=1000,FLOOR=250,deskX=i=>150+i*175;
+function person(id){
+  return `<g id="p${id}" data-id="${id}">
+  <g class="sit"><rect x="-22" y="168" width="40" height="8" rx="3" fill="#555"/><rect x="-20" y="176" width="5" height="72" fill="#555"/><rect x="-28" y="120" width="8" height="56" rx="3" fill="#666"/>
+    <rect x="-16" y="118" width="30" height="52" rx="12" fill="var(--sh)"/><rect x="0" y="162" width="34" height="12" rx="6" fill="#2d3340"/><rect x="26" y="168" width="10" height="78" rx="5" fill="#2d3340"/>
+    <g class="arm"><rect x="4" y="132" width="44" height="9" rx="4.5" fill="var(--sh)"/></g>
+    <circle cx="0" cy="102" r="17" fill="var(--sk)"/><path d="M-17 100a17 17 0 0 1 34-4c-8-6-22-6-34 4z" fill="var(--hr)"/></g>
+  <g class="stand" style="display:none"><rect x="-8" y="200" width="9" height="48" rx="4" fill="#2d3340" class="lg1"/><rect x="2" y="200" width="9" height="48" rx="4" fill="#2d3340" class="lg2"/>
+    <rect x="-14" y="132" width="28" height="74" rx="12" fill="var(--sh)"/><circle cx="0" cy="114" r="17" fill="var(--sk)"/><path d="M-17 112a17 17 0 0 1 34-4c-8-6-22-6-34 4z" fill="var(--hr)"/>
+    <rect x="12" y="160" width="12" height="14" rx="3" fill="#fff" stroke="#555" class="cup" style="display:none"/></g>
+  <g class="bub" transform="translate(18,40)"><rect x="0" y="0" width="56" height="34" rx="12" fill="var(--bub)"/><path d="M8 30 l-6 12 l16 -10z" fill="var(--bub)"/><text x="28" y="23" text-anchor="middle" font-size="18" font-weight="800" fill="#fff" class="bt">…</text></g></g>`;
+}
+function floorSVG(k){
+  const c=CO[k],skins=["#f2c7a5","#c68863","#8d5a3b","#e8b48a","#a8714f"],hair=["#3b2a20","#111","#6b3d1f","#d7a24a","#222"],
+    shirts=k==="tj"?["#ff6f59","#ffb400","#00a05a","#0a5cff","#e6261f"]:["#38d6ff","#00a05a","#ff5c8a","#ffb400","#8fd3ff"];
+  let desks="",people="";
+  c.agents.forEach((a,i)=>{const x=deskX(i);
+    desks+=`<g transform="translate(${x},0)"><rect x="20" y="168" width="110" height="10" rx="3" fill="${c.desk}"/><rect x="28" y="178" width="7" height="70" fill="${c.desk}"/><rect x="116" y="178" width="7" height="70" fill="${c.desk}"/>
+      <rect x="60" y="118" width="60" height="42" rx="4" fill="#1b1f27"/><rect x="64" y="122" width="52" height="34" rx="2" fill="${c.screen}" class="glow"/><rect x="86" y="160" width="8" height="8" fill="#1b1f27"/>
+      <rect x="44" y="163" width="34" height="5" rx="2" fill="#333"/><text x="75" y="272" text-anchor="middle" font-size="20" font-weight="800" fill="${k==="kn"?"#eef1f6":"var(--fg)"}">${esc(a.n)}</text></g>`;
+    people+=`<g style="--sk:${skins[i]};--hr:${hair[i]};--sh:${shirts[i]};--bub:${c.acc}">${person(k+i)}</g>`;});
+  return `<svg class="scene" viewBox="0 0 ${W} 290" role="img" aria-label="${c.name}-verdieping met 5 assistenten">
+    <rect width="${W}" height="${FLOOR}" fill="${c.wall}"/>
+    ${[120,420,720].map(x=>`<rect x="${x}" y="26" width="200" height="70" rx="4" fill="var(--glass)" stroke="var(--facade-dark)" stroke-width="4"/><line x1="${x+100}" y1="26" x2="${x+100}" y2="96" stroke="var(--facade-dark)" stroke-width="3"/>`).join("")}
+    <rect y="${FLOOR}" width="${W}" height="40" fill="${c.fl}"/>
+    <g transform="translate(22,0)"><rect x="0" y="150" width="56" height="98" rx="6" fill="#3a3f4a"/><rect x="10" y="164" width="36" height="22" rx="3" fill="${c.acc}"/><rect x="18" y="206" width="20" height="16" rx="2" fill="#fff"/><text x="28" y="140" text-anchor="middle" font-size="16" font-weight="600" fill="var(--fg)">Koffie</text></g>
+    <g transform="translate(940,0)"><rect x="0" y="110" width="48" height="138" rx="5" fill="#2a2f3a"/>${[0,1,2,3,4].map(j=>`<rect x="8" y="${122+j*24}" width="32" height="14" rx="2" fill="#151922"/><circle cx="34" cy="${129+j*24}" r="3" fill="var(--ok)" class="glow"/>`).join("")}<text x="24" y="100" text-anchor="middle" font-size="16" font-weight="600" fill="var(--fg)">Data</text></g>
+    ${desks}${people}</svg>`;
+}
+const floors=document.getElementById("floors");
+floors.innerHTML=["tj","kn"].map(k=>`<section class="floor ${k}" id="fl-${k}" aria-labelledby="h-${k}"><div class="fhead"><h2 id="h-${k}">${k==="kn"?"<em>Kanalo</em>":"TableJoy"} <span>${CO[k].floor}</span></h2><div class="kpis" id="kpi-${k}"><span class="kpi">Live cijfers laden…</span></div></div>${floorSVG(k)}<div class="cards" id="cards-${k}"></div></section>`).join("");
+
+const agents=[];
+for(const k of ["tj","kn"])CO[k].agents.forEach((a,i)=>agents.push({id:k+i,co:k,i,name:a.n,role:a.r,ideas:a.ideas,status:"Live data laden…",busy:false,step:"",mode:"sit",x:deskX(i)+40,home:deskX(i)+40,target:0,wait:0,walkNext:8+R()*25,ph:0,el:document.getElementById("p"+k+i)}));
+let sel=null;
+function setPose(a){const s=a.mode==="sit";a.el.querySelector(".sit").style.display=s?"":"none";a.el.querySelector(".stand").style.display=s?"none":"";a.el.querySelector(".bub").style.display=s?"":"none"}
+agents.forEach(a=>{a.el.setAttribute("transform",`translate(${a.x},0)`);setPose(a)});
+function bubble(a,t,color){a.el.querySelector(".bt").textContent=t;a.el.querySelector(".bub rect").setAttribute("fill",color||CO[a.co].acc);a.el.querySelector(".bub path").setAttribute("fill",color||CO[a.co].acc)}
+
+function cardsRender(){
+  for(const k of ["tj","kn"]){
+    const el=document.getElementById("cards-"+k);
+    el.innerHTML=agents.filter(a=>a.co===k).map(a=>`<button class="c${sel===a.id?" sel":""}" type="button" data-id="${a.id}"><b><span class="dot" style="background:${a.busy?"var(--warn)":"var(--ok)"}"></span>${esc(a.name)} · ${esc(a.role)}</b><span class="st">${a.busy?"Bezig: "+esc(a.step||"denkt na…"):esc(a.status)}</span></button>`).join("");
+  }
+}
+cardsRender();
+function choose(id){sel=id;whoSel.value=id;ideasRender();cardsRender()}
+floors.addEventListener("click",e=>{const g=e.target.closest("[data-id]");if(g)choose(g.dataset.id)});
+
+// ---------- live data op de verdiepingen ----------
+const live={};
+const A=id=>agents.find(a=>a.id===id);
+function setKpis(k,items){
+  const el=document.getElementById("kpi-"+k);el.innerHTML="";
+  for(const t of items){const s=document.createElement("span");s.className="kpi";s.textContent=t;el.append(s)}
+}
+function renderLive(){
+  const d=live.daily,m=live.mrr,b=live.bugs,kp=live.knPosts,tp=live.tjPosts,ml=live.mails;
+  const kn=[];
+  if(d){kn.push(num(d.devices?.new)+" installaties vandaag");kn.push(num(d.purchases?.paying_subscribers)+" betalend")}
+  if(m)kn.push(eur(m.mrr)+" MRR");
+  if(d)kn.push(num(d.bug_reports?.open)+" open bugs");
+  if(live.knErr)kn.push(live.knErr);
+  if(kn.length)setKpis("kn",kn);
+  const tj=[],today=amsDate();
+  if(ml){const sent=ml.filter(r=>r.Datum===today).length,rep=ml.filter(r=>r.Reactie).length;tj.push(sent+" verkoopmails vandaag");tj.push(rep+" reacties totaal")}
+  if(tp){tj.push(tp.filter(p=>isPending(p)).length+" posts gepland")}
+  if(live.tjErr)tj.push(live.tjErr);
+  if(tj.length)setKpis("tj",tj);
+
+  if(b){const r0=(b.reports||[])[0];A("kn0").status=r0?"Laatste melding: “"+String(r0.message||"").slice(0,70)+"”":"Geen nieuwe supportvragen";A("kn1").status=num(b.open_overall??b.total)+" open bugrapporten"+(b.by_category?" · "+Object.entries(b.by_category).map(([c,n])=>n+" "+c).join(", "):"")}
+  if(m)A("kn2").status=num(m.paying_subscribers)+" betalende abonnees · "+eur(m.mrr)+" MRR";
+  if(d)A("kn3").status="Vandaag "+num(d.devices?.new)+" installaties · "+eur(d.revenue?.net)+" omzet";
+  if(kp){const pend=kp.filter(isPending);A("kn4").status=pend.length?pend.length+" posts gepland · volgende "+shortDT(pend[0].publicationDate?.dateTime):"Geen posts gepland deze week"}
+  if(ml){const rep=ml.filter(r=>r.Reactie);A("tj0").status=ml.length+" restaurants gemaild · "+rep.length+" reacties"}
+  if(tp){const pend=tp.filter(isPending),pub=tp.filter(p=>!isPending(p));A("tj1").status=pend.length?pend.length+" posts gepland · volgende "+shortDT(pend[0].publicationDate?.dateTime):"Niets gepland komende week";A("tj2").status=pub.length+" posts gepubliceerd deze week"}
+  A("tj3").status="Nog geen koppeling met reserveringen · levert concepten";
+  A("tj4").status="Levert antwoorden en reacties als concept";
+  cardsRender();
+}
+function isPending(p){return (p.providers||[]).some(x=>x.status==="PENDING")}
+function errText(e,server){
+  switch(e&&e.code){
+    case "needs_reauth":return server+" opnieuw verbinden";
+    case "server_not_connected":case "selection_required":return server+" niet verbonden";
+    case "not_in_manifest":case "consent_required":return "Geen toegang tot "+server;
+    case "blocked_by_policy":case "approval_required":return server+" geblokkeerd";
+    default:return server+" even niet bereikbaar";
+  }
+}
+const AUTHZ=/^(needs_reauth|server_not_connected|blocked_by_policy|approval_required|not_in_manifest|selection_required|consent_required)$/;
+let mcp=null;
+function watch(server,tool,input,key,co,map){
+  mcp.watchTool(server,tool,input,ev=>{
+    if(ev.type==="data"){live[key]=map?map(ev.result.payload):ev.result.payload;live[co+"Err"]=null}
+    else{if(AUTHZ.test(ev.error.code))live[key]=null;live[co+"Err"]=errText(ev.error,server)}
+    renderLive();
+  },{refetchInterval:600000});
+}
+function startWatches(){
+  const today=amsDate(),wkAgo=addDays(today,-7),wk=addDays(today,7);
+  watch(KN,"get_daily_stats",null,"daily","kn");
+  watch(KN,"get_mrr",null,"mrr","kn");
+  watch(KN,"list_bug_reports",{limit:5,status:"open"},"bugs","kn");
+  watch(MC,"getScheduledPosts",{brandId:BRAND.kn,fromDate:dayStart(today),toDate:dayEnd(wk),timezone:"Europe/Amsterdam"},"knPosts","kn",p=>p?.data||[]);
+  watch(MC,"getScheduledPosts",{brandId:BRAND.tj,fromDate:dayStart(wkAgo),toDate:dayEnd(wk),timezone:"Europe/Amsterdam"},"tjPosts","tj",p=>(p?.data||[]).filter(x=>{const t=x.publicationDate?.dateTime;return t&&(isPending(x)||t.slice(0,10)>=wkAgo)}));
+  watch(MS,"read_resource",{uri:MAILLOG},"mails","tj",p=>parseMails(typeof p==="string"?p:JSON.stringify(p)));
+}
+
+// ---------- tools die de assistenten mogen gebruiken (alleen lezen) ----------
+const PERIODS=["today","yesterday","this_week","last_week","this_month","last_month","last_7_days","last_30_days","last_90_days","this_year"];
+async function call(server,tool,input,a,label,signal){
+  if(a){a.step=label;cardsRender();step(label);if(current&&current.status==="bezig")current.steps.push(label)}
+  if(!mcp)throw new Error("Geen toegang tot de koppelingen in deze weergave");
+  try{const r=await mcp.callTool(server,tool,input,{signal});return r.payload}
+  catch(e){throw new Error(errText(e,server)+(e.code==="tool_error"&&e.message?": "+e.message:""))}
+}
+function toolsFor(a,signal){
+  const t=[];
+  const social={name:"social_cijfers",description:"Statistieken uit Metricool. bron: "+Object.entries(SOCIAL).filter(([,v])=>v.brand===a.co).map(([k,v])=>k+" = "+v.label).join("; ")+". Geef van en tot als YYYY-MM-DD.",
+    inputSchema:{type:"object",properties:{bron:{type:"string",enum:Object.keys(SOCIAL).filter(k=>SOCIAL[k].brand===a.co)},van:{type:"string"},tot:{type:"string"}},required:["bron","van","tot"]},
+    execute:async i=>{const s=SOCIAL[String(i.bron)];if(!s||s.brand!==a.co)throw new Error("Onbekende bron");return small(await call(MC,"getAnalyticsDataByMetrics",{brandId:BRAND[s.brand],from:dayStart(String(i.van)),to:dayEnd(String(i.tot)),metrics:s.metrics},a,"leest "+s.label.toLowerCase(),signal))}};
+  const planned={name:"ingeplande_posts",description:"Posts in de Metricool-planner tussen twee datums (YYYY-MM-DD), met tekst, tijdstip en status per netwerk (PUBLISHED of PENDING).",
+    inputSchema:{type:"object",properties:{van:{type:"string"},tot:{type:"string"}},required:["van","tot"]},
+    execute:async i=>{const p=await call(MC,"getScheduledPosts",{brandId:BRAND[a.co],fromDate:dayStart(String(i.van)),toDate:dayEnd(String(i.tot)),timezone:"Europe/Amsterdam"},a,"bekijkt de planner",signal);
+      return small((p?.data||[]).map(x=>({tijd:x.publicationDate?.dateTime,tekst:x.text,netwerken:(x.providers||[]).map(n=>n.network+": "+n.status)})))}};
+  if(a.co==="kn"){
+    t.push({name:"bugrapporten",description:"Bugrapporten en supportvragen uit de Kanalo-app, nieuwste eerst, met tellingen per categorie.",
+      inputSchema:{type:"object",properties:{status:{type:"string",enum:["open","resolved","all"]},period:{type:"string",enum:PERIODS},search:{type:"string"},category:{type:"string"},limit:{type:"integer"}}},
+      execute:async i=>{const inp={};for(const k of ["status","period","search","category"])if(i[k])inp[k]=String(i[k]);inp.limit=Math.min(Math.max(+i.limit||25,1),50);return small(await call(KN,"list_bug_reports",inp,a,"leest de bugrapporten",signal))}});
+    t.push({name:"bugrapport",description:"Eén bugrapport volledig, met diagnostics (zonder e-mailadres).",inputSchema:{type:"object",properties:{id:{type:"string"}},required:["id"]},
+      execute:async i=>small(await call(KN,"get_bug_report",{id:String(i.id)},a,"opent een bugrapport",signal))});
+    t.push({name:"abonnementen",description:"MRR, ARR en betalende abonnees per plan, plus proefperiodes (gestart, omgezet, conversie) in een periode.",inputSchema:{type:"object",properties:{period:{type:"string",enum:PERIODS}}},
+      execute:async i=>{const [m,tr]=await Promise.all([call(KN,"get_mrr",{},a,"bekijkt de abonnementen",signal),call(KN,"get_trial_stats",i.period?{period:String(i.period)}:{},a,"bekijkt de proefperiodes",signal)]);return small({mrr:m,proefperiodes:tr})}});
+    t.push({name:"app_store_meldingen",description:"App Store-meldingen (aankopen, verlengingen, opzeggingen, refunds), nieuwste eerst, met tellingen per type.",
+      inputSchema:{type:"object",properties:{period:{type:"string",enum:PERIODS},type:{type:"string"},limit:{type:"integer"}}},
+      execute:async i=>{const inp={limit:Math.min(Math.max(+i.limit||50,1),100)};if(i.period)inp.period=String(i.period);if(i.type)inp.type=String(i.type);return small(await call(KN,"list_app_store_notifications",inp,a,"leest de App Store-meldingen",signal))}});
+    t.push({name:"dagcijfers",description:"Dagcijfers van één dag (YYYY-MM-DD, standaard vandaag): installaties, Pro, aankopen, opzeggingen, proefperiodes, bugs, omzet, plus 14 dagen ervoor.",
+      inputSchema:{type:"object",properties:{date:{type:"string"}}},execute:async i=>small(await call(KN,"get_daily_stats",i.date?{date:String(i.date)}:{},a,"haalt de dagcijfers op",signal))});
+    t.push({name:"omzetoverzicht",description:"Omzet vandaag, gisteren, deze week, deze maand, vorige maand en laatste 30 dagen, met vergelijking en huidige MRR.",
+      execute:async()=>small(await call(KN,"get_revenue_summary",{},a,"bekijkt de omzet",signal))});
+    t.push(planned,social);
+  }else{
+    t.push({name:"verkoopmails",description:"De verkoopmails-log: alle restaurants die een verkoopmail kregen, met datum, plaats en reactie (leeg = nog geen reactie). Zonder e-mailadressen.",
+      execute:async()=>{const p=await call(MS,"read_resource",{uri:MAILLOG},a,"leest de verkoopmails-log",signal);const rows=parseMails(typeof p==="string"?p:JSON.stringify(p));return small({aantal:rows.length,met_reactie:rows.filter(r=>r.Reactie).length,rijen:rows.slice(-300)})}});
+    t.push(planned,social);
+  }
+  return t;
+}
+
+// ---------- taak uitvoeren ----------
+let sample=null,db=null,ctl=null,current=null;
+const whoSel=document.getElementById("who"),what=document.getElementById("what"),go=document.getElementById("go"),stopBtn=document.getElementById("stop"),aiNote=document.getElementById("aiNote");
+whoSel.innerHTML=["tj","kn"].map(k=>`<optgroup label="${CO[k].name}">${agents.filter(a=>a.co===k).map(a=>`<option value="${a.id}">${esc(a.name)} · ${esc(a.role)}</option>`).join("")}</optgroup>`).join("");
+function ideasRender(){const a=A(whoSel.value);document.getElementById("ideas").innerHTML=a.ideas.map(t=>`<button type="button">${esc(t)}</button>`).join("")}
+document.getElementById("ideas").addEventListener("click",e=>{const b=e.target.closest("button");if(b){what.value=b.textContent;what.focus()}});
+whoSel.addEventListener("change",()=>{sel=whoSel.value;ideasRender();cardsRender()});
+ideasRender();
+
+const outBody=document.getElementById("outBody"),outRes=document.getElementById("outRes"),outSteps=document.getElementById("outSteps"),outTag=document.getElementById("outTag");
+function step(t){const li=document.createElement("li");li.textContent="→ "+t;outSteps.append(li)}
+function showOut(task){
+  document.getElementById("outEmpty").hidden=true;outBody.hidden=false;
+  document.getElementById("outWho").textContent=task.agent+" · "+CO[task.co].name;
+  document.getElementById("outTask").textContent=task.text;
+  outSteps.innerHTML="";(task.steps||[]).forEach(step);
+  outRes.textContent=task.result||"";
+  const st={bezig:["Bezig","var(--warn)"],klaar:["Klaar","var(--ok)"],fout:["Niet gelukt","var(--bad)"],gestopt:["Gestopt","var(--mute)"]}[task.status]||["",""];
+  outTag.textContent=st[0];outTag.style.color=st[1];
+}
+document.getElementById("copy").addEventListener("click",async e=>{try{await navigator.clipboard.writeText(outRes.textContent);e.target.textContent="Gekopieerd"}catch(err){const r=document.createRange();r.selectNodeContents(outRes);const s=getSelection();s.removeAllRanges();s.addRange(r);e.target.textContent="Geselecteerd"}setTimeout(()=>e.target.textContent="Kopieer",1800)});
+
+function prompt(a,text){
+  const c=CO[a.co];
+  return `Je bent ${a.name}, AI-assistent voor ${c.name} met de rol "${a.role}". Je werkt voor de eigenaar.
+${c.about}
+
+Vandaag is ${new Date().toLocaleDateString("nl-NL",{weekday:"long",year:"numeric",month:"long",day:"numeric",timeZone:"Europe/Amsterdam"})} (${amsDate()}, Europe/Amsterdam).
+
+Regels:
+- Gebruik je tools om echte gegevens op te halen voordat je iets zegt over cijfers, bugs, abonnementen, posts of verkoopmails. Verzin nooit cijfers of namen.
+- Je kunt niets versturen of wijzigen. Lever direct bruikbaar resultaat: een overzicht, concept-bericht, lijst of advies.
+- Kort en zonder inleiding. Nederlands, tenzij de taak een andere taal vraagt. Gebruik eenvoudige opmaak (korte kopjes en opsommingen).
+- Heb je informatie nodig die je tools niet geven, lever dan toch een concept en zeg in één zin wat de eigenaar nog moet aanvullen.${a.co==="kn"?"\n- Kanalo is alleen een speler. Beloof nooit gratis zenders, films of sport en noem geen playlist-bronnen of zendernamen.":""}
+
+Taak van de eigenaar: ${text}`;
+}
+
+async function runTask(a,text){
+  const task={agent:a.name,role:a.role,co:a.co,text,status:"bezig",result:"",steps:[],at:Date.now()};
+  current=task;
+  a.busy=true;a.step="denkt na…";bubble(a,"!");cardsRender();
+  showOut(task);outRes.textContent="Denkt na…";
+  go.disabled=true;stopBtn.hidden=false;
+  ctl=new AbortController();
+  let ref=null;
+  try{if(db)ref=db.collection("tasks").doc();}catch(e){ref=null}
+  const save=async()=>{if(!ref)return;try{await ref.set({...task,at:task.at})}catch(e){}};
+  save();
+  try{
+    const tools=toolsFor(a,ctl.signal);
+    const r=await sample(prompt(a,text),{signal:ctl.signal,tools,onText:({text})=>{outRes.textContent=text;a.step="schrijft…";cardsRender()}});
+    task.result=r.text+(r.truncated?"\n\n(Afgebroken: vraag om minder tegelijk.)":"");task.status="klaar";
+    bubble(a,"✓","var(--ok)");
+  }catch(e){
+    task.result=e.text||"";
+    task.status=e.code==="cancelled"?"gestopt":"fout";
+    if(e.code!=="cancelled")task.result+=(task.result?"\n\n":"")+sampleErr(e);
+    bubble(a,"×","var(--bad)");
+  }
+  task.done=Date.now();
+  await save();
+  a.busy=false;a.step="";setTimeout(()=>bubble(a,"…"),2000);
+  go.disabled=false;stopBtn.hidden=true;ctl=null;
+  if(current===task)showOut(task);
+  if(!db){memLog.unshift(task);renderLog(memLog)}
+  cardsRender();
+}
+function sampleErr(e){
+  switch(e.code){
+    case "not_granted":case "sampling_disabled":case "not_declared":case "capability_disabled":case "capability_removed":hideAI();return "AI is niet toegestaan in deze weergave.";
+    case "rate_limited":return "Even te veel verzoeken of je gebruikslimiet is bereikt. Probeer het later opnieuw.";
+    case "session_expired":return "Log opnieuw in op claude.ai en probeer het nog eens.";
+    case "tools_unavailable":return "Deze weergave kan geen data ophalen voor de assistent.";
+    case "refused":return "Claude wilde deze taak niet uitvoeren. Formuleer hem anders.";
+    case "prompt_too_large":return "Te veel data tegelijk. Vraag om een kortere periode.";
+    default:return "Er ging iets mis. Probeer het opnieuw.";
+  }
+}
+function hideAI(){go.disabled=true;aiNote.textContent="AI-uitvoering is niet beschikbaar of niet toegestaan in deze weergave. De live cijfers blijven werken."}
+stopBtn.addEventListener("click",()=>ctl?.abort());
+document.getElementById("give").addEventListener("submit",e=>{
+  e.preventDefault();
+  const text=what.value.trim();if(!text||ctl)return;
+  if(!sample){aiNote.textContent="AI is nog niet beschikbaar in deze weergave.";return}
+  const a=A(whoSel.value);sel=a.id;what.value="";runTask(a,text);
+});
+
+// ---------- logboek ----------
+let memLog=[];
+const logEl=document.getElementById("log");
+let logItems=[];
+function renderLog(items){
+  logItems=items;
+  if(!items.length){logEl.innerHTML='<li class="note">Afgeronde taken verschijnen hier.</li>';return}
+  logEl.innerHTML="";
+  items.forEach((t,i)=>{
+    const li=document.createElement("li"),b=document.createElement("button");b.type="button";b.dataset.i=i;
+    const tm=document.createElement("time");tm.textContent=hhmm(t.at);
+    const dot=document.createElement("span");dot.className="dot";dot.style.background=t.status==="klaar"?"var(--ok)":t.status==="bezig"?"var(--warn)":"var(--bad)";
+    b.append(tm,dot,document.createTextNode(t.agent+" ("+(CO[t.co]?.name||"")+"): "+String(t.text||"").slice(0,90)));
+    li.append(b);logEl.append(li);
+  });
+}
+logEl.addEventListener("click",e=>{const b=e.target.closest("button[data-i]");if(b){current=logItems[+b.dataset.i];showOut(current)}});
+
+// ---------- animatie ----------
+let last=performance.now();
+function frame(t){
+  const dt=Math.min(.1,(t-last)/1000);last=t;
+  for(const a of agents){
+    if(a.mode==="sit"){
+      if(a.busy)continue;
+      a.walkNext-=dt;
+      if(a.walkNext<=0&&!reduce&&agents.filter(x=>x.mode!=="sit").length<2){a.mode="out";a.target=R()<.5?60:920;a.walkNext=25+R()*40;setPose(a);a.el.querySelector(".cup").style.display="none"}
+    }else if(a.mode==="out"||a.mode==="back"){
+      const goal=a.mode==="out"?a.target:a.home,dir=Math.sign(goal-a.x);
+      a.x+=dir*110*dt;a.ph+=dt*10;const sw=Math.sin(a.ph)*6;
+      a.el.querySelector(".lg1").setAttribute("transform",`rotate(${sw} -4 200)`);a.el.querySelector(".lg2").setAttribute("transform",`rotate(${-sw} 6 200)`);
+      if((dir>0&&a.x>=goal)||(dir<0&&a.x<=goal)||dir===0){a.x=goal;if(a.mode==="out"){a.mode="away";a.wait=2+R()*3}else{a.mode="sit";setPose(a)}}
+      a.el.setAttribute("transform",`translate(${a.x},0)${a.mode!=="sit"&&dir<0?" scale(-1,1)":""}`);
+    }else if(a.mode==="away"){a.wait-=dt;if(a.wait<=0||a.busy){a.mode="back";if(a.target<200)a.el.querySelector(".cup").style.display=""}}
+  }
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+
+// ---------- opstarten ----------
+(async()=>{
+  const [m,s,d]=await Promise.all(["mcp","sample","db"].map(n=>Promise.resolve(window.claude?.use?.(n)).catch(()=>null)));
+  mcp=m;sample=s;db=d;
+  if(mcp)startWatches();
+  else{setKpis("kn",["Live cijfers niet beschikbaar in deze weergave"]);setKpis("tj",["Live cijfers niet beschikbaar in deze weergave"]);agents.forEach(a=>a.status="Geen toegang tot de koppelingen hier");cardsRender()}
+  if(!sample)hideAI();
+  if(db){
+    db.collection("tasks").orderBy("at","desc").limit(30).onSnapshot(snap=>renderLog(snap.docs.map(x=>x.data())),()=>{db=null;renderLog(memLog)});
+  }
+})();
+}
+</script>
