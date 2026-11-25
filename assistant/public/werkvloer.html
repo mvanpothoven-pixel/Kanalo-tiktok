@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Werkvloer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+/* VOICE werk, maar levendig: een kantoor dat je door het raam bekijkt
+   IDEA een doorsnede van een kantoorgebouw, twee verdiepingen: TableJoy en Kanalo
+   PICTURE elke verdieping een zijaanzicht met 5 assistenten aan bureaus die typen, lopen en taken afronden
+   COLOUR wit/nacht ondergrond; TableJoy koraal #ff6f59 + hout; Kanalo diep #0f1830 + cyaan #38d6ff; groen #00a05a = klaar
+   TYPE Figtree 800 + Figtree
+   LAYOUT titel + cijfers bovenaan, dan per bedrijf een scène met kaarten eronder; rechts het logboek (onder op telefoon) */
+:root{color-scheme:light dark;--bg:light-dark(#ffffff,#0e1116);--ink:light-dark(#11151c,#eef1f6);--mute:light-dark(#5b6470,#9aa4b2);--line:light-dark(#e3e6ea,#242a33);--card:light-dark(#f6f7f9,#161b22);--tj:#ff6f59;--kn:#38d6ff;--ok:#00a05a}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.55 Figtree,system-ui,sans-serif;overflow-x:clip}
+.band{padding:clamp(20px,3vw,40px) max(4vw,16px)}
+.wrap{max-width:1240px;margin:0 auto}
+header{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:16px 32px}
+h1{font-weight:800;font-size:clamp(30px,4.4vw,46px);line-height:1.05;letter-spacing:-.02em;margin:0;text-wrap:balance}
+.sub{color:var(--mute);margin:8px 0 0;max-width:60ch}
+.kpis{display:flex;flex-wrap:wrap;gap:10px}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 14px;min-width:120px}
+.kpi b{display:block;font-size:26px;font-weight:800;font-variant-numeric:tabular-nums;white-space:nowrap}
+.kpi span{color:var(--mute);font-size:13px}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:24px;margin-top:24px}
+.floor{border-radius:16px;overflow:hidden;border:1px solid var(--line);margin-bottom:20px}
+.fhead{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px;padding:12px 16px;color:#fff}
+.fhead h2{margin:0;font-size:20px;font-weight:800}
+.fhead small{font-size:14px;opacity:.9;white-space:nowrap}
+.tj .fhead{background:var(--tj)}
+.kn .fhead{background:#0f1830}
+.kn .fhead h2 i{color:var(--kn);font-style:normal}
+.scene{display:block;width:100%;height:auto;cursor:pointer}
+.cards{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;padding:10px;background:var(--card)}
+.c{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:8px 10px;cursor:pointer;font:inherit;color:inherit;text-align:left;min-height:44px}
+.c:focus-visible,.c.sel{outline:2px solid var(--acc);outline-offset:1px}
+.tj{--acc:var(--tj)}.kn{--acc:var(--kn)}
+.c b{display:block;font-size:14px}
+.c .st{font-size:13px;color:var(--mute);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:1px}
+aside{position:sticky;top:16px;align-self:start;display:grid;gap:16px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.panel h3{margin:0 0 8px;font-size:17px}
+#feed{list-style:none;margin:0;padding:0;display:grid;gap:8px;max-height:420px;overflow:auto}
+#feed li{font-size:14px;line-height:1.4;border-bottom:1px solid var(--line);padding-bottom:8px}
+#feed time{color:var(--mute);font-variant-numeric:tabular-nums;margin-right:6px}
+.det dl{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 12px;margin:0;font-size:14px}
+.det dt{color:var(--mute)}
+.det dd{margin:0}
+.det ol{margin:8px 0 0;padding-left:20px;font-size:14px}
+.tools{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.tools button{font:600 15px Figtree,sans-serif;min-height:44px;padding:0 16px;border-radius:22px;border:1px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer}
+.tools button[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.tools button:focus-visible{outline:2px solid var(--kn);outline-offset:2px}
+.note{font-size:13px;color:var(--mute);margin-top:12px}
+.hide{display:none}
+.give{display:grid;gap:8px}
+.give label{font-size:14px;font-weight:600}
+.give input,.give select,.give textarea{font:16px Figtree,sans-serif;width:100%;padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
+.give textarea{min-height:84px;resize:vertical}
+.give input:focus-visible,.give select:focus-visible,.give textarea:focus-visible{outline:2px solid var(--kn);outline-offset:1px}
+.btn{font:700 15px Figtree,sans-serif;min-height:44px;padding:0 16px;border-radius:22px;border:0;background:var(--ink);color:var(--bg);cursor:pointer}
+.btn:disabled{opacity:.5;cursor:default}
+.btn.sm{min-height:36px;font-size:14px;padding:0 12px;background:var(--card);color:var(--ink);border:1px solid var(--line)}
+.btn:focus-visible{outline:2px solid var(--kn);outline-offset:2px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips button{font:14px Figtree,sans-serif;min-height:36px;padding:0 12px;border-radius:18px;border:1px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer}
+#mine{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+#mine li{border:1px solid var(--line);border-radius:10px;padding:10px;background:var(--bg);font-size:14px}
+#mine .hd{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+#mine .tag{font-size:13px;font-weight:700;white-space:nowrap}
+#mine .res{white-space:pre-wrap;margin:8px 0;padding:8px;border-radius:8px;background:var(--card);max-height:260px;overflow:auto}
+#mine .row{display:flex;gap:8px;flex-wrap:wrap}
+svg text{font-family:Figtree,sans-serif}
+.arm{animation:type .35s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:left center}
+.glow{animation:glow 1.8s ease-in-out infinite alternate}
+@keyframes type{to{transform:rotate(-8deg)}}
+@keyframes glow{to{opacity:.55}}
+@media(prefers-reduced-motion:reduce){.arm,.glow{animation:none}}
+@media(max-width:900px){.grid{grid-template-columns:minmax(0,1fr)}aside{position:static}}
+@media(max-width:600px){.cards{grid-template-columns:minmax(0,1fr)}.c .st{-webkit-line-clamp:1}}
+</style>
+</head>
+<body>
+<div class="band"><div class="wrap">
+<header>
+  <div>
+    <h1 id="h1">Werkvloer: 5 assistenten aan het werk</h1>
+    <p class="sub">Tik op een assistent om te zien waar die mee bezig is en wat die vandaag heeft afgerond.</p>
+  </div>
+  <div class="kpis">
+    <div class="kpi"><b id="kDone">0</b><span>taken vandaag</span></div>
+    <div class="kpi"><b id="kBusy">0</b><span>nu aan het werk</span></div>
+    <div class="kpi"><b id="kResp">0 s</b><span>gem. reactietijd</span></div>
+  </div>
+</header>
+<div class="tools" role="group" aria-label="Bediening">
+  <button id="fAll" aria-pressed="true" hidden>Beide</button>
+  <button id="fTj" aria-pressed="false" hidden>TableJoy</button>
+  <button id="fKn" aria-pressed="false" hidden>Kanalo</button>
+  <button id="fPause" aria-pressed="false">Pauze</button>
+</div>
+<div class="grid">
+  <main id="floors"></main>
+  <aside>
+    <form class="panel give" id="conn">
+      <h3 style="margin:0">Verbinding met de server</h3>
+      <div id="srvRow"><label for="srv">Server-adres</label>
+      <input id="srv" type="url" inputmode="url" placeholder="https://assistent.jouwdomein.nl" autocomplete="url"></div>
+      <label for="tok">Werkvloer-token</label>
+      <input id="tok" type="password" autocomplete="current-password" placeholder="OWNER_TOKEN">
+      <div class="row" style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn" type="submit" id="connGo">Verbind</button><button class="btn sm" type="button" id="connOff" hidden>Ontkoppel</button></div>
+      <p class="note" id="connNote" style="margin:0">Niet verbonden. Het token wordt alleen in deze browser bewaard.</p>
+    </form>
+    <form class="panel give" id="give">
+      <h3 style="margin:0">Taak geven</h3>
+      <label for="who">Aan wie</label>
+      <select id="who"></select>
+      <label for="what">Wat moet er gebeuren</label>
+      <textarea id="what" placeholder="Bijv. schrijf een vriendelijk antwoord op een review die klaagt over wachttijd"></textarea>
+      <div class="chips" id="ideas"></div>
+      <button class="btn" id="go" type="submit">Geef taak</button>
+      <p class="note" id="aiNote" style="margin:0"></p>
+    </form>
+    <div class="panel"><h3>Jouw taken</h3><ul id="mine"></ul><p class="note" id="mineEmpty" style="margin:0">Nog geen taken gegeven.</p></div>
+    <div class="panel det" id="det"><h3>Kies een assistent</h3><p class="note" style="margin:0">Tik op een poppetje of een kaart.</p></div>
+    <div class="panel"><h3>Live logboek</h3><ul id="feed"></ul></div>
+  </aside>
+</div>
+<p class="note" id="foot">Niet verbonden: de animatie en cijfers zijn voorbeelden. Na het verbinden komen het logboek, de cijfers en de taken van de server, en voeren de assistenten taken uit met Grok en echte data. Ze versturen niets zelf: je krijgt concepten.</p>
+</div></div>
+<script>
+{
+const CO={
+  tj:{name:"TableJoy",acc:"#ff6f59",wall:"#fff1e6",wallD:"#2a1f1c",floor:"#c98b5a",desk:"#8a5a36",screen:"#ffd3c8",agents:[
+    {n:"Tess",r:"Reserveringen",t:["Bevestigt reservering voor 4 personen om 19:30","Zet een wachtlijst-plek om naar een tafel","Verplaatst een reservering naar vrijdag","Stuurt herinnering voor reserveringen van morgen"]},
+    {n:"Bram",r:"Klantvragen",t:["Beantwoordt vraag over parkeren","Legt uit hoe je een groep boekt","Helpt een gast met het wijzigen van een boeking","Beantwoordt vraag over openingstijden"]},
+    {n:"Noor",r:"Reviews",t:["Schrijft bedankje op een 5-sterrenreview","Reageert netjes op een kritische review","Vat reviews van deze week samen","Markeert een review voor de eigenaar"]},
+    {n:"Jules",r:"Menu en allergenen",t:["Checkt glutenvrije opties voor een gast","Werkt de allergenenlijst bij","Vertaalt het menu naar het Engels","Beantwoordt vraag over het vegan menu"]},
+    {n:"Mila",r:"No-shows",t:["Volgt een no-show van gisteren op","Vraagt bevestiging voor tafels van vanavond","Geeft een vrijgekomen tafel aan de wachtlijst","Maakt no-show-overzicht van de week"]}]},
+  kn:{name:"Kanalo",acc:"#38d6ff",wall:"#e8f6ff",wallD:"#111a2e",floor:"#2b3a5c",desk:"#1c2742",screen:"#38d6ff",agents:[
+    {n:"Finn",r:"Playlist-support",t:["Helpt een gebruiker een M3U-playlist toe te voegen","Legt Xtream-login stap voor stap uit","Lost een EPG-gids zonder data op","Geeft tips tegen buffering"]},
+    {n:"Sara",r:"Bugrapporten",t:["Groepeert 3 nieuwe bugrapporten","Reproduceert crash op Apple TV","Zet een bug door naar de ontwikkelaar","Sluit een opgeloste bug af"]},
+    {n:"Daan",r:"App Store-reviews",t:["Reageert op een review in het Duits","Bedankt voor een 5-sterrenreview","Vat de reviews van deze week samen","Signaleert een terugkerende klacht"]},
+    {n:"Lotte",r:"TikTok-content",t:["Schrijft een hook voor de video van 14:00","Checkt een caption tegen de contentregels","Plant 3 posts voor morgen","Kiest hashtags voor de Franse video"]},
+    {n:"Ravi",r:"Abonnementen",t:["Beantwoordt vraag over proefperiode","Legt uit hoe je opzegt","Bekijkt trial-conversies van vandaag","Helpt bij het herstellen van een aankoop"]}]}
+};
+const META_APP=document.querySelector('meta[name="werkvloer-app"]')?.content||"";
+const Q_APP=new URLSearchParams(location.search).get("app")||"";
+const ONLY=(META_APP||Q_APP)==="tablejoy"?"tj":"kn";
+const APPKEY={tj:"tablejoy",kn:"kanalo"}[ONLY];
+for(const k of Object.keys(CO))if(k!==ONLY)delete CO[k];
+document.title=CO[ONLY].name+" werkvloer";
+document.getElementById("h1").textContent=CO[ONLY].name+" werkvloer: 5 assistenten aan het werk";
+const R=Math.random;
+const pick=a=>a[Math.floor(R()*a.length)];
+const pad=n=>String(n).padStart(2,"0");
+const now=()=>{const d=new Date();return pad(d.getHours())+":"+pad(d.getMinutes())};
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+const dark=()=>{const t=document.documentElement.dataset.theme;return t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches};
+const W=1000,FLOOR=250;
+const deskX=i=>150+i*175;
+const agents=[];
+let paused=false,sel=null,filter="all",resp=[];
+
+function person(id,c){
+  return `<g id="p${id}" data-id="${id}">
+  <g class="sit">
+    <rect x="-22" y="168" width="40" height="8" rx="3" fill="#555"/><rect x="-20" y="176" width="5" height="72" fill="#555"/><rect x="-28" y="120" width="8" height="56" rx="3" fill="#666"/>
+    <rect x="-16" y="118" width="30" height="52" rx="12" fill="var(--sh)"/>
+    <rect x="0" y="162" width="34" height="12" rx="6" fill="#2d3340"/><rect x="26" y="168" width="10" height="78" rx="5" fill="#2d3340"/>
+    <g class="arm"><rect x="4" y="132" width="44" height="9" rx="4.5" fill="var(--sh)"/></g>
+    <circle cx="0" cy="102" r="17" fill="var(--sk)"/><path d="M-17 100a17 17 0 0 1 34-4c-8-6-22-6-34 4z" fill="var(--hr)"/>
+  </g>
+  <g class="stand" style="display:none">
+    <rect x="-8" y="200" width="9" height="48" rx="4" fill="#2d3340" class="lg1"/><rect x="2" y="200" width="9" height="48" rx="4" fill="#2d3340" class="lg2"/>
+    <rect x="-14" y="132" width="28" height="74" rx="12" fill="var(--sh)"/>
+    <circle cx="0" cy="114" r="17" fill="var(--sk)"/><path d="M-17 112a17 17 0 0 1 34-4c-8-6-22-6-34 4z" fill="var(--hr)"/>
+    <rect x="12" y="160" width="12" height="14" rx="3" fill="#fff" stroke="#555" class="cup" style="display:none"/>
+  </g>
+  <g class="bub" transform="translate(18,40)"><rect x="0" y="0" width="56" height="34" rx="12" fill="var(--bub)"/><path d="M8 30 l-6 12 l16 -10z" fill="var(--bub)"/><text x="28" y="23" text-anchor="middle" font-size="18" font-weight="800" fill="#fff" class="bt">…</text></g>
+  </g>`;
+}
+
+function floorSVG(key){
+  const c=CO[key];
+  const skins=["#f2c7a5","#c68863","#8d5a3b","#e8b48a","#a8714f"],hair=["#3b2a20","#111","#6b3d1f","#d7a24a","#222"],shirts=key==="tj"?["#ff6f59","#ffb400","#00a05a","#0a5cff","#e6261f"]:["#38d6ff","#00a05a","#ff5c8a","#ffb400","#8fd3ff"];
+  let desks="",people="";
+  c.agents.forEach((a,i)=>{
+    const x=deskX(i);
+    desks+=`<g transform="translate(${x},0)"><rect x="20" y="168" width="110" height="10" rx="3" fill="${c.desk}"/><rect x="28" y="178" width="7" height="70" fill="${c.desk}"/><rect x="116" y="178" width="7" height="70" fill="${c.desk}"/>
+    <rect x="60" y="118" width="60" height="42" rx="4" fill="#1b1f27"/><rect x="64" y="122" width="52" height="34" rx="2" fill="${c.screen}" class="glow"/><rect x="86" y="160" width="8" height="8" fill="#1b1f27"/>
+    <rect x="44" y="163" width="34" height="5" rx="2" fill="#333"/><text x="75" y="272" text-anchor="middle" font-size="20" font-weight="800" fill="var(--lbl)">${esc(a.n)}</text></g>`;
+    people+=`<g style="--sk:${skins[i]};--hr:${hair[i]};--sh:${shirts[i]};--bub:${c.acc}">${person(key+i,c)}</g>`;
+  });
+  return `<svg class="scene" viewBox="0 0 ${W} 290" role="img" aria-label="${c.name}-kantoor met 5 assistenten" style="--lbl:var(--ink)">
+  <rect width="${W}" height="${FLOOR}" fill="${dark()?c.wallD:c.wall}" class="wall" data-l="${c.wall}" data-d="${c.wallD}"/>
+  <rect x="120" y="26" width="200" height="70" rx="6" fill="${c.acc}" opacity=".18"/><rect x="420" y="26" width="200" height="70" rx="6" fill="${c.acc}" opacity=".18"/><rect x="720" y="26" width="200" height="70" rx="6" fill="${c.acc}" opacity=".18"/>
+  <rect y="${FLOOR}" width="${W}" height="40" fill="${c.floor}"/>
+  <g transform="translate(22,0)"><rect x="0" y="150" width="56" height="98" rx="6" fill="#3a3f4a"/><rect x="10" y="164" width="36" height="22" rx="3" fill="${c.acc}"/><rect x="18" y="206" width="20" height="16" rx="2" fill="#fff"/><text x="28" y="140" text-anchor="middle" font-size="16" font-weight="600" fill="var(--lbl)">Koffie</text></g>
+  <g transform="translate(940,0)"><rect x="0" y="110" width="48" height="138" rx="5" fill="#2a2f3a"/>${[0,1,2,3,4].map(k=>`<rect x="8" y="${122+k*24}" width="32" height="14" rx="2" fill="#151922"/><circle cx="34" cy="${129+k*24}" r="3" fill="var(--ok)" class="glow"/>`).join("")}<text x="24" y="100" text-anchor="middle" font-size="16" font-weight="600" fill="var(--lbl)">Server</text></g>
+  ${desks}${people}</svg>`;
+}
+
+const floors=document.getElementById("floors");
+floors.innerHTML=Object.keys(CO).map(k=>`<section class="floor ${k}" id="fl-${k}"><div class="fhead"><h2>${k==="kn"?"<i>Kanalo</i>":"TableJoy"}</h2><small id="sum-${k}"></small></div>${floorSVG(k)}<div class="cards" id="cards-${k}"></div></section>`).join("");
+
+Object.entries(CO).forEach(([k,c])=>c.agents.forEach((a,i)=>{
+  const ag={id:k+i,co:k,i,name:a.n,role:a.r,pool:a.t,task:pick(a.t),done:Math.floor(R()*9)+3,hist:[],mode:"sit",x:deskX(i)+40,home:deskX(i)+40,target:0,wait:0,next:3+R()*10,walkNext:8+R()*20,queue:[],busy:false,el:document.getElementById("p"+k+i),ph:0};
+  ag.hist=a.t.slice(0,3).map(t=>({t,at:now()}));
+  agents.push(ag);
+}));
+
+function cardsRender(){
+  for(const k of Object.keys(CO)){
+    const list=agents.filter(a=>a.co===k);
+    document.getElementById("cards-"+k).innerHTML=list.map(a=>`<button class="c${sel===a.id?" sel":""}" data-id="${a.id}"><b><span class="dot" style="background:${a.mode==="sit"?"var(--ok)":"#ffb400"}"></span>${esc(a.name)} · ${esc(a.role)}</b><span class="st">${a.busy?"Werkt aan jouw taak: ":""}${a.mode==="sit"?esc(a.task):(a.target<200?"Haalt koffie":"Checkt de server")}${a.queue.filter(q=>q.st==="wacht").length?" · "+a.queue.filter(q=>q.st==="wacht").length+" in wachtrij":""}</span></button>`).join("");
+    const d=list.reduce((s,a)=>s+a.done,0);
+    document.getElementById("sum-"+k).textContent=d+" taken vandaag · "+list.filter(a=>a.mode==="sit").length+" van 5 aan het werk";
+  }
+  document.getElementById("kDone").textContent=connected&&realStats?realStats.done_today:agents.reduce((s,a)=>s+a.done,0);
+  document.getElementById("kBusy").textContent=connected?agents.filter(a=>a.busy).length:agents.filter(a=>a.mode==="sit").length;
+  const avg=connected&&realStats&&realStats.avg_seconds!=null?realStats.avg_seconds:(resp.length?resp.reduce((s,v)=>s+v,0)/resp.length:3.2);
+  document.getElementById("kResp").textContent=avg.toFixed(1).replace(".",",")+" s";
+  detRender();
+}
+
+function detRender(){
+  const det=document.getElementById("det"),a=agents.find(x=>x.id===sel);
+  if(!a)return;
+  det.innerHTML=`<h3><span class="dot" style="background:${CO[a.co].acc}"></span>${esc(a.name)} · ${esc(CO[a.co].name)}</h3><dl><dt>Rol</dt><dd>${esc(a.role)}</dd><dt>Status</dt><dd>${a.mode==="sit"?"Aan het werk":"Even weg van het bureau"}</dd><dt>Nu</dt><dd>${esc(a.task)}</dd><dt>Vandaag</dt><dd>${a.done} taken afgerond</dd></dl><ol>${a.hist.slice(0,5).map(h=>`<li>${esc(h.at)} · ${esc(h.t)}</li>`).join("")}</ol><p style="margin:10px 0 0"><button class="btn sm" type="button" id="giveTo">Geef ${esc(a.name)} een taak</button></p>`;
+  document.getElementById("giveTo").onclick=()=>{whoSel.value=a.id;ideasRender();document.getElementById("what").focus()};
+}
+
+const feed=document.getElementById("feed");
+function log(a,txt){
+  const li=document.createElement("li");
+  li.innerHTML=`<time>${now()}</time><span class="dot" style="background:${CO[a.co].acc}"></span>`;
+  li.append(document.createTextNode(a.name+" ("+CO[a.co].name+"): "+txt));
+  if(filter!=="all"&&filter!==a.co)li.classList.add("hide");
+  li.dataset.co=a.co;
+  feed.prepend(li);
+  while(feed.children.length>30)feed.lastChild.remove();
+}
+
+function complete(a){
+  a.done++;a.hist.unshift({t:a.task,at:now()});a.hist.length=Math.min(a.hist.length,8);
+  log(a,"✓ "+a.task);
+  resp.push(1.5+R()*4);if(resp.length>40)resp.shift();
+  let t;do{t=pick(a.pool)}while(t===a.task&&a.pool.length>1);
+  a.task=t;
+  const bt=a.el.querySelector(".bt");bt.textContent="✓";a.el.querySelector(".bub rect").setAttribute("fill","var(--ok)");
+  setTimeout(()=>{bt.textContent="…";a.el.querySelector(".bub rect").setAttribute("fill",CO[a.co].acc)},1400);
+}
+
+function setPose(a){
+  const sit=a.mode==="sit";
+  a.el.querySelector(".sit").style.display=sit?"":"none";
+  a.el.querySelector(".stand").style.display=sit?"none":"";
+  a.el.querySelector(".bub").style.display=sit?"":"none";
+}
+
+agents.forEach(a=>{a.el.setAttribute("transform",`translate(${a.x},0)`);setPose(a)});
+agents.slice(0,8).forEach(a=>log(a,"✓ "+a.hist[0].t));
+cardsRender();
+
+// ---- Taken geven ----
+const CTX={
+  tj:"TableJoy is een app voor restaurants: reserveringen, tafels, wachtlijst, gastcommunicatie en reviews.",
+  kn:"Kanalo is een IPTV-speler voor iPhone, iPad en Apple TV. Kanalo is alleen een speler: gebruikers voegen zelf een eigen M3U- of Xtream-playlist toe. Beloof nooit gratis zenders, films of sport, noem geen bronnen voor playlists en geen echte zendernamen."
+};
+const IDEAS={
+  "Reserveringen":["Schrijf een bevestigingsbericht voor een reservering","Schrijf een herinnering voor morgen"],
+  "Klantvragen":["Beantwoord: kan ik met 12 personen komen?","Maak 5 veelgestelde vragen met antwoord"],
+  "Reviews":["Reageer op een review over lange wachttijd","Bedank een gast voor een 5-sterrenreview"],
+  "Menu en allergenen":["Maak een allergenen-uitleg voor de website","Vertaal 'dagmenu' tekst naar Engels"],
+  "No-shows":["Schrijf een vriendelijk no-show-bericht","Maak een beleid tegen no-shows"],
+  "Playlist-support":["Leg uit hoe je een M3U-playlist toevoegt","Tips tegen buffering op Apple TV"],
+  "Bugrapporten":["Maak een sjabloon voor bugrapporten","Antwoord aan gebruiker: app crasht bij openen"],
+  "App Store-reviews":["Reageer op een 1-sterrenreview over de EPG","Bedank voor een 5-sterrenreview in het Duits"],
+  "TikTok-content":["Bedenk 3 hooks voor een TikTok over buffering","Schrijf een caption met 5 hashtags"],
+  "Abonnementen":["Leg uit hoe de proefperiode werkt","Antwoord: hoe zeg ik mijn abonnement op?"]
+};
+const whoSel=document.getElementById("who"),what=document.getElementById("what"),mine=document.getElementById("mine");
+whoSel.innerHTML=Object.entries(CO).map(([k,c])=>`<optgroup label="${c.name}">${agents.filter(a=>a.co===k).map(a=>`<option value="${a.id}">${esc(a.name)} · ${esc(a.role)}</option>`).join("")}</optgroup>`).join("");
+function ideasRender(){
+  const a=agents.find(x=>x.id===whoSel.value);
+  document.getElementById("ideas").innerHTML=(IDEAS[a.role]||[]).map(t=>`<button type="button">${esc(t)}</button>`).join("");
+}
+document.getElementById("ideas").addEventListener("click",e=>{const b=e.target.closest("button");if(b){what.value=b.textContent;what.focus()}});
+whoSel.addEventListener("change",ideasRender);
+ideasRender();
+
+let tasks=[],seq=0;
+const LS={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{v==null?localStorage.removeItem(k):localStorage.setItem(k,v)}catch(e){}}};
+const save=()=>LS.set("ak-tasks-"+ONLY,JSON.stringify(tasks.slice(0,30)));
+try{tasks=JSON.parse(LS.get("ak-tasks-"+ONLY)||"[]")}catch(e){tasks=[]}
+
+// ---- Verbinding met de assistent-server ----
+const SAME=!!META_APP; // pagina wordt door de server zelf geserveerd
+let server=SAME?location.origin:(LS.get("wv-server")||"");
+let token=LS.get("wv-token")||"";
+var connected=false,stateTimer=null;
+const connNote=document.getElementById("connNote");
+document.getElementById("srvRow").hidden=SAME;
+document.getElementById("srv").value=server;
+async function api(path,opt={}){
+  if(!server||!token)throw Object.assign(new Error("Niet verbonden met de server"),{status:0});
+  const r=await fetch(server.replace(/\/$/,"")+path,{...opt,headers:{"content-type":"application/json",authorization:"Bearer "+token}});
+  const j=await r.json().catch(()=>({}));
+  if(!r.ok)throw Object.assign(new Error(j.error||("HTTP "+r.status)),{status:r.status});
+  return j;
+}
+function hhmm(iso){const d=new Date(iso);return pad(d.getHours())+":"+pad(d.getMinutes())}
+function applyState(s){
+  feed.innerHTML="";
+  for(const e of s.log.slice(0,30)){
+    const li=document.createElement("li");
+    li.innerHTML=`<time>${esc(hhmm(e.at))}</time><span class="dot" style="background:${CO[ONLY].acc}"></span>`;
+    li.append(document.createTextNode((e.agent?e.agent+": ":"")+e.text));
+    feed.append(li);
+  }
+  if(!s.log.length)feed.innerHTML='<li>Nog niets in het logboek. Geef een assistent een taak.</li>';
+  const today=new Date().toDateString();
+  for(const a of agents){
+    const mineT=s.tasks.filter(t=>t.agent===a.name);
+    a.done=mineT.filter(t=>t.status==="klaar"&&new Date(t.at).toDateString()===today).length;
+    a.hist=mineT.slice(0,8).map(t=>({t:(t.status==="fout"?"✗ ":"")+t.text,at:hhmm(t.at)}));
+    if(!a.busy)a.task=mineT[0]?(mineT[0].status==="bezig"?"Werkt aan: ":"Laatst: ")+mineT[0].text:"Wacht op een taak";
+  }
+  realStats=s.stats;
+  cardsRender();
+}
+var realStats=null;
+async function pullState(){
+  try{applyState(await api("/werkvloer/state?app="+APPKEY))}
+  catch(err){if(err.status===401||err.status===403)setConnected(false,"Token geweigerd door de server.")}
+}
+function setConnected(on,msg){
+  connected=on;
+  clearInterval(stateTimer);
+  document.getElementById("connOff").hidden=!on;
+  document.getElementById("foot").textContent=on
+    ?"Verbonden. Logboek, cijfers en taken komen van de server. Taken worden uitgevoerd met Grok en lezen echte data; de assistenten versturen niets zelf."
+    :"Niet verbonden: de animatie en cijfers zijn voorbeelden. Na het verbinden komen het logboek, de cijfers en de taken van de server.";
+  connNote.textContent=msg||(on?"Verbonden met "+(SAME?"deze server":server)+".":"Niet verbonden.");
+  aiNote.textContent=on?"Taken worden uitgevoerd door Grok via jouw server, met echte data.":"Verbind eerst met de server om taken echt te laten uitvoeren.";
+  if(on){pullState();stateTimer=setInterval(pullState,15000)}
+}
+document.getElementById("conn").addEventListener("submit",async e=>{
+  e.preventDefault();
+  if(!SAME)server=document.getElementById("srv").value.trim();
+  token=document.getElementById("tok").value.trim()||token;
+  connNote.textContent="Verbinden…";
+  try{
+    applyState(await api("/werkvloer/state?app="+APPKEY));
+    if(!SAME)LS.set("wv-server",server);
+    LS.set("wv-token",token);
+    document.getElementById("tok").value="";
+    setConnected(true);
+  }catch(err){setConnected(false,err.status===401?"Token klopt niet.":"Verbinden lukte niet: "+err.message)}
+});
+document.getElementById("connOff").addEventListener("click",()=>{token="";LS.set("wv-token",null);setConnected(false)});
+tasks.forEach(q=>{q.id=++seq;if(q.st!=="klaar"&&q.st!=="fout"){q.st="wacht";q.res=""}const a=agents.find(x=>x.id===q.ag);if(a&&q.st==="wacht")a.queue.push(q)});
+var aiNote=document.getElementById("aiNote");
+setConnected(false);
+if(token&&server)pullState().then(()=>{if(!connNote.textContent.startsWith("Token"))setConnected(true)});
+
+const ST={wacht:["In wachtrij","#ffb400"],bezig:["Bezig","var(--kn)"],klaar:["Klaar","var(--ok)"],fout:["Niet gelukt","#e6261f"]};
+function mineRender(){
+  document.getElementById("mineEmpty").style.display=tasks.length?"none":"";
+  mine.innerHTML=tasks.map(q=>{const a=agents.find(x=>x.id===q.ag);const s=ST[q.st];return `<li data-q="${q.id}"><div class="hd"><b>${esc(a?a.name:"?")} · ${esc(a?CO[a.co].name:"")}</b><span class="tag" style="color:${s[1]}">${s[0]}</span></div><div>${esc(q.text)}</div>${q.res?`<div class="res" id="res${q.id}">${esc(q.res)}</div>`:(q.st==="bezig"?`<div class="res" id="res${q.id}">Aan het werk…</div>`:"")}<div class="row">${q.res&&q.st==="klaar"?`<button class="btn sm" type="button" data-copy="${q.id}">Kopieer</button>`:""}${q.st==="fout"?`<button class="btn sm" type="button" data-retry="${q.id}">Opnieuw</button>`:""}${q.st!=="bezig"?`<button class="btn sm" type="button" data-del="${q.id}">Verwijder</button>`:""}</div></li>`}).join("");
+}
+mine.addEventListener("click",async e=>{
+  const b=e.target.closest("button");if(!b)return;
+  const id=+(b.dataset.copy||b.dataset.retry||b.dataset.del),q=tasks.find(x=>x.id===id);if(!q)return;
+  if(b.dataset.copy){try{await navigator.clipboard.writeText(q.res);b.textContent="Gekopieerd"}catch(err){b.textContent="Kopiëren lukt niet"}}
+  if(b.dataset.retry){q.st="wacht";q.res="";agents.find(x=>x.id===q.ag)?.queue.push(q);save();mineRender()}
+  if(b.dataset.del){tasks=tasks.filter(x=>x!==q);const a=agents.find(x=>x.id===q.ag);if(a)a.queue=a.queue.filter(x=>x!==q);save();mineRender()}
+});
+
+document.getElementById("give").addEventListener("submit",e=>{
+  e.preventDefault();
+  const text=what.value.trim();if(!text)return;
+  const a=agents.find(x=>x.id===whoSel.value);
+  const q={id:++seq,ag:a.id,text,st:"wacht",res:"",at:now()};
+  tasks.unshift(q);a.queue.push(q);what.value="";save();mineRender();
+  log(a,"kreeg een taak van jou: "+text);
+  if(a.mode==="away")a.wait=0;
+});
+
+async function startTask(a){
+  const q=a.queue.find(x=>x.st==="wacht");if(!q)return;
+  a.busy=true;q.st="bezig";a.task=q.text;
+  const bt=a.el.querySelector(".bt");bt.textContent="!";
+  mineRender();
+  const t0=Date.now();
+  try{
+    const r=await api("/assistant",{method:"POST",body:JSON.stringify({app:APPKEY,agent:a.name,role:a.role,task:q.text})});
+    q.res=r.reply+(r.demo_data?"\n\n(Let op: een deel van de gegevens was voorbeelddata, omdat die bron nog niet is aangesloten.)":"");
+    resp.push((r.ms||Date.now()-t0)/1000);if(resp.length>40)resp.shift();
+    const wait=3000-(Date.now()-t0);if(wait>0)await new Promise(r=>setTimeout(r,wait));
+    q.st="klaar";
+    a.done++;a.hist.unshift({t:"Jouw taak: "+q.text,at:now()});
+    log(a,"✓ jouw taak: "+q.text);
+    bt.textContent="✓";a.el.querySelector(".bub rect").setAttribute("fill","var(--ok)");
+    setTimeout(()=>{bt.textContent="…";a.el.querySelector(".bub rect").setAttribute("fill",CO[a.co].acc)},1800);
+  }catch(err){
+    q.st="fout";q.res=err&&err.status===429?"Even te veel verzoeken. Probeer het over een minuut opnieuw.":"Dit lukte niet"+(err&&err.message?": "+err.message:".");
+    if(err&&err.status===401)setConnected(false,"Token geweigerd door de server.");
+    log(a,"kon de taak niet afronden");
+  }
+  a.queue=a.queue.filter(x=>x!==q);
+  a.busy=false;a.task=pick(a.pool);a.next=6+R()*10;
+  save();mineRender();cardsRender();
+  if(connected)pullState();
+}
+mineRender();
+
+let last=performance.now(),uiT=0;
+function tick(t){
+  const dt=Math.min(.1,(t-last)/1000);last=t;
+  if(!paused){
+    for(const a of agents){
+      if(a.mode==="sit"){
+        a.next-=dt;a.walkNext-=dt;
+        if(!a.busy&&a.queue.some(q=>q.st==="wacht")){startTask(a);continue}
+        if(a.busy)continue;
+        if(a.next<=0){if(!connected)complete(a);a.next=6+R()*12}
+        if(a.walkNext<=0&&!reduce&&agents.filter(x=>x.mode!=="sit").length<3){
+          a.mode="out";a.target=R()<.5?60:920;a.walkNext=18+R()*30;setPose(a);
+          a.el.querySelector(".cup").style.display="none";
+          log(a,a.target<200?"haalt koffie":"checkt de server");
+        }
+      }else if(a.mode==="out"||a.mode==="back"){
+        const goal=a.mode==="out"?a.target:a.home,dir=Math.sign(goal-a.x),sp=110;
+        a.x+=dir*sp*dt;a.ph+=dt*10;
+        const sw=Math.sin(a.ph)*6;
+        a.el.querySelector(".lg1").setAttribute("transform",`rotate(${sw} -4 200)`);
+        a.el.querySelector(".lg2").setAttribute("transform",`rotate(${-sw} 6 200)`);
+        if((dir>0&&a.x>=goal)||(dir<0&&a.x<=goal)||dir===0){
+          a.x=goal;
+          if(a.mode==="out"){a.mode="away";a.wait=2+R()*3}else{a.mode="sit";setPose(a)}
+        }
+        a.el.setAttribute("transform",`translate(${a.x},0)${dir<0?" scale(-1,1)":""}`);
+        if(a.mode==="sit")a.el.setAttribute("transform",`translate(${a.x},0)`);
+      }else if(a.mode==="away"){
+        a.wait-=dt;
+        if(a.wait<=0){a.mode="back";if(a.target<200)a.el.querySelector(".cup").style.display=""}
+      }
+    }
+    uiT+=dt;if(uiT>.5){uiT=0;cardsRender()}
+  }
+  requestAnimationFrame(tick);
+}
+requestAnimationFrame(tick);
+
+function choose(id){sel=id;cardsRender();if(innerWidth<900)document.getElementById("det").scrollIntoView({behavior:"smooth",block:"nearest"})}
+floors.addEventListener("click",e=>{const g=e.target.closest("[data-id]");if(g)choose(g.dataset.id)});
+
+const fb={all:"fAll",tj:"fTj",kn:"fKn"};
+for(const [k,id] of Object.entries(fb)){
+  document.getElementById(id).addEventListener("click",()=>{
+    filter=k;
+    for(const [k2,id2] of Object.entries(fb))document.getElementById(id2).setAttribute("aria-pressed",String(k2===k));
+    for(const c of Object.keys(CO))document.getElementById("fl-"+c)?.classList.toggle("hide",k!=="all"&&k!==c);
+    for(const li of feed.children)li.classList.toggle("hide",k!=="all"&&li.dataset.co!==k);
+  });
+}
+const pb=document.getElementById("fPause");
+pb.addEventListener("click",()=>{paused=!paused;pb.setAttribute("aria-pressed",String(paused));pb.textContent=paused?"Verder":"Pauze";document.body.classList.toggle("paused",paused)});
+
+function retheme(){for(const w of document.querySelectorAll(".wall"))w.setAttribute("fill",dark()?w.dataset.d:w.dataset.l)}
+new MutationObserver(retheme).observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]});
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change",retheme);
+}
+</script>
+</body>
+</html>
