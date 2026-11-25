@@ -1,0 +1,407 @@
+<title>__TITLE__</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+/* Layout: één verdieping van een kantoorpand met vijf kamers, elk met één assistent achter het bureau.
+   Begane grond: receptie waar je taken geeft. Rechts uitvoer en logboek; op de telefoon eronder.
+   TableJoy = baksteen grachtenpand, koraal. Kanalo = donkerblauw pand, cyaan. */
+:root{
+  --bg:#f4f1ec; --fg:#1d1a17; --mute:#6b645c; --line:#e2dcd3; --card:#ffffff; --room:#f7f3ec;
+  --facade:#9a4b35; --facade-dark:#7a3826; --frame:#f7f3ec; --sign:#1d1a17;
+  --wall:#fff4ea; --sky:#cfe4f3; --city:#9fb5c6; --wood:#a8693f; --wood-top:#c48450; --chair:#3b3f49; --plate:#fbf7ef;
+  --accent:#ff6f59; --ok:#1f9d5b; --busy:#e39a12; --bad:#d6342a; --idle:#9a948c;
+  --f-display:"Figtree",system-ui,sans-serif; --f-body:"Figtree",system-ui,sans-serif; --f-mono:"JetBrains Mono",ui-monospace,monospace;
+}
+:root[data-app="kn"]{--facade:#1b2a4a; --facade-dark:#0f1830; --wall:#eaf6fd; --accent:#14b8e6; --wood:#3a4766; --wood-top:#4b5b80; --bg:#f2f5f9; --room:#f5f8fb; --frame:#f5f8fb}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#121315; --fg:#eef0f3; --mute:#a0a5ad; --line:#2b2e33; --card:#1a1c20; --room:#202227;
+  --frame:#cfd3d9; --sign:#08090a; --wall:#262320; --sky:#1f3446; --city:#0f1a24; --wood:#6e4429; --wood-top:#855333; --chair:#121418; --plate:#e7e2d8; --idle:#6c6862; color-scheme:dark}
+  :root[data-app="kn"]:not([data-theme="light"]){--facade:#132038; --facade-dark:#0a1222; --wall:#16202c; --wood:#2b3550; --wood-top:#36425f}}
+:root[data-theme="dark"]{
+  --bg:#121315; --fg:#eef0f3; --mute:#a0a5ad; --line:#2b2e33; --card:#1a1c20; --room:#202227;
+  --frame:#cfd3d9; --sign:#08090a; --wall:#262320; --sky:#1f3446; --city:#0f1a24; --wood:#6e4429; --wood-top:#855333; --chair:#121418; --plate:#e7e2d8; --idle:#6c6862; color-scheme:dark}
+:root[data-theme="dark"][data-app="kn"]{--facade:#132038; --facade-dark:#0a1222; --wall:#16202c; --wood:#2b3550; --wood-top:#36425f}
+*{box-sizing:border-box;min-width:0}
+body{background:var(--bg);color:var(--fg);font:16px/1.55 var(--f-body);overflow-x:clip}
+.page{max-width:1280px;margin:0 auto;padding-block:clamp(18px,3vw,34px);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:12px 24px;margin-bottom:20px}
+h1{font:800 clamp(30px,4.4vw,46px)/1.05 var(--f-display);letter-spacing:-.02em;margin:0;text-wrap:balance}
+.sub{color:var(--mute);margin:6px 0 0;max-width:60ch}
+.dash{font:600 14px var(--f-body);color:var(--fg);text-decoration:none;border:1px solid var(--line);background:var(--card);border-radius:20px;padding:8px 14px;min-height:40px;display:inline-flex;align-items:center;gap:8px}
+.dash i{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.dash:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:24px;align-items:start}
+.pand{min-width:0}
+.roof{display:block;width:100%;height:auto}
+.floor{background:var(--facade);border-left:10px solid var(--facade-dark);border-right:10px solid var(--facade-dark);padding:8px 14px 14px}
+.flabel{display:flex;justify-content:space-between;color:#fff;font:600 13px var(--f-body);padding:2px 2px 8px;gap:8px;flex-wrap:wrap}
+.flabel b{font:500 12px var(--f-mono);letter-spacing:.08em;text-transform:uppercase;opacity:.85}
+.rooms{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.room{background:var(--room);border-radius:6px 6px 3px 3px;padding:6px;display:grid;gap:6px;align-content:start;border:0;font:inherit;color:inherit;text-align:left}
+button.room{cursor:pointer}
+.room:focus-visible,.room.sel{outline:3px solid var(--accent);outline-offset:2px}
+.room svg{display:block;width:100%;height:auto;border-radius:3px}
+.room.vacant svg{filter:saturate(.35);opacity:.8}
+.cap{padding:0 4px 4px;display:grid;gap:3px}
+.cap b{font:800 15px var(--f-display);display:flex;align-items:center;gap:6px}
+.cap .role{font:500 11px var(--f-mono);letter-spacing:.04em;color:var(--mute);text-transform:uppercase}
+.cap .st{font-size:13px;color:var(--mute);line-height:1.35;overflow-wrap:anywhere}
+.cap .nums{display:flex;flex-wrap:wrap;gap:4px}
+.cap .nums span{font:600 12px var(--f-body);background:var(--card);border:1px solid var(--line);border-radius:10px;padding:1px 8px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.cap .nums i{font-style:normal;font-weight:800}.up{color:var(--ok)}.down{color:var(--bad)}
+.lamp{width:9px;height:9px;border-radius:50%;background:var(--ok);display:inline-block;flex:none}
+.lamp.busy{background:var(--busy)}.lamp.idle{background:var(--idle)}.lamp.wait{background:var(--busy);opacity:.6}
+.ground{background:var(--facade);border-left:10px solid var(--facade-dark);border-right:10px solid var(--facade-dark);border-bottom:12px solid #4a4640;border-top:6px solid var(--facade-dark);padding:14px}
+.hall{background:var(--room);border-radius:6px;padding:14px;display:grid;gap:8px}
+.hall h2{margin:0;font:800 19px var(--f-display);display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.hall h2 span{font:500 11px var(--f-mono);color:var(--mute);letter-spacing:.08em}
+label{font:600 14px var(--f-body)}
+select,textarea{font:16px var(--f-body);width:100%;padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--fg)}
+textarea{min-height:72px;resize:vertical}
+select:focus-visible,textarea:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.btn{font:700 15px var(--f-body);min-height:44px;padding:0 18px;border-radius:22px;border:0;background:var(--fg);color:var(--bg);cursor:pointer}
+.btn.accent{background:var(--accent);color:#fff}
+.btn:disabled{opacity:.5;cursor:default}
+.btn.sm{min-height:36px;font-size:14px;padding:0 12px;background:var(--card);color:var(--fg);border:1px solid var(--line)}
+.note{font-size:13px;color:var(--mute);margin:0}
+aside{position:sticky;top:calc(16px + env(safe-area-inset-top,0px));display:grid;gap:16px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.panel h3{margin:0 0 8px;font:800 17px var(--f-display)}
+#outSteps{list-style:none;margin:8px 0;padding:0;display:grid;gap:4px;font:500 12px var(--f-mono);color:var(--mute)}
+#outRes{white-space:pre-wrap;margin:8px 0;padding:10px;border-radius:8px;background:var(--bg);max-height:420px;overflow:auto;font-size:15px}
+#log{list-style:none;margin:0;padding:0;display:grid;gap:8px;max-height:340px;overflow:auto}
+#log li{font-size:14px;line-height:1.4;border-bottom:1px solid var(--line);padding-bottom:8px}
+#log button{all:unset;cursor:pointer;display:block}
+#log button:focus-visible{outline:2px solid var(--accent)}
+#log time{color:var(--mute);font:500 12px var(--f-mono);margin-right:6px}
+.tag{font:700 12px var(--f-body);white-space:nowrap}
+svg text{font-family:var(--f-body)}
+.hands{animation:typing .28s ease-in-out infinite alternate;animation-play-state:paused}
+.busy .hands{animation-play-state:running}
+.bub{opacity:0;transition:opacity .2s}
+.busy .bub{opacity:1}
+.bub circle{animation:dot 1s infinite}
+.bub circle:nth-child(3){animation-delay:.15s}.bub circle:nth-child(4){animation-delay:.3s}
+@keyframes typing{to{transform:translateY(2px)}}
+@keyframes dot{50%{opacity:.3}}
+@media (prefers-reduced-motion:reduce){.hands,.bub circle{animation:none}}
+@media (max-width:1100px){.layout{grid-template-columns:minmax(0,1fr)}aside{position:static}}
+@media (max-width:760px){.rooms{grid-template-columns:repeat(2,minmax(0,1fr))}.floor,.ground{border-left-width:6px;border-right-width:6px;padding-left:8px;padding-right:8px}}
+</style>
+
+<div class="page">
+<header>
+  <div>
+    <h1 id="h1"></h1>
+    <p class="sub" id="sub"></p>
+  </div>
+  <a class="dash" id="dash" target="_blank" rel="noopener"><i></i><span></span></a>
+</header>
+
+<div class="layout">
+  <main class="pand" aria-label="Kantoorpand">
+    <svg class="roof" viewBox="0 0 1000 120" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+      <path id="roofShape" fill="var(--facade)"/>
+      <rect x="350" y="38" width="300" height="66" rx="8" fill="var(--sign)"/>
+      <text id="signName" x="500" y="78" text-anchor="middle" font-size="32" font-weight="800" fill="#fff"></text>
+      <text x="500" y="96" text-anchor="middle" font-size="11" font-family="JetBrains Mono,monospace" fill="#fff" opacity=".7" letter-spacing="3">KANTOOR · 1E VERDIEPING</text>
+    </svg>
+    <section class="floor" aria-labelledby="fl"><div class="flabel"><span id="fl">Vijf bureaus</span><b>1e verdieping</b></div><div class="rooms" id="rooms"></div></section>
+    <div class="ground">
+      <form class="hall" id="give">
+        <h2>Receptie <span>BEGANE GROND</span></h2>
+        <label for="who">Taak voor</label>
+        <select id="who"></select>
+        <div class="row"><button class="btn accent" id="analyse" type="button">Start analyse</button></div>
+        <label for="what">Of geef een eigen opdracht</label>
+        <textarea id="what" placeholder="Bijv. vergelijk deze maand met vorige maand"></textarea>
+        <div class="row"><button class="btn" id="go" type="submit">Geef taak</button><button class="btn sm" id="stop" type="button" hidden>Stop</button></div>
+        <p class="note" id="aiNote">De assistenten werken met AI op je Claude-account. De eerste keer vraagt claude.ai toestemming.</p>
+      </form>
+    </div>
+  </main>
+  <aside>
+    <section class="panel" aria-live="polite">
+      <h3>Uitvoer</h3>
+      <p class="note" id="outEmpty">Nog niets. Kies een assistent bij de receptie en start een analyse.</p>
+      <div id="outBody" hidden>
+        <div class="row" style="justify-content:space-between"><b id="outWho"></b><span class="tag" id="outTag"></span></div>
+        <p class="note" id="outTask"></p>
+        <ul id="outSteps"></ul>
+        <div id="outRes"></div>
+        <div class="row"><button class="btn sm" type="button" id="copy">Kopieer</button></div>
+      </div>
+    </section>
+    <section class="panel">
+      <h3>Logboek</h3>
+      <ul id="log"><li class="note">Alleen taken die jij geeft komen hier. Er lopen geen nep-taken.</li></ul>
+    </section>
+  </aside>
+</div>
+<p class="note" id="foot" style="margin-top:16px"></p>
+</div>
+
+<script>
+{
+const APP="__APP__";
+const MC="Metricool Social Media Management", KN="Kanalo";
+const CONF={
+  kn:{name:"Kanalo",brand:"7872847",dash:["Kanalo Live","https://claude.ai/artifact/8v2kDEvzS8L5jdP55UGfi4"],
+    sub:"Vijf bureaus. Twee assistenten zijn aan het werk: groei in social media en klanten, en kansen op social media. De andere drie wachten op een rol.",
+    foot:"Cijfers komen live uit Kanalo (installaties, abonnees, omzet) en Metricool (TikTok, Instagram, Facebook). De assistenten lezen alleen; ze versturen of wijzigen niets.",
+    about:"Kanalo is een IPTV-speler voor iPhone, iPad, Apple TV en Mac met een Pro-abonnement (maand of jaar) en proefperiode via de App Store. Kanalo is ALLEEN een speler: gebruikers voegen zelf hun eigen M3U- of Xtream-playlist toe. Beloof nooit gratis zenders, films of sport, noem geen playlist-bronnen of zendernamen. Bedragen in euro's, bruto (incl. btw, vóór Apple-commissie). Social media: TikTok is het hoofdkanaal, daarnaast Instagram en Facebook.",
+    networks:{tiktok:["TKEV07","TKEV08"],instagram:["IGEV01","IGEV43"],facebook:["FBEV17","FBEV47"]},
+    content:{tiktok_videos:["TKPO02","TKPO03","TKPO05","TKPO07","TKPO08","TKPO09","TKPO10"],instagram_reels:["IGRE02","IGRE06","IGRE03","IGRE23","IGRE10","IGRE07","IGRE21"],facebook_reels:["FBRE02","FBRE06","FBRE05","FBRE10","FBRE08"]},
+    team:[
+      {n:"Sara",r:"Groei-analist",job:"growth",skin:"#f2c7a5",hair:"#3b2a20",shirt:"#14b8e6"},
+      {n:"Lotte",r:"Social-kansen",job:"social",skin:"#e8b48a",hair:"#d7a24a",shirt:"#ff5c8a",mug:true},
+      {n:"Finn",skin:"#c68863",hair:"#222",shirt:"#8fd3ff",plant:true},
+      {n:"Ravi",skin:"#8d5a3b",hair:"#111",shirt:"#ffb400"},
+      {n:"Daan",skin:"#a8714f",hair:"#2b2b2b",shirt:"#1f9d5b",mug:true}]},
+  tj:{name:"TableJoy",brand:"8342934",dash:["Tablejoy Live","https://claude.ai/artifact/UuZJkNoMbD2e8JtrwmQ28r"],
+    sub:"Vijf bureaus. De social-assistent is aan het werk. De groei-analist start zodra het TableJoy-dashboard met klantdata gekoppeld is. De andere drie wachten op een rol.",
+    foot:"Cijfers komen live uit Metricool (Instagram en Facebook). Klantdata van TableJoy is nog niet gekoppeld. De assistenten lezen alleen; ze versturen of wijzigen niets.",
+    about:"TableJoy (tablejoy.app) is software voor restaurants: online reserveren via de eigen website zonder commissie, aanbetaling tegen no-shows, wachtlijst, online bestellen, gastprofielen. 30 dagen gratis proberen. Doelgroep: zelfstandige restaurants in Nederland. Social media: Instagram en Facebook.",
+    networks:{instagram:["IGEV01","IGEV43"],facebook:["FBEV17","FBEV47"]},
+    content:{instagram_posts:["IGPO02","IGPO06","IGPO03","IGPO28","IGPO13","IGPO08","IGPO27"],instagram_reels:["IGRE02","IGRE06","IGRE03","IGRE23","IGRE10","IGRE07","IGRE21"],facebook_posts:["FBPO02","FBPO06","FBPO03","FBPO11","FBPO13","FBPO08","FBPO14"]},
+    team:[
+      {n:"Sanne",r:"Groei-analist",job:"growth",waiting:true,skin:"#f0c8a8",hair:"#6b3d1f",shirt:"#ff6f59"},
+      {n:"Noor",r:"Social-kansen",job:"social",skin:"#8d5a3b",hair:"#111",shirt:"#1f9d5b",mug:true},
+      {n:"Bram",skin:"#a8714f",hair:"#111",shirt:"#ffb400",plant:true},
+      {n:"Mila",skin:"#f2c7a5",hair:"#3b2a20",shirt:"#3a6df0"},
+      {n:"Jules",skin:"#e8b48a",hair:"#2b2b2b",shirt:"#8a4fff",mug:true}]}
+};
+const C=CONF[APP];
+document.documentElement.dataset.app=APP;
+document.getElementById("h1").textContent=C.name+" kantoor";
+document.getElementById("sub").textContent=C.sub;
+document.getElementById("foot").textContent=C.foot;
+document.getElementById("signName").textContent=C.name;
+const dash=document.getElementById("dash");dash.href=C.dash[1];dash.querySelector("span").textContent=C.dash[0];
+document.getElementById("roofShape").setAttribute("d",APP==="tj"
+  ?"M0 120 V100 H120 V76 H220 V50 H330 V20 H670 V50 H780 V76 H880 V100 H1000 V120 Z"
+  :"M0 120 V96 L60 70 H940 L1000 96 V120 Z M330 70 V24 H670 V70 Z");
+
+// ---------- hulpjes ----------
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const amsDate=(d=new Date())=>d.toLocaleDateString("sv-SE",{timeZone:"Europe/Amsterdam"});
+function amsOffset(d){const p=new Intl.DateTimeFormat("en-US",{timeZone:"Europe/Amsterdam",timeZoneName:"longOffset"}).formatToParts(d).find(x=>x.type==="timeZoneName");const m=/GMT([+-]\d\d:\d\d)/.exec(p?.value||"");return m?m[1]:"+01:00"}
+const offOf=iso=>amsOffset(new Date(iso.slice(0,10)+"T12:00:00Z"));
+const dayStart=iso=>iso+"T00:00:00"+offOf(iso), dayEnd=iso=>iso+"T23:59:59"+offOf(iso);
+function addDays(iso,n){const d=new Date(iso+"T12:00:00Z");d.setUTCDate(d.getUTCDate()+n);return d.toISOString().slice(0,10)}
+const hhmm=ts=>new Date(ts).toLocaleTimeString("nl-NL",{hour:"2-digit",minute:"2-digit",timeZone:"Europe/Amsterdam"});
+const fmt=v=>typeof v==="number"&&isFinite(v)?Math.round(v).toLocaleString("nl-NL"):"—";
+const eur=v=>typeof v==="number"?"€ "+v.toLocaleString("nl-NL",{minimumFractionDigits:2,maximumFractionDigits:2}):"—";
+const DROP=/^(email|e-mail|e_mail|device_id|ip|device_name|creatorUserMail|creatorUserId|original_transaction_id|media|mediaAltText|uuid)$/i;
+function strip(o){if(Array.isArray(o))return o.map(strip);if(o&&typeof o==="object"){const r={};for(const[k,v]of Object.entries(o))if(!DROP.test(k))r[k]=strip(v);return r}return o}
+const small=(o,max=24000)=>{const s=JSON.stringify(strip(o));return s.length>max?s.slice(0,max)+"…(ingekort)":s};
+// Metricool geeft rijen [waarde per metric..., "YYYYMMDD"], ongesorteerd en als tekst.
+function series(payload,metrics){
+  const rows=(payload?.rows||[]).slice().sort((a,b)=>String(a.at(-1)).localeCompare(String(b.at(-1))));
+  const out={};
+  metrics.forEach((m,i)=>{out[m]=rows.map(r=>({d:String(r.at(-1)),v:r[i]==null?null:Number(r[i])})).filter(x=>x.v!=null&&isFinite(x.v))});
+  return out;
+}
+function growth(points){if(!points||!points.length)return null;return {now:points.at(-1).v,delta:points.at(-1).v-points[0].v}}
+
+// ---------- kamers ----------
+function skyline(){
+  const h=[[34,30],[52,22],[70,34],[88,26],[106,30],[124,20],[142,32],[160,24],[178,28],[196,22]];
+  return h.map(([x,t],i)=>{const top=92-t;return i%2?`<path d="M${x} 92 V${top+6} H${x+4} V${top} H${x+12} V${top+6} H${x+16} V92Z" fill="var(--city)"/>`:`<path d="M${x} 92 V${top+8} L${x+8} ${top} L${x+16} ${top+8} V92Z" fill="var(--city)"/>`}).join("");
+}
+function roomSVG(a){
+  return `<svg viewBox="0 0 240 190" role="img" aria-label="${esc(a.n)} aan het bureau">
+  <rect width="240" height="190" fill="var(--wall)"/>
+  <rect x="30" y="12" width="180" height="82" rx="3" fill="var(--sky)"/>${skyline()}
+  <rect x="30" y="12" width="180" height="82" rx="3" fill="none" stroke="var(--frame)" stroke-width="6"/>
+  <line x1="120" y1="12" x2="120" y2="94" stroke="var(--frame)" stroke-width="5"/><line x1="30" y1="50" x2="210" y2="50" stroke="var(--frame)" stroke-width="4"/>
+  ${a.plant?`<g><rect x="200" y="104" width="22" height="24" rx="3" fill="#7a4a2b"/><ellipse cx="204" cy="98" rx="9" ry="14" fill="#3f8f4e"/><ellipse cx="218" cy="96" rx="8" ry="15" fill="#2f7a40"/><ellipse cx="211" cy="90" rx="7" ry="13" fill="#4ea05e"/></g>`:""}
+  <g transform="translate(120 128) scale(1.4) translate(-120 -128)">
+  <rect x="86" y="74" width="68" height="64" rx="14" fill="var(--chair)"/>
+  <rect x="94" y="100" width="52" height="40" rx="17" fill="${a.shirt}"/>
+  <rect x="113" y="92" width="14" height="12" rx="4" fill="${a.skin}"/>
+  <circle cx="120" cy="80" r="17" fill="${a.skin}"/>
+  <path d="M103 79a17 17 0 0 1 34-3c-6-7-20-9-34 3z" fill="${a.hair}"/>
+  <circle cx="114" cy="82" r="1.8" fill="#2a2320"/><circle cx="126" cy="82" r="1.8" fill="#2a2320"/>
+  <path d="M115 89q5 4 10 0" stroke="#2a2320" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+  <path d="M96 126 L101 102 H139 L144 126Z" fill="#c9ced6"/><circle cx="120" cy="114" r="3.5" fill="var(--accent)"/>
+  <g class="hands"><rect x="90" y="121" width="16" height="8" rx="4" fill="${a.skin}"/><rect x="134" y="121" width="16" height="8" rx="4" fill="${a.skin}"/></g>
+  </g>
+  <rect x="10" y="126" width="220" height="12" rx="3" fill="var(--wood-top)"/>
+  <rect x="18" y="138" width="204" height="52" fill="var(--wood)"/>
+  ${a.mug?`<g><rect x="164" y="112" width="14" height="15" rx="3" fill="#fff" stroke="#8a8378"/><path d="M178 116 q6 3 0 8" stroke="#8a8378" fill="none" stroke-width="2"/></g>`:`<g><rect x="160" y="118" width="26" height="8" rx="1" fill="#fff" stroke="#d8d2c8"/><rect x="163" y="114" width="24" height="5" rx="1" fill="#f6efe2" stroke="#d8d2c8"/></g>`}
+  <rect x="84" y="150" width="72" height="22" rx="3" fill="var(--plate)" stroke="#d8cfbf"/>
+  <text x="120" y="166" text-anchor="middle" font-size="13" font-weight="800" fill="#2a2320">${esc(a.n)}</text>
+  <g class="bub" transform="translate(152,18)"><rect width="40" height="22" rx="11" fill="var(--accent)"/><path d="M8 20 l-4 9 l12 -7z" fill="var(--accent)"/><circle cx="12" cy="11" r="2.6" fill="#fff"/><circle cx="20" cy="11" r="2.6" fill="#fff"/><circle cx="28" cy="11" r="2.6" fill="#fff"/></g>
+  </svg>`;
+}
+const agents=C.team.map((a,i)=>({...a,id:"a"+i,busy:false,step:"",status:a.job?(a.waiting?"Wacht op koppeling met het TableJoy-dashboard (klantdata)":"Live cijfers laden…"):"Nog geen rol",nums:[]}));
+const active=agents.filter(a=>a.job&&!a.waiting);
+document.getElementById("rooms").innerHTML=agents.map(a=>{
+  const tag=a.job&&!a.waiting?"button":"div";
+  return `<${tag} ${tag==="button"?'type="button" ':""}class="room${a.job?"":" vacant"}" id="room-${a.id}" data-id="${a.id}">${roomSVG(a)}<div class="cap"><b><span class="lamp${a.job?(a.waiting?" wait":""):" idle"}" id="lamp-${a.id}"></span>${esc(a.n)}</b><span class="role">${esc(a.r||"Vrije plek")}</span><span class="nums" id="nums-${a.id}"></span><span class="st" id="st-${a.id}"></span></div></${tag}>`}).join("");
+function paint(a){
+  const room=document.getElementById("room-"+a.id);room.classList.toggle("busy",a.busy);
+  const lamp=document.getElementById("lamp-"+a.id);lamp.classList.toggle("busy",a.busy);
+  document.getElementById("st-"+a.id).textContent=a.busy?"Bezig: "+(a.step||"denkt na…"):a.status;
+  const n=document.getElementById("nums-"+a.id);n.innerHTML="";
+  for(const [label,val,delta] of a.nums){const s=document.createElement("span");s.textContent=label+" "+val;if(delta){const d=document.createElement("i");d.className=delta.startsWith("-")?"down":"up";d.textContent=" "+delta;s.append(d)}n.append(s)}
+}
+const paintAll=()=>agents.forEach(paint);
+paintAll();
+const A=job=>agents.find(a=>a.job===job);
+
+// ---------- live data ----------
+let mcp=null,sample=null,db=null;
+const live={};
+function errText(e,s){switch(e&&e.code){case "needs_reauth":return s+" opnieuw verbinden in Instellingen → Connectors";case "server_not_connected":case "selection_required":return s+" is niet verbonden";case "not_in_manifest":case "consent_required":return "Geen toegang tot "+s;case "blocked_by_policy":case "approval_required":return s+" is geblokkeerd";default:return s+" is even niet bereikbaar"}}
+const AUTHZ=/^(needs_reauth|server_not_connected|blocked_by_policy|approval_required|not_in_manifest|selection_required|consent_required)$/;
+const NETLABEL={tiktok:"TikTok",instagram:"Instagram",facebook:"Facebook"};
+const sign=n=>n>0?"+"+fmt(n):n<0?"-"+fmt(-n):"±0";
+function renderLive(){
+  const soc=A("social"),gr=A("growth");
+  if(live.followers){
+    const s=live.followers;
+    soc.nums=Object.entries(C.networks).map(([net,[m]])=>{const g=growth(s[m]);return g?[NETLABEL[net],fmt(g.now),sign(g.delta)]:null}).filter(Boolean);
+    soc.status="Volgers nu, met verschil over de laatste 30 dagen";
+  }else if(live.folErr){soc.nums=[];soc.status=live.folErr}
+  if(APP==="kn"&&gr){
+    const d=live.daily,nums=[];
+    if(d){const tr=d.trailing||[];const inst=tr.reduce((s,x)=>s+(+x.new_devices||0),0);nums.push(["Installaties 14 d",fmt(inst)],["Betalend",fmt(d.purchases?.paying_subscribers)]);}
+    if(live.mrr)nums.push(["MRR",eur(live.mrr.mrr)]);
+    if(live.followers){const g=growth(live.followers[C.networks.tiktok[0]]);if(g)nums.push(["TikTok-volgers",sign(g.delta)])}
+    gr.nums=nums;
+    gr.status=live.knErr||(d?"Klanten en social, live":"Live cijfers laden…");
+  }
+  paintAll();
+}
+function startWatches(){
+  const today=amsDate(),from=addDays(today,-30);
+  const fm=Object.values(C.networks).map(x=>x[0]);
+  mcp.watchTool(MC,"getAnalyticsDataByMetrics",{brandId:C.brand,from:dayStart(from),to:dayEnd(today),metrics:fm},ev=>{
+    if(ev.type==="data"){live.followers=series(ev.result.payload,fm);live.folErr=null}
+    else{if(AUTHZ.test(ev.error.code))live.followers=null;live.folErr=errText(ev.error,MC)}
+    renderLive()},{refetchInterval:900000});
+  if(APP==="kn"){
+    for(const [tool,key] of [["get_daily_stats","daily"],["get_mrr","mrr"]])
+      mcp.watchTool(KN,tool,null,ev=>{if(ev.type==="data"){live[key]=ev.result.payload;live.knErr=null}else{if(AUTHZ.test(ev.error.code))live[key]=null;live.knErr=errText(ev.error,KN)}renderLive()},{refetchInterval:900000});
+  }
+}
+
+// ---------- tools (alleen lezen) ----------
+let current=null;
+async function read(server,tool,input,a,label,signal){
+  if(a){a.step=label;paint(a)}
+  if(current&&current.status==="bezig"){current.steps.push(label);stepUI(label)}
+  if(!mcp)throw new Error("Geen toegang tot de koppelingen in deze weergave");
+  try{return (await mcp.callTool(server,tool,input,{signal})).payload}
+  catch(e){throw new Error(errText(e,server)+(e.code==="tool_error"&&e.message?": "+e.message:""))}
+}
+const PERIODS=["today","yesterday","this_week","last_week","this_month","last_month","last_7_days","last_30_days","last_90_days","this_year"];
+const DATE={type:"string",description:"YYYY-MM-DD"};
+function toolsFor(a,signal){
+  const t=[];
+  t.push({name:"volgers",description:"Volgers per dag per netwerk ("+Object.keys(C.networks).map(n=>NETLABEL[n]).join(", ")+") tussen twee datums, met per dag gewonnen volgers. Rijen: [volgers, nieuw, datum YYYYMMDD] per netwerk.",
+    inputSchema:{type:"object",properties:{van:DATE,tot:DATE},required:["van","tot"]},
+    execute:async i=>{const res={};for(const [net,m] of Object.entries(C.networks)){const p=await read(MC,"getAnalyticsDataByMetrics",{brandId:C.brand,from:dayStart(String(i.van)),to:dayEnd(String(i.tot)),metrics:m},a,"leest "+NETLABEL[net]+"-volgers",signal);const s=series(p,m);res[net]={volgers:s[m[0]].map(x=>[x.d,x.v]),nieuw_per_dag:s[m[1]].map(x=>[x.d,x.v])}}return small(res)}});
+  t.push({name:"content_prestaties",description:"Prestaties per post/video/reel uit Metricool. bron: "+Object.keys(C.content).join(", ")+". Kolommen in de volgorde van de metrics: "+Object.entries(C.content).map(([k,v])=>k+"="+v.join(",")).join("; ")+" (meestal: weergaven/bereik, likes, reacties, shares, ...).",
+    inputSchema:{type:"object",properties:{bron:{type:"string",enum:Object.keys(C.content)},van:DATE,tot:DATE},required:["bron","van","tot"]},
+    execute:async i=>{const m=C.content[String(i.bron)];if(!m)throw new Error("Onbekende bron");return small(await read(MC,"getAnalyticsDataByMetrics",{brandId:C.brand,from:dayStart(String(i.van)),to:dayEnd(String(i.tot)),metrics:m},a,"bekijkt "+String(i.bron).replace("_"," "),signal))}});
+  t.push({name:"ingeplande_posts",description:"Posts in de Metricool-planner tussen twee datums, met tekst, tijd en status (PUBLISHED of PENDING).",
+    inputSchema:{type:"object",properties:{van:DATE,tot:DATE},required:["van","tot"]},
+    execute:async i=>{const p=await read(MC,"getScheduledPosts",{brandId:C.brand,fromDate:dayStart(String(i.van)),toDate:dayEnd(String(i.tot)),timezone:"Europe/Amsterdam"},a,"bekijkt de planner",signal);return small((p?.data||[]).map(x=>({tijd:x.publicationDate?.dateTime,tekst:String(x.text||"").slice(0,300),status:(x.providers||[]).map(n=>n.network+": "+n.status)})))}});
+  if(APP==="kn"&&a.job==="growth"){
+    t.push({name:"installaties",description:"Nieuwe installaties per dag in een periode, hoeveel daarvan Pro zijn, verdeling naar platform en land, en actieve apparaten.",
+      inputSchema:{type:"object",properties:{period:{type:"string",enum:PERIODS},from:DATE,to:DATE}},
+      execute:async i=>{const inp={};for(const k of ["period","from","to"])if(i[k])inp[k]=String(i[k]);return small(await read(KN,"get_installs",inp,a,"leest de installaties",signal))}});
+    t.push({name:"dagcijfers",description:"Dagcijfers van één dag (standaard vandaag) met een reeks van 14 dagen: installaties, aankopen, proefperiodes, omzet.",
+      inputSchema:{type:"object",properties:{date:DATE}},execute:async i=>small(await read(KN,"get_daily_stats",i.date?{date:String(i.date)}:{},a,"leest de dagcijfers",signal))});
+    t.push({name:"abonnementen",description:"MRR, ARR en betalende abonnees per plan, plus proefperiodes (gestart, omgezet, conversie) in een periode.",
+      inputSchema:{type:"object",properties:{period:{type:"string",enum:PERIODS}}},
+      execute:async i=>{const m=await read(KN,"get_mrr",{},a,"bekijkt de abonnementen",signal);const tr=await read(KN,"get_trial_stats",i.period?{period:String(i.period)}:{},a,"bekijkt de proefperiodes",signal);return small({mrr:m,proefperiodes:tr})}});
+    t.push({name:"omzetoverzicht",description:"Omzet vandaag, deze week, deze maand, vorige maand en laatste 30 dagen, met vergelijking.",
+      execute:async()=>small(await read(KN,"get_revenue_summary",{},a,"bekijkt de omzet",signal))});
+  }
+  return t;
+}
+const ANALYSE={
+  growth:"Maak een groeirapport. Is er groei in social media (volgers per netwerk, laatste 30 dagen tegenover de 30 dagen daarvoor) en in klanten (installaties, betalende abonnees, proefperiodes, omzet)? Laat per onderdeel de cijfers zien, of het stijgt of daalt, en wat opvalt. Sluit af met de 3 belangrijkste conclusies.",
+  social:"Waar liggen de kansen op social media? Laat eerst zien hoeveel volgers we nu hebben per netwerk en hoeveel erbij kwamen de laatste 30 dagen. Kijk dan welke posts, video's of reels het best en slechtst presteerden en waarom, en wat er in de planner staat. Sluit af met 5 concrete kansen, elk met een eerste stap voor deze week."
+};
+function prompt(a,text){
+  return `Je bent ${a.n}, ${a.r} bij ${C.name}. ${C.about}\n\nVandaag is ${new Date().toLocaleDateString("nl-NL",{weekday:"long",year:"numeric",month:"long",day:"numeric",timeZone:"Europe/Amsterdam"})} (${amsDate()}, Europe/Amsterdam).\n\nRegels:\n- Je werkt voor de eigenaar en kijkt naar groei. Je helpt geen klanten en doet niets met individuele klanten.\n- Haal eerst echte cijfers op met je tools. Verzin nooit cijfers. Ontbreekt iets, zeg dat.\n- Je verstuurt of wijzigt niets.\n- Nederlands, kort en helder, met korte kopjes en opsommingen. Getallen met punt als duizendtal.\n\nOpdracht: ${text}`;
+}
+
+// ---------- taken ----------
+const whoSel=document.getElementById("who"),what=document.getElementById("what"),go=document.getElementById("go"),stopBtn=document.getElementById("stop"),anaBtn=document.getElementById("analyse"),aiNote=document.getElementById("aiNote");
+whoSel.innerHTML=active.map(a=>`<option value="${a.id}">${esc(a.n)} · ${esc(a.r)}</option>`).join("");
+document.getElementById("rooms").addEventListener("click",e=>{const r=e.target.closest("button.room");if(!r)return;whoSel.value=r.dataset.id;markSel()});
+whoSel.addEventListener("change",markSel);
+function markSel(){document.querySelectorAll(".room").forEach(x=>x.classList.toggle("sel",x.dataset.id===whoSel.value))}
+const outBody=document.getElementById("outBody"),outRes=document.getElementById("outRes"),outSteps=document.getElementById("outSteps"),outTag=document.getElementById("outTag");
+function stepUI(t){const li=document.createElement("li");li.textContent="→ "+t;outSteps.append(li)}
+function showOut(t){
+  document.getElementById("outEmpty").hidden=true;outBody.hidden=false;
+  document.getElementById("outWho").textContent=t.agent;document.getElementById("outTask").textContent=t.text;
+  outSteps.innerHTML="";(t.steps||[]).forEach(stepUI);outRes.textContent=t.result||"";
+  const st={bezig:["Bezig","var(--busy)"],klaar:["Klaar","var(--ok)"],fout:["Niet gelukt","var(--bad)"],gestopt:["Gestopt","var(--mute)"]}[t.status]||["",""];
+  outTag.textContent=st[0];outTag.style.color=st[1];
+}
+document.getElementById("copy").addEventListener("click",async e=>{try{await navigator.clipboard.writeText(outRes.textContent);e.target.textContent="Gekopieerd"}catch(err){const r=document.createRange();r.selectNodeContents(outRes);const s=getSelection();s.removeAllRanges();s.addRange(r);e.target.textContent="Geselecteerd"}setTimeout(()=>e.target.textContent="Kopieer",1800)});
+function sampleErr(e){
+  switch(e.code){
+    case "not_granted":case "sampling_disabled":case "not_declared":case "capability_disabled":case "capability_removed":hideAI();return "AI is niet toegestaan in deze weergave.";
+    case "rate_limited":return "Even te veel verzoeken, of je gebruikslimiet is bereikt. Probeer het later opnieuw.";
+    case "session_expired":return "Log opnieuw in op claude.ai en probeer het nog eens.";
+    case "refused":return "Claude wilde dit niet uitvoeren. Formuleer de opdracht anders.";
+    case "prompt_too_large":return "Te veel data tegelijk. Vraag om een kortere periode.";
+    default:return "Er ging iets mis. Probeer het opnieuw.";
+  }
+}
+function hideAI(){go.disabled=true;anaBtn.disabled=true;aiNote.textContent="AI is niet beschikbaar of niet toegestaan in deze weergave. De live cijfers blijven werken."}
+function lock(on){go.disabled=on;anaBtn.disabled=on;stopBtn.hidden=!on}
+let ctl=null;
+stopBtn.addEventListener("click",()=>ctl?.abort());
+async function run(a,text){
+  if(ctl||!sample){if(!sample)aiNote.textContent="AI is nog niet beschikbaar in deze weergave.";return}
+  const t={agent:a.n+" · "+a.r,text,status:"bezig",result:"",steps:[],at:Date.now()};
+  current=t;a.busy=true;a.step="denkt na…";paint(a);showOut(t);outRes.textContent="Denkt na…";lock(true);ctl=new AbortController();
+  let ref=null;try{if(db)ref=db.collection("tasks").doc()}catch(e){}
+  const save=async()=>{if(ref)try{await ref.set(JSON.parse(JSON.stringify(t)))}catch(e){}};save();
+  try{
+    const r=await sample(prompt(a,text),{signal:ctl.signal,tools:toolsFor(a,ctl.signal),onText:({text})=>{outRes.textContent=text;a.step="schrijft het rapport…";paint(a)}});
+    t.result=r.text+(r.truncated?"\n\n(Afgebroken: vraag om minder tegelijk.)":"");t.status="klaar";
+  }catch(e){t.result=e.text||"";t.status=e.code==="cancelled"?"gestopt":"fout";if(e.code!=="cancelled")t.result+=(t.result?"\n\n":"")+sampleErr(e)}
+  a.busy=false;a.step="";paint(a);lock(false);ctl=null;
+  if(current===t)showOut(t);
+  await save();if(!db){mem.unshift(t);renderLog(mem)}
+}
+anaBtn.addEventListener("click",()=>{const a=agents.find(x=>x.id===whoSel.value);if(a)run(a,ANALYSE[a.job])});
+document.getElementById("give").addEventListener("submit",e=>{e.preventDefault();const text=what.value.trim();const a=agents.find(x=>x.id===whoSel.value);if(!text||!a)return;what.value="";run(a,text)});
+
+// ---------- logboek ----------
+let mem=[],logItems=[];
+const logEl=document.getElementById("log");
+function renderLog(items){
+  logItems=items;
+  if(!items.length){logEl.innerHTML='<li class="note">Alleen taken die jij geeft komen hier. Er lopen geen nep-taken.</li>';return}
+  logEl.innerHTML="";
+  items.forEach((t,i)=>{const li=document.createElement("li"),b=document.createElement("button");b.type="button";b.dataset.i=i;
+    const tm=document.createElement("time");tm.textContent=hhmm(t.at);
+    const dot=document.createElement("span");dot.className="lamp";dot.style.marginRight="6px";dot.style.background=t.status==="klaar"?"var(--ok)":t.status==="bezig"?"var(--busy)":"var(--bad)";
+    b.append(tm,dot,document.createTextNode(String(t.agent||"").split(" · ")[0]+": "+String(t.text||"").slice(0,80)));li.append(b);logEl.append(li)});
+}
+logEl.addEventListener("click",e=>{const b=e.target.closest("button[data-i]");if(b){current=logItems[+b.dataset.i];showOut(current)}});
+
+// ---------- opstarten ----------
+(async()=>{
+  const [m,s,d]=await Promise.all(["mcp","sample","db"].map(n=>Promise.resolve(window.claude?.use?.(n)).catch(()=>null)));
+  mcp=m;sample=s;db=d;
+  if(mcp)startWatches();else{active.forEach(a=>a.status="Geen toegang tot de koppelingen in deze weergave");paintAll()}
+  if(!sample)hideAI();
+  if(db)db.collection("tasks").orderBy("at","desc").limit(30).onSnapshot(snap=>renderLog(snap.docs.map(x=>x.data())),()=>{db=null;renderLog(mem)});
+})();
+}
+</script>
