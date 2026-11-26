@@ -1,0 +1,386 @@
+[
+ {
+  "id": 443506808,
+  "uuid": "-2779432247523782792",
+  "old": "2026-11-27T10:00:00",
+  "new": "2026-12-03T12:00:00",
+  "lang": "es",
+  "firstCommentText": "¿Qué vas a ver esta noche? 👇"
+ },
+ {
+  "id": 443506871,
+  "uuid": "-7855676249177964462",
+  "old": "2026-11-27T10:00:00",
+  "new": "2026-12-03T12:00:00",
+  "lang": "es",
+  "firstCommentText": "¿Team iPhone o Apple TV? 📺"
+ },
+ {
+  "id": 443506090,
+  "uuid": "6003241420161106827",
+  "old": "2026-11-27T12:00:00",
+  "new": "2026-11-27T12:00:00",
+  "lang": "fr",
+  "firstCommentText": "Tu regardes quoi en premier ce soir ? 👇"
+ },
+ {
+  "id": 443506910,
+  "uuid": "-1414446651556737190",
+  "old": "2026-11-27T12:00:00",
+  "new": "2026-11-27T12:00:00",
+  "lang": "fr",
+  "firstCommentText": "Team iPhone ou Apple TV ? 📺"
+ },
+ {
+  "id": 443506960,
+  "uuid": "-8103467337716056011",
+  "old": "2026-11-27T14:00:00",
+  "new": "2026-12-03T18:00:00",
+  "lang": "it",
+  "firstCommentText": "Cosa guardi stasera per primo? 👇"
+ },
+ {
+  "id": 443507017,
+  "uuid": "-260362971280358791",
+  "old": "2026-11-27T14:00:00",
+  "new": "2026-12-03T18:00:00",
+  "lang": "it",
+  "firstCommentText": "Team iPhone o Apple TV? 📺"
+ },
+ {
+  "id": 443507074,
+  "uuid": "8674706592496370239",
+  "old": "2026-11-27T18:00:00",
+  "new": "2026-11-27T18:00:00",
+  "lang": "de",
+  "firstCommentText": "Was schaust du heute Abend zuerst? 👇"
+ },
+ {
+  "id": 443507133,
+  "uuid": "8136997187286421475",
+  "old": "2026-11-27T18:00:00",
+  "new": "2026-11-27T18:00:00",
+  "lang": "de",
+  "firstCommentText": "Team iPhone oder Apple TV? 📺"
+ },
+ {
+  "id": 443507211,
+  "uuid": "5886820239838560781",
+  "old": "2026-11-28T10:00:00",
+  "new": "2026-12-04T12:00:00",
+  "lang": "nl",
+  "firstCommentText": "Wat kijk jij vanavond als eerste? 👇"
+ },
+ {
+  "id": 443507290,
+  "uuid": "9215096166302041794",
+  "old": "2026-11-28T10:00:00",
+  "new": "2026-12-04T12:00:00",
+  "lang": "nl",
+  "firstCommentText": "Team iPhone of Apple TV? 📺"
+ },
+ {
+  "id": 443507361,
+  "uuid": "-8862459656152462665",
+  "old": "2026-11-28T12:00:00",
+  "new": "2026-11-28T12:00:00",
+  "lang": "en",
+  "firstCommentText": "What are you watching first tonight? 👇"
+ },
+ {
+  "id": 443507430,
+  "uuid": "7605856300141989852",
+  "old": "2026-11-28T12:00:00",
+  "new": "2026-11-28T12:00:00",
+  "lang": "en",
+  "firstCommentText": "Team iPhone or Apple TV? 📺"
+ },
+ {
+  "id": 443507484,
+  "uuid": "8475578369480477289",
+  "old": "2026-11-28T14:00:00",
+  "new": "2026-12-04T18:00:00",
+  "lang": "fr",
+  "firstCommentText": "Ta playlist, zéro pub. Lien en bio 🍿"
+ },
+ {
+  "id": 443507530,
+  "uuid": "-960907089240702711",
+  "old": "2026-11-28T14:00:00",
+  "new": "2026-12-04T18:00:00",
+  "lang": "fr",
+  "firstCommentText": "C'est quoi la pub qui t'énerve le plus ? 😤"
+ },
+ {
+  "id": 443507598,
+  "uuid": "-2919425908394930591",
+  "old": "2026-11-28T18:00:00",
+  "new": "2026-11-28T18:00:00",
+  "lang": "es",
+  "firstCommentText": "Tu playlist, cero anuncios. Link en la bio 🍿"
+ },
+ {
+  "id": 443507639,
+  "uuid": "5282929323079585439",
+  "old": "2026-11-28T18:00:00",
+  "new": "2026-11-28T18:00:00",
+  "lang": "es",
+  "firstCommentText": "¿Qué anuncio te saca más de quicio? 😤"
+ },
+ {
+  "id": 443507683,
+  "uuid": "7763147386134676025",
+  "old": "2026-11-29T10:00:00",
+  "new": "2026-12-05T12:00:00",
+  "lang": "de",
+  "firstCommentText": "Deine Playlist, null Werbung. Link in Bio 🍿"
+ },
+ {
+  "id": 443507751,
+  "uuid": "1583866326682780571",
+  "old": "2026-11-29T10:00:00",
+  "new": "2026-12-05T12:00:00",
+  "lang": "de",
+  "firstCommentText": "Welche Werbung nervt dich am meisten? 😤"
+ },
+ {
+  "id": 443507807,
+  "uuid": "6380646496282821799",
+  "old": "2026-11-29T12:00:00",
+  "new": "2026-11-29T12:00:00",
+  "lang": "it",
+  "firstCommentText": "La tua playlist, zero pubblicità. Link in bio 🍿"
+ },
+ {
+  "id": 443507859,
+  "uuid": "-83626029226046047",
+  "old": "2026-11-29T12:00:00",
+  "new": "2026-11-29T12:00:00",
+  "lang": "it",
+  "firstCommentText": "Qual è la pubblicità che odi di più? 😤"
+ },
+ {
+  "id": 443507926,
+  "uuid": "-1183683540872574750",
+  "old": "2026-11-29T14:00:00",
+  "new": "2026-12-05T18:00:00",
+  "lang": "en",
+  "firstCommentText": "Your playlist, zero ads. Link in bio 🍿"
+ },
+ {
+  "id": 443507972,
+  "uuid": "-7502744362706385017",
+  "old": "2026-11-29T14:00:00",
+  "new": "2026-12-05T18:00:00",
+  "lang": "en",
+  "firstCommentText": "Worst ad you ever had to sit through? 😤"
+ },
+ {
+  "id": 443508013,
+  "uuid": "-8203136426143692367",
+  "old": "2026-11-29T18:00:00",
+  "new": "2026-11-29T18:00:00",
+  "lang": "fr",
+  "firstCommentText": "Team iPhone ou Apple TV ? 📺"
+ },
+ {
+  "id": 443508058,
+  "uuid": "3497307744149979826",
+  "old": "2026-11-29T18:00:00",
+  "new": "2026-11-29T18:00:00",
+  "lang": "fr",
+  "firstCommentText": "Tu regardes quoi en premier ce soir ? 👇"
+ },
+ {
+  "id": 443508250,
+  "uuid": "5555265137884874634",
+  "old": "2026-11-30T10:00:00",
+  "new": "2026-12-06T12:00:00",
+  "lang": "es",
+  "firstCommentText": "¿Team iPhone o Apple TV? 📺"
+ },
+ {
+  "id": 443508289,
+  "uuid": "-7166513975732384969",
+  "old": "2026-11-30T10:00:00",
+  "new": "2026-12-06T12:00:00",
+  "lang": "es",
+  "firstCommentText": "¿Qué vas a ver esta noche? 👇"
+ },
+ {
+  "id": 443508346,
+  "uuid": "8241304457586034611",
+  "old": "2026-11-30T12:00:00",
+  "new": "2026-11-30T12:00:00",
+  "lang": "nl",
+  "firstCommentText": "Je eigen playlist, nul reclame. Link in bio 🍿"
+ },
+ {
+  "id": 443508389,
+  "uuid": "-5042618944232863695",
+  "old": "2026-11-30T12:00:00",
+  "new": "2026-11-30T12:00:00",
+  "lang": "nl",
+  "firstCommentText": "Welke reclame irriteert jou het meest? 😤"
+ },
+ {
+  "id": 443508440,
+  "uuid": "-5430376959286620450",
+  "old": "2026-11-30T14:00:00",
+  "new": "2026-12-06T18:00:00",
+  "lang": "de",
+  "firstCommentText": "Team iPhone oder Apple TV? 📺"
+ },
+ {
+  "id": 443508486,
+  "uuid": "5132908441775263056",
+  "old": "2026-11-30T14:00:00",
+  "new": "2026-12-06T18:00:00",
+  "lang": "de",
+  "firstCommentText": "Was schaust du heute Abend zuerst? 👇"
+ },
+ {
+  "id": 443508537,
+  "uuid": "3673563718196743006",
+  "old": "2026-11-30T18:00:00",
+  "new": "2026-11-30T18:00:00",
+  "lang": "fr",
+  "firstCommentText": "C'est quoi la pub qui t'énerve le plus ? 😤"
+ },
+ {
+  "id": 443508594,
+  "uuid": "1443396173066750334",
+  "old": "2026-11-30T18:00:00",
+  "new": "2026-11-30T18:00:00",
+  "lang": "fr",
+  "firstCommentText": "Ta playlist, zéro pub. Lien en bio 🍿"
+ },
+ {
+  "id": 443508648,
+  "uuid": "-7592945395247528538",
+  "old": "2026-12-01T10:00:00",
+  "new": "2026-12-07T12:00:00",
+  "lang": "en",
+  "firstCommentText": "Team iPhone or Apple TV? 📺"
+ },
+ {
+  "id": 443508700,
+  "uuid": "4311295468104337351",
+  "old": "2026-12-01T10:00:00",
+  "new": "2026-12-07T12:00:00",
+  "lang": "en",
+  "firstCommentText": "What are you watching first tonight? 👇"
+ },
+ {
+  "id": 443508751,
+  "uuid": "-1460140391194671349",
+  "old": "2026-12-01T12:00:00",
+  "new": "2026-12-01T12:00:00",
+  "lang": "es",
+  "firstCommentText": "¿Qué anuncio te saca más de quicio? 😤"
+ },
+ {
+  "id": 443508814,
+  "uuid": "-7241783497384639741",
+  "old": "2026-12-01T12:00:00",
+  "new": "2026-12-01T12:00:00",
+  "lang": "es",
+  "firstCommentText": "Tu playlist, cero anuncios. Link en la bio 🍿"
+ },
+ {
+  "id": 443508873,
+  "uuid": "2796189245395255943",
+  "old": "2026-12-01T14:00:00",
+  "new": "2026-12-07T18:00:00",
+  "lang": "it",
+  "firstCommentText": "Team iPhone o Apple TV? 📺"
+ },
+ {
+  "id": 443508925,
+  "uuid": "-6750549102718268904",
+  "old": "2026-12-01T14:00:00",
+  "new": "2026-12-07T18:00:00",
+  "lang": "it",
+  "firstCommentText": "Cosa guardi stasera per primo? 👇"
+ },
+ {
+  "id": 443508954,
+  "uuid": "3931730917602312695",
+  "old": "2026-12-01T18:00:00",
+  "new": "2026-12-01T18:00:00",
+  "lang": "de",
+  "firstCommentText": "Welche Werbung nervt dich am meisten? 😤"
+ },
+ {
+  "id": 443508995,
+  "uuid": "-6346049728259995057",
+  "old": "2026-12-01T18:00:00",
+  "new": "2026-12-01T18:00:00",
+  "lang": "de",
+  "firstCommentText": "Deine Playlist, null Werbung. Link in Bio 🍿"
+ },
+ {
+  "id": 443509074,
+  "uuid": "-874491836066282128",
+  "old": "2026-12-02T10:00:00",
+  "new": "2026-12-08T12:00:00",
+  "lang": "fr",
+  "firstCommentText": "Tu regardes quoi en premier ce soir ? 👇"
+ },
+ {
+  "id": 443509107,
+  "uuid": "3043423746075017889",
+  "old": "2026-12-02T10:00:00",
+  "new": "2026-12-08T12:00:00",
+  "lang": "fr",
+  "firstCommentText": "Team iPhone ou Apple TV ? 📺"
+ },
+ {
+  "id": 443509155,
+  "uuid": "-6244888116116436918",
+  "old": "2026-12-02T12:00:00",
+  "new": "2026-12-02T12:00:00",
+  "lang": "en",
+  "firstCommentText": "Worst ad you ever had to sit through? 😤"
+ },
+ {
+  "id": 443509195,
+  "uuid": "-1135389638453473340",
+  "old": "2026-12-02T12:00:00",
+  "new": "2026-12-02T12:00:00",
+  "lang": "en",
+  "firstCommentText": "Your playlist, zero ads. Link in bio 🍿"
+ },
+ {
+  "id": 443509258,
+  "uuid": "-4846979192600115233",
+  "old": "2026-12-02T14:00:00",
+  "new": "2026-12-08T18:00:00",
+  "lang": "nl",
+  "firstCommentText": "Team iPhone of Apple TV? 📺"
+ },
+ {
+  "id": 443509324,
+  "uuid": "-6573730801891194274",
+  "old": "2026-12-02T14:00:00",
+  "new": "2026-12-08T18:00:00",
+  "lang": "nl",
+  "firstCommentText": "Wat kijk jij vanavond als eerste? 👇"
+ },
+ {
+  "id": 443509382,
+  "uuid": "-1992011359055886248",
+  "old": "2026-12-02T18:00:00",
+  "new": "2026-12-02T18:00:00",
+  "lang": "es",
+  "firstCommentText": "¿Qué vas a ver esta noche? 👇"
+ },
+ {
+  "id": 443509441,
+  "uuid": "-7597834835544683740",
+  "old": "2026-12-02T18:00:00",
+  "new": "2026-12-02T18:00:00",
+  "lang": "es",
+  "firstCommentText": "¿Team iPhone o Apple TV? 📺"
+ }
+]
