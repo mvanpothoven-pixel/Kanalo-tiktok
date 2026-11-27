@@ -154,7 +154,7 @@ const CAR={
   s=>cta(s)],
  es:[ // 5 cosas
   s=>hook(s,'5 cosas que tu<br>app IPTV <i class="gtext">debería</i><br>hacer.','La número 3 te va a cambiar las noches. 👀',3),
-  s=>{h(`<div class="num" style="left:40px;top:120px">1</div>`,s);title(s,'1. Cero<br><i class="gtext">anuncios.</i>','Ni banners, ni vídeos, ni “mira otro anuncio”.');dev('phone',300,600,480,phoneHome(3,[[9,40],[4,75]],[1,2,6]),s)},
+  s=>{title(s,'1. Cero<br><i class="gtext">anuncios.</i>','Ni banners, ni vídeos, ni “mira otro anuncio”.');dev('phone',300,600,480,phoneHome(3,[[9,40],[4,75]],[1,2,6]),s)},
   s=>{title(s,'2. Una página<br><i class="gtext">por película.</i>');dev('phone',300,450,480,phoneDetail(3,P[3].es),s)},
   s=>{title(s,'3. Seguir viendo,<br><i class="gtext">donde lo dejaste.</i>','En el iPhone, en el iPad y en la Apple TV.');dev('tv',70,600,940,tvHome(3,9,1,[4,5,6,7,8,10]),s);tag(s,'▶ 42 '+L.left,600,560,1)},
   s=>{title(s,'4. Guía TV<br><i class="gtext">sin esperas.</i>','5. Tu propia playlist: Xtream o M3U.');dev('tv',70,600,940,tvGuide(GP),s)},
