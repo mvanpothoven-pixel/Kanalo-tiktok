@@ -1,0 +1,193 @@
+<!doctype html><html><head><meta charset="utf-8">
+<!-- Kanalo carousel slides (1080x1350). Render: carousel.html?c=<id>&s=<n>. Films are fictional; art in img/f1..f10.png -->
+<style>
+@font-face{font-family:I;src:url(fonts/InterDisplay-Regular.otf);font-weight:400}
+@font-face{font-family:I;src:url(fonts/InterDisplay-SemiBold.otf);font-weight:600}
+@font-face{font-family:I;src:url(fonts/InterDisplay-Bold.otf);font-weight:700 900}
+@font-face{font-family:L;src:url(fonts/Lora-Italic-Variable.ttf);font-style:italic}
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--v:#7b4cf0;--p:#e0408f;--o:#f07a45;--bg:#0a0a0f;--card:#17151f;--card2:#201d2b;--mut:#9a96ad}
+html,body{width:1080px;height:1350px;overflow:hidden;background:var(--bg);font-family:I,sans-serif;color:#fff}
+.slide{position:absolute;inset:0;overflow:hidden}
+.glow{position:absolute;border-radius:50%;filter:blur(140px);opacity:.55}
+.grad{background:linear-gradient(90deg,var(--v),var(--p) 50%,var(--o))}
+.gtext{background:linear-gradient(90deg,#9b74ff,var(--p) 50%,var(--o));-webkit-background-clip:text;color:transparent}
+.brand{position:absolute;left:72px;top:64px;display:flex;align-items:center;gap:16px;font-size:34px;font-weight:600}
+.brand img{height:52px}
+.pg{position:absolute;right:72px;top:72px;font-size:26px;color:var(--mut);font-weight:600;letter-spacing:2px}
+.h1{position:absolute;left:72px;right:72px;top:150px;font-weight:800;font-size:84px;line-height:1.02;letter-spacing:-2px}
+.h1 i{font-family:L;font-style:italic;font-weight:500;letter-spacing:-1px}
+.sub{position:absolute;left:74px;right:110px;font-size:34px;line-height:1.35;color:#c9c5d8;font-weight:400}
+.swipe{position:absolute;right:72px;bottom:60px;font-size:26px;font-weight:700;letter-spacing:4px;color:#d8d4e6;display:flex;gap:14px;align-items:center}
+.swipe:before{content:"";width:70px;height:3px;background:linear-gradient(90deg,transparent,var(--p))}
+/* devices */
+.phone{position:absolute;background:#08080b;border-radius:78px;padding:16px;box-shadow:0 0 0 3px #2b2833,0 50px 120px rgba(0,0,0,.6)}
+.phone .scr{position:relative;width:100%;height:100%;border-radius:62px;overflow:hidden;background:#0d0c12}
+.island{position:absolute;top:20px;left:50%;transform:translateX(-50%);width:150px;height:42px;border-radius:24px;background:#000;z-index:5}
+.sbar{position:absolute;top:24px;left:44px;right:40px;display:flex;justify-content:space-between;font-size:22px;font-weight:700;z-index:4}
+.tv{position:absolute;background:#050507;border-radius:22px;padding:14px;box-shadow:0 0 0 3px #26232e,0 50px 120px rgba(0,0,0,.6)}
+.tv .scr{position:relative;width:100%;height:100%;border-radius:10px;overflow:hidden;background:#0d0c12}
+.tv:after{content:"";position:absolute;left:50%;bottom:-46px;transform:translateX(-50%);width:220px;height:46px;background:linear-gradient(#1c1a22,#0c0b10);clip-path:polygon(20% 0,80% 0,100% 100%,0 100%)}
+.ipad{position:absolute;background:#08080b;border-radius:44px;padding:20px;box-shadow:0 0 0 3px #2b2833,0 50px 120px rgba(0,0,0,.6)}
+.ipad .scr{position:relative;width:100%;height:100%;border-radius:26px;overflow:hidden;background:#0d0c12}
+/* app ui (phone, 390-wide logical, scaled) */
+.ui{position:absolute;left:0;top:0;transform-origin:0 0;font-family:I}
+.ttl{font-size:34px;font-weight:800}
+.hero{position:relative;border-radius:22px;overflow:hidden;background-size:cover;background-position:center}
+.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 35%,rgba(10,9,15,.92))}
+.hero .t{position:absolute;left:18px;right:18px;bottom:16px;z-index:2}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:14px;font-weight:700;color:#fff}
+.chip{display:inline-block;background:#262333;border-radius:10px;padding:5px 10px;font-size:12px;font-weight:600;color:#d6d2e4}
+.row{display:flex;gap:10px}
+.pst{flex:0 0 auto;border-radius:12px;background-size:cover;background-position:center;position:relative;overflow:hidden}
+.pst .r{position:absolute;left:6px;top:6px;background:rgba(0,0,0,.55);border-radius:7px;font-size:10px;padding:2px 6px;font-weight:700}
+.bar{height:4px;border-radius:3px;background:#2d2a38;overflow:hidden}.bar b{display:block;height:100%}
+.list{background:var(--card);border-radius:16px}
+.li{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;font-size:15px;font-weight:600;border-bottom:1px solid #24212e}
+.li:last-child{border:none}
+.star{color:#f6c445}
+.tag{position:absolute;background:#fff;color:#14121b;border-radius:22px;padding:18px 26px;font-size:30px;font-weight:700;box-shadow:0 20px 50px rgba(0,0,0,.45);display:flex;gap:12px;align-items:center;white-space:nowrap}
+.tag.g{background:linear-gradient(90deg,var(--v),var(--p),var(--o));color:#fff}
+.num{position:absolute;font-weight:900;font-size:220px;line-height:1;opacity:.12}
+</style></head><body><div id="root"></div>
+<script>
+const Q=new URLSearchParams(location.search);const C=Q.get('c')||'fr';const S=+(Q.get('s')||1);
+const F={ // fictional films
+ 1:{t:'Northern Light',r:'8.6',y:'2026',d:'2h 04m',g:{en:'Drama · Adventure',fr:'Drame · Aventure',es:'Drama · Aventura',de:'Drama · Abenteuer',it:'Dramma · Avventura',nl:'Drama · Avontuur'}},
+ 2:{t:'Neon Avenue',r:'8.1',y:'2025',d:'1h 49m',g:{en:'Thriller · Crime',fr:'Thriller · Policier',es:'Thriller · Crimen',de:'Thriller · Krimi',it:'Thriller · Crime',nl:'Thriller · Misdaad'}},
+ 3:{t:'Last Signal',r:'8.4',y:'2026',d:'2h 11m',g:{en:'Sci-Fi',fr:'Science-fiction',es:'Ciencia ficción',de:'Science-Fiction',it:'Fantascienza',nl:'Sciencefiction'}},
+ 4:{t:'Summer in Lisbon',r:'7.8',y:'2025',d:'1h 38m',g:{en:'Romance',fr:'Romance',es:'Romance',de:'Romantik',it:'Romantico',nl:'Romantiek'}},
+ 5:{t:'Abyss Line',r:'7.9',y:'2026',d:'1h 56m',g:{en:'Sci-Fi · Mystery',fr:'SF · Mystère',es:'Ciencia ficción · Misterio',de:'Sci-Fi · Mystery',it:'Fantascienza · Mistero',nl:'Sciencefiction · Mysterie'}},
+ 6:{t:'Ashford Manor',r:'8.0',y:'2024',d:'1h 51m',g:{en:'Mystery',fr:'Mystère',es:'Misterio',de:'Mystery',it:'Mistero',nl:'Mysterie'}},
+ 7:{t:'Wild Water',r:'7.5',y:'2025',d:'1h 42m',g:{en:'Adventure',fr:'Aventure',es:'Aventura',de:'Abenteuer',it:'Avventura',nl:'Avontuur'}},
+ 8:{t:'Star Chasers',r:'8.3',y:'2026',d:'1h 34m',g:{en:'Family · Animation',fr:'Famille · Animation',es:'Familia · Animación',de:'Familie · Animation',it:'Famiglia · Animazione',nl:'Familie · Animatie'}},
+ 9:{t:'Iron Heist',r:'8.2',y:'2025',d:'2h 02m',g:{en:'Action',fr:'Action',es:'Acción',de:'Action',it:'Azione',nl:'Actie'}},
+ 10:{t:'Midnight Bakery',r:'7.7',y:'2026',d:'1h 41m',g:{en:'Comedy',fr:'Comédie',es:'Comedia',de:'Komödie',it:'Commedia',nl:'Komedie'}}};
+const U={ // ui strings
+ en:{movies:'Movies',cont:'Continue watching',newm:'New this month',all:'All movies',play:'Play',resume:'Continue',home:'Home',ch:'Channels',ser:'Series',set:'Settings',guide:'TV guide',back:'Back',live:'LIVE',add:'Add playlist',name:'Name',srv:'Server',user:'Username',save:'Save',mine:'My playlist',left:'min left',trailer:'Trailer',cta1:'Free on the App Store',cta2:'iPhone · iPad · Apple TV',cta3:'Your own playlist · zero ads',bio:'Link in bio',swipe:'SWIPE'},
+ fr:{movies:'Films',cont:'Reprendre',newm:'Nouveautés du mois',all:'Tous les films',play:'Lecture',resume:'Reprendre',home:'Accueil',ch:'Chaînes',ser:'Séries',set:'Réglages',guide:'Guide TV',back:'Retour',live:'DIRECT',add:'Ajouter une playlist',name:'Nom',srv:'Serveur',user:'Utilisateur',save:'Enregistrer',mine:'Ma playlist',left:'min restantes',trailer:'Bande-annonce',cta1:"Gratuit sur l'App Store",cta2:'iPhone · iPad · Apple TV',cta3:'Ta propre playlist · zéro pub',bio:'Lien en bio',swipe:'GLISSE'},
+ es:{movies:'Películas',cont:'Seguir viendo',newm:'Nuevas este mes',all:'Todas las películas',play:'Reproducir',resume:'Continuar',home:'Inicio',ch:'Canales',ser:'Series',set:'Ajustes',guide:'Guía TV',back:'Atrás',live:'EN VIVO',add:'Añadir playlist',name:'Nombre',srv:'Servidor',user:'Usuario',save:'Guardar',mine:'Mi playlist',left:'min restantes',trailer:'Tráiler',cta1:'Gratis en la App Store',cta2:'iPhone · iPad · Apple TV',cta3:'Tu propia playlist · cero anuncios',bio:'Link en la bio',swipe:'DESLIZA'},
+ de:{movies:'Filme',cont:'Weiterschauen',newm:'Neu diesen Monat',all:'Alle Filme',play:'Abspielen',resume:'Fortsetzen',home:'Start',ch:'Sender',ser:'Serien',set:'Einstellungen',guide:'TV-Guide',back:'Zurück',live:'LIVE',add:'Playlist hinzufügen',name:'Name',srv:'Server',user:'Benutzer',save:'Speichern',mine:'Meine Playlist',left:'Min. übrig',trailer:'Trailer',cta1:'Gratis im App Store',cta2:'iPhone · iPad · Apple TV',cta3:'Deine eigene Playlist · null Werbung',bio:'Link in Bio',swipe:'WISCHEN'},
+ it:{movies:'Film',cont:'Continua a guardare',newm:'Novità del mese',all:'Tutti i film',play:'Riproduci',resume:'Continua',home:'Home',ch:'Canali',ser:'Serie',set:'Impostazioni',guide:'Guida TV',back:'Indietro',live:'LIVE',add:'Aggiungi playlist',name:'Nome',srv:'Server',user:'Utente',save:'Salva',mine:'La mia playlist',left:'min rimasti',trailer:'Trailer',cta1:"Gratis sull'App Store",cta2:'iPhone · iPad · Apple TV',cta3:'La tua playlist · zero pubblicità',bio:'Link in bio',swipe:'SCORRI'},
+ nl:{movies:'Films',cont:'Verder kijken',newm:'Nieuw deze maand',all:'Alle films',play:'Afspelen',resume:'Verder',home:'Home',ch:'Zenders',ser:'Series',set:'Instellingen',guide:'Tv-gids',back:'Terug',live:'LIVE',add:'Playlist toevoegen',name:'Naam',srv:'Server',user:'Gebruiker',save:'Opslaan',mine:'Mijn playlist',left:'min over',trailer:'Trailer',cta1:'Gratis in de App Store',cta2:'iPhone · iPad · Apple TV',cta3:'Je eigen playlist · nul reclame',bio:'Link in bio',swipe:'SWIPE'}};
+const L=U[C.split('_')[0]];const lg=C.split('_')[0];
+const img=n=>`img/f${n}.png`;
+const R=document.getElementById('root');
+const h=(s,p=R)=>{const d=document.createElement('div');d.innerHTML=s.trim();const e=d.firstChild;p.appendChild(e);return e};
+// ---------- screens (logical px, then scaled) ----------
+function phoneHome(hero,cont,rows){return `<div class="ui" style="width:390px;height:844px;padding:62px 16px 0">
+ <div style="display:flex;justify-content:space-between;align-items:center"><div style="width:36px;height:36px;border-radius:50%;background:#24212e;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700">MP</div><div style="width:36px;height:36px;border-radius:50%;background:#24212e;display:flex;align-items:center;justify-content:center">⌕</div></div>
+ <div class="ttl" style="margin:12px 0 12px">${L.movies}</div>
+ <div class="hero" style="height:250px;background-image:url(${img(hero)})"><div class="t"><div style="font-size:30px;font-weight:800;letter-spacing:-.5px">${F[hero].t}</div><div style="font-size:12px;color:#d0ccdd;margin-top:4px"><span class="star">★</span> ${F[hero].r} · ${F[hero].g[lg]} · ${F[hero].d}</div>
+ <div style="margin-top:10px;display:flex;gap:8px"><span class="btn grad" style="height:38px;padding:0 20px;font-size:14px">▶ ${L.play}</span><span class="btn" style="height:38px;width:38px;background:rgba(255,255,255,.14)">＋</span></div></div></div>
+ <div style="font-size:17px;font-weight:700;margin:18px 0 10px">${L.cont}</div>
+ <div class="row">${cont.map(([n,p])=>`<div style="width:170px"><div class="pst" style="width:170px;height:96px;background-image:url(${img(n)})"></div><div class="bar" style="margin-top:6px"><b class="grad" style="width:${p}%"></b></div><div style="font-size:12px;font-weight:600;margin-top:5px">${F[n].t}</div></div>`).join('')}</div>
+ <div style="font-size:17px;font-weight:700;margin:16px 0 10px">${L.newm}</div>
+ <div class="row">${rows.map(n=>`<div class="pst" style="width:112px;height:160px;background-image:url(${img(n)})"><span class="r"><span class="star">★</span> ${F[n].r}</span></div>`).join('')}</div>
+</div>`}
+function phoneDetail(n,plot){const f=F[n];return `<div class="ui" style="width:390px;height:844px">
+ <div style="height:300px;background:url(${img(n)}) center/cover;position:relative"><div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.2),rgba(13,12,18,1))"></div></div>
+ <div style="padding:0 18px;margin-top:-56px;position:relative">
+ <div style="font-size:32px;font-weight:800;letter-spacing:-.5px">${f.t}</div>
+ <div style="font-size:13px;color:#cfcbe0;margin-top:6px;display:flex;gap:8px;align-items:center"><span class="star">★ ${f.r}</span> ${f.y} · ${f.d} <span class="chip">4K</span><span class="chip">HDR</span></div>
+ <div style="display:flex;gap:10px;margin-top:16px"><span class="btn grad" style="flex:1;height:48px;font-size:16px">▶ ${L.play}</span><span class="btn" style="width:48px;height:48px;background:#24212e">♡</span><span class="btn" style="width:48px;height:48px;background:#24212e">↓</span></div>
+ <div style="margin-top:14px"><span class="chip">${f.g[lg]}</span></div>
+ <div style="font-size:14px;line-height:1.5;color:#c9c5d8;margin-top:12px">${plot}</div>
+ <div style="font-size:17px;font-weight:700;margin:18px 0 10px">${L.trailer}</div>
+ <div class="pst" style="width:200px;height:112px;background-image:url(${img(n)});background-position:30% 40%;display:flex;align-items:center;justify-content:center"><span style="width:40px;height:40px;border-radius:50%;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center">▶</span></div>
+ </div></div>`}
+function phoneAdd(){return `<div class="ui" style="width:390px;height:844px;padding:66px 18px 0">
+ <div style="font-size:15px;color:#b8b3c9">‹ ${L.set}</div><div class="ttl" style="margin:10px 0 18px">${L.add}</div>
+ <div style="display:flex;gap:8px;margin-bottom:16px"><span class="btn grad" style="height:36px;padding:0 16px;font-size:13px">Xtream</span><span class="btn" style="height:36px;padding:0 16px;font-size:13px;background:#24212e">M3U</span></div>
+ <div class="list">${[[L.name,L.mine],[L.srv,'https://mijn-server.example'],[L.user,'••••••••'],['Password','••••••••']].map(([a,b])=>`<div class="li"><span style="color:#9a96ad;font-weight:500">${a}</span><span>${b}</span></div>`).join('')}</div>
+ <div class="btn grad" style="width:100%;height:50px;margin-top:20px;font-size:16px">${L.save}</div>
+ <div style="margin-top:26px;font-size:13px;color:#8f8aa3;line-height:1.5">EPG · ${L.guide} ✓<br>${L.movies} · ${L.ser} · ${L.ch} ✓</div></div>`}
+function tvHome(a,b,c,row){return `<div class="ui" style="width:1280px;height:720px;padding:34px 44px">
+ <div style="display:flex;align-items:center;justify-content:space-between"><div style="display:flex;align-items:center;gap:12px;font-size:22px;font-weight:700"><img src="logo.png" style="height:30px">Kanalo</div>
+ <div style="display:flex;gap:6px;background:#17151f;border-radius:30px;padding:6px;font-size:17px;font-weight:600">${['⌕',L.home,L.ch,L.movies,L.ser,L.set].map((x,i)=>`<span style="padding:9px 20px;border-radius:24px;${i==3?'background:#fff;color:#111':''}">${x}</span>`).join('')}</div><div style="font-size:20px;font-weight:600">20:45</div></div>
+ <div style="display:flex;gap:18px;margin-top:30px">${[a,b,c].map((n,i)=>`<div class="hero" style="flex:1;height:250px;background-image:url(${img(n)});${i==0?'outline:4px solid #fff;outline-offset:3px;transform:scale(1.03)':''}"><div class="t"><div style="font-size:28px;font-weight:800">${F[n].t}</div><div style="font-size:14px;margin-top:4px"><span class="star">★</span> ${F[n].r}</div></div></div>`).join('')}</div>
+ <div style="font-size:24px;font-weight:700;margin:34px 0 14px">${L.newm}</div>
+ <div class="row" style="gap:14px">${row.map(n=>`<div class="pst" style="width:150px;height:215px;background-image:url(${img(n)})"><span class="r" style="font-size:12px"><span class="star">★</span> ${F[n].r}</span></div>`).join('')}</div></div>`}
+const CH=[['Noorderlicht TV','#3b6fe0'],['Polderstad','#e0743b'],['Havenkanaal','#2fa3a0'],['Duin & Dijk','#c9a227'],['Delta TV','#7b4cf0'],['Kanaal Oranje','#f07a45'],['Meridiaan','#3fae6a'],['Zuiderzee TV','#2c7fd6']];
+function tvGuide(prog){return `<div class="ui" style="width:1280px;height:720px;padding:34px 44px">
+ <div style="display:flex;align-items:center;gap:16px"><span style="border:2px solid #fff;border-radius:24px;padding:8px 18px;font-size:17px;font-weight:600">‹ ${L.back}</span><span style="font-size:30px;font-weight:800">${L.guide}</span></div>
+ <div style="display:flex;gap:18px;margin-top:24px"><div style="width:330px">${CH.map(([n,c],i)=>`<div style="display:flex;align-items:center;gap:14px;background:#17151f;border-radius:12px;padding:12px 14px;margin-bottom:9px;font-size:17px;font-weight:600;${i==2?'outline:2px solid #fff':''}"><span style="width:34px;height:24px;border-radius:6px;background:${c};font-size:10px;display:flex;align-items:center;justify-content:center">${n.split(' ').map(w=>w[0]).join('').slice(0,2)}</span>${n}</div>`).join('')}</div>
+ <div style="flex:1">${prog.map(([t,ti,de,st])=>`<div style="display:flex;gap:18px;align-items:center;background:${st=='live'?'#1d1a27':'#141219'};border-radius:12px;padding:12px 18px;margin-bottom:9px;${st=='live'?'outline:2px solid #e0408f':''};opacity:${st=='past'||st=='live'?1:.7}"><span style="width:60px;font-size:17px;font-weight:600;color:#b9b5c8">${t}</span><div style="flex:1"><div style="font-size:18px;font-weight:700">${ti}</div>${st=='live'?'<div class="bar" style="margin-top:8px;height:5px"><b class="grad" style="width:68%"></b></div>':`<div style="font-size:13px;color:#8f8aa3;margin-top:3px">${de}</div>`}</div>${st=='live'?`<span style="font-size:13px;font-weight:800;background:#2a0f1c;color:#ff5ca8;padding:5px 10px;border-radius:8px">● ${L.live}</span>`:''}${st=='past'?'<span style="font-size:13px;font-weight:700;background:#2c1d14;color:#f0a070;padding:5px 10px;border-radius:8px">↺</span>':''}</div>`).join('')}</div></div></div>`}
+function adApp(){return `<div class="ui" style="width:390px;height:844px;background:#2a2a2e;filter:saturate(.6)">
+ <div style="height:260px;background:#111;margin-top:70px;position:relative;display:flex;align-items:center;justify-content:center"><div style="position:absolute;inset:0;background:url(${img(2)}) center/cover;filter:blur(3px) brightness(.5)"></div>
+ <div style="position:relative;background:#ffd400;color:#000;font-weight:900;font-size:18px;padding:6px 12px;border-radius:4px">AD · 0:30</div><div style="position:absolute;right:10px;bottom:10px;background:rgba(0,0,0,.7);font-size:12px;padding:6px 10px;border-radius:4px">Skip in 25</div></div>
+ <div style="margin:16px;background:#3a3a40;border-radius:8px;height:80px;display:flex;align-items:center;justify-content:center;font-weight:800;color:#ffd400">BANNER AD</div>
+ <div style="margin:16px;background:#3a3a40;border-radius:8px;height:80px;display:flex;align-items:center;justify-content:center;font-weight:800;color:#ff6b6b">⚠ UPGRADE NOW</div>
+ <div style="position:absolute;left:30px;right:30px;top:420px;background:#fff;color:#111;border-radius:14px;padding:22px;box-shadow:0 20px 60px #000"><div style="font-weight:800;font-size:18px">Rate us 5 ★★★★★</div><div style="font-size:13px;margin-top:6px;color:#555">Watch another ad to unlock HD</div><div style="display:flex;gap:8px;margin-top:14px"><span style="flex:1;background:#0a84ff;color:#fff;text-align:center;padding:10px;border-radius:8px;font-weight:700">OK</span><span style="flex:1;background:#eee;text-align:center;padding:10px;border-radius:8px">✕</span></div></div></div>`}
+// ---------- device placement ----------
+function dev(kind,x,y,w,content,parent){const ratio={phone:[390,844],tv:[1280,720],ipad:[1280,720]}[kind];const pad={phone:16,tv:14,ipad:20}[kind];
+ const iw=w-2*pad,sc=iw/ratio[0],ih=ratio[1]*sc;const e=h(`<div class="${kind}" style="left:${x}px;top:${y}px;width:${w}px;height:${ih+2*pad}px"><div class="scr">${kind=='phone'?'<div class="island"></div><div class="sbar"><span>20:45</span><span>▂▄▆ ◔</span></div>':''}<div style="transform:scale(${sc});transform-origin:0 0;position:absolute;left:0;top:0">${content}</div></div></div>`,parent);return e}
+// ---------- slide templates ----------
+function base(n,tot,bgTint){const s=h(`<div class="slide"><div class="glow" style="width:900px;height:900px;left:-200px;top:520px;background:${bgTint||'#5b2fc9'}"></div><div class="glow" style="width:700px;height:700px;right:-250px;top:-150px;background:#c2306f;opacity:.35"></div>
+ <div class="brand"><img src="logo.png">Kanalo</div><div class="pg">${n}/${tot}</div></div>`);return s}
+function hook(s,t,sub,film){const bg=h(`<div style="position:absolute;inset:0;background:url(${img(film)}) center/cover"></div>`,s);s.insertBefore(bg,s.firstChild);
+ h(`<div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,15,.55) 0%,rgba(10,10,15,.2) 35%,rgba(10,10,15,.92) 72%,#0a0a0f)"></div>`,s);s.insertBefore(s.lastChild,s.children[1]);
+ h(`<div class="h1" style="top:auto;bottom:250px;font-size:96px">${t}</div>`,s);h(`<div class="sub" style="bottom:150px">${sub}</div>`,s);h(`<div class="swipe">${L.swipe} →</div>`,s)}
+function cta(s,line){h(`<div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 80px">
+ <img src="logo.png" style="height:170px;filter:drop-shadow(0 20px 60px rgba(224,64,143,.5))"><div style="font-size:96px;font-weight:800;margin-top:26px;letter-spacing:-2px">Kanalo</div>
+ <div style="font-size:40px;font-weight:600;margin-top:18px;color:#d9d5e6">${line||L.cta3}</div>
+ <div class="grad" style="margin-top:50px;border-radius:60px;padding:30px 60px;font-size:44px;font-weight:800"> ${L.cta1}</div>
+ <div style="margin-top:28px;font-size:30px;color:#a7a2ba;font-weight:600">${L.cta2} · ${L.bio}</div></div>`,s)}
+function title(s,t,sub,top=150){h(`<div class="h1" style="top:${top}px">${t}</div>`,s);if(sub)h(`<div class="sub" style="top:${top+190}px">${sub}</div>`,s)}
+function tag(s,txt,x,y,g){h(`<div class="tag ${g?'g':''}" style="left:${x}px;top:${y}px">${txt}</div>`,s)}
+const GP=[['19:00','Het Avondjournaal','—','past'],['20:00','De Zilveren Kust','','live'],['21:00','Late Avond Live','Talkshow','next'],['21:55','Nachtvlucht 219','Film','next'],['22:45','Stille Wateren','Drama','next'],['23:30','Het Late Journaal','Nieuws','next']];
+// ---------- carousels ----------
+const P={ // plots
+ 2:{fr:"Un détective insomniaque traque un voleur de souvenirs dans une ville où il pleut sans arrêt. Chaque indice le rapproche de son propre passé."},
+ 3:{es:"Una astronauta varada en un planeta desierto capta una señal imposible: una voz que dice su nombre. Solo tiene una noche para encontrar el origen."},
+ 4:{de:"Ein Sommer, eine Straßenbahn, zwei Fremde. In Lissabon verpassen sie sich jeden Tag um eine Minute – bis der Zufall nachhilft."},
+ 9:{en:"Four strangers, one night, the most secure train station in Europe. The plan is perfect, until one of them changes it."},
+ 8:{it:"Due fratelli e il loro piccolo robot costruiscono un telescopio sul tetto e scoprono una cometa che non è affatto una cometa."},
+ 1:{nl:"Een onderzoeker op een poolstation ziet het noorderlicht elke nacht een ander patroon vormen. Iemand probeert iets te vertellen."}};
+const CAR={
+ fr:[ // soirée film
+  s=>hook(s,'Ta soirée film<br>mérite <i class="gtext">mieux.</i>','Même playlist. Une appli qui la rend enfin belle. 🍿',2),
+  s=>{title(s,'Tes films,<br><i class="gtext">bien rangés.</i>','Affiches, notes, genres. Tout est trié pour toi.');dev('phone',300,560,480,phoneHome(1,[[2,64],[10,22]],[3,4,8]),s);tag(s,'⭐ Notes & affiches',60,760);tag(s,'▶ Reprends où tu étais',620,1010,1)},
+  s=>{title(s,'Chaque film a<br><i class="gtext">sa vraie page.</i>');dev('phone',300,450,480,phoneDetail(2,P[2].fr),s);tag(s,'4K · HDR',640,700,1)},
+  s=>{title(s,'Et sur grand écran ?<br><i class="gtext">Apple TV.</i>');dev('tv',70,560,940,tvHome(9,3,4,[1,5,6,7,8,10]),s)},
+  s=>{title(s,'Le guide TV<br><i class="gtext">qui charge vite.</i>');dev('tv',70,560,940,tvGuide(GP),s)},
+  s=>cta(s)],
+ es:[ // 5 cosas
+  s=>hook(s,'5 cosas que tu<br>app IPTV <i class="gtext">debería</i><br>hacer.','La número 3 te va a cambiar las noches. 👀',3),
+  s=>{h(`<div class="num" style="left:40px;top:120px">1</div>`,s);title(s,'1. Cero<br><i class="gtext">anuncios.</i>','Ni banners, ni vídeos, ni “mira otro anuncio”.');dev('phone',300,600,480,phoneHome(3,[[9,40],[4,75]],[1,2,6]),s)},
+  s=>{title(s,'2. Una página<br><i class="gtext">por película.</i>');dev('phone',300,450,480,phoneDetail(3,P[3].es),s)},
+  s=>{title(s,'3. Seguir viendo,<br><i class="gtext">donde lo dejaste.</i>','En el iPhone, en el iPad y en la Apple TV.');dev('tv',70,600,940,tvHome(3,9,1,[4,5,6,7,8,10]),s);tag(s,'▶ 42 '+L.left,600,560,1)},
+  s=>{title(s,'4. Guía TV<br><i class="gtext">sin esperas.</i>','5. Tu propia playlist: Xtream o M3U.');dev('tv',70,600,940,tvGuide(GP),s)},
+  s=>cta(s)],
+ de:[ // vorher nachher
+  s=>hook(s,'Vorher vs.<br><i class="gtext">nachher.</i>','Gleiche Playlist. Andere App. 👉',4),
+  s=>{title(s,'Vorher:<br><span style="color:#ff6b6b">Werbung, Pop-ups, Stress.</span>');dev('phone',300,520,480,adApp(),s);tag(s,'😤 Werbung nach 2 Minuten',90,1170)},
+  s=>{title(s,'Nachher:<br><i class="gtext">einfach schauen.</i>');dev('phone',300,520,480,phoneHome(4,[[1,30],[8,55]],[9,2,3]),s);tag(s,'✓ Null Werbung',650,760,1)},
+  s=>{title(s,'Jeder Film<br><i class="gtext">mit eigener Seite.</i>');dev('phone',300,450,480,phoneDetail(4,P[4].de),s)},
+  s=>{title(s,'Auch auf dem<br><i class="gtext">Fernseher.</i>','Apple TV, iPhone und iPad.');dev('tv',70,600,940,tvHome(4,8,6,[1,2,3,5,7,10]),s)},
+  s=>cta(s)],
+ en:[ // things that ruin movie night
+  s=>hook(s,'3 things that<br>ruin <i class="gtext">movie night.</i>','(and how to fix all of them) 🍿',9),
+  s=>{title(s,'1. Ads.<br><i class="gtext">Just… ads.</i>','In the middle of the best scene. Every time.');dev('phone',300,560,480,adApp(),s)},
+  s=>{title(s,'2. A guide that<br><i class="gtext">never loads.</i>','Kanalo loads it in the background.');dev('tv',70,600,940,tvGuide(GP),s)},
+  s=>{title(s,'3. Not knowing<br><i class="gtext">what to watch.</i>','Posters, ratings and a real page for every film.');dev('phone',300,560,480,phoneDetail(9,P[9].en),s)},
+  s=>{title(s,'Fixed.<br><i class="gtext">On every screen.</i>');dev('tv',70,560,940,tvHome(9,1,10,[2,3,4,5,6,8]),s);tag(s,'✓ Zero ads',80,1180,1);tag(s,'✓ Your own playlist',520,1180)},
+  s=>cta(s)],
+ it:[ // setup in 30 sec
+  s=>hook(s,'Pronta in<br><i class="gtext">30 secondi.</i>','Ti mostro come. 👇',8),
+  s=>{title(s,'1. Aggiungi la<br><i class="gtext">tua playlist.</i>','Xtream o M3U. Si salva in un attimo.');dev('phone',300,560,480,phoneAdd(),s)},
+  s=>{title(s,'2. Kanalo mette<br><i class="gtext">tutto in ordine.</i>','Film, serie, canali e guida TV.');dev('phone',300,560,480,phoneHome(8,[[7,50],[5,20]],[10,1,4]),s)},
+  s=>{title(s,'3. Scegli<br><i class="gtext">e guarda.</i>');dev('phone',300,450,480,phoneDetail(8,P[8].it),s);tag(s,'▶ Zero pubblicità',600,1150,1)},
+  s=>{title(s,'Anche su<br><i class="gtext">Apple TV.</i>');dev('tv',70,560,940,tvHome(8,10,7,[1,2,3,4,5,9]),s)},
+  s=>cta(s)],
+ nl:[ // je bibliotheek mooi
+  s=>hook(s,'Je playlist,<br>maar dan <i class="gtext">mooi.</i>','Zo ziet IPTV eruit zonder reclame. 👇',1),
+  s=>{title(s,'Alles netjes<br><i class="gtext">op een rij.</i>','Posters, cijfers en genres. Je ziet meteen wat je wilt kijken.');dev('phone',300,600,480,phoneHome(1,[[6,58],[3,15]],[5,7,10]),s)},
+  s=>{title(s,'Elke film een<br><i class="gtext">eigen pagina.</i>');dev('phone',300,450,480,phoneDetail(1,P[1].nl),s);tag(s,'4K · HDR',640,700,1)},
+  s=>{title(s,'Tv-gids die<br><i class="gtext">gewoon werkt.</i>','Live zien wat er nu op is, en terugkijken.');dev('tv',70,600,940,tvGuide(GP),s)},
+  s=>{title(s,'Op je iPhone,<br>iPad én <i class="gtext">Apple TV.</i>');dev('tv',70,560,940,tvHome(1,6,5,[2,3,4,7,8,9]),s)},
+  s=>cta(s)]};
+const list=CAR[lg];const tint={fr:'#5b2fc9',es:'#7a2a9e',de:'#3a3fc9',en:'#5b2fc9',it:'#8a2f7a',nl:'#4b35c9'}[lg];
+const s=base(S,list.length,tint);list[S-1](s);
+window.N=list.length;window.ready=true;
+</script></body></html>
