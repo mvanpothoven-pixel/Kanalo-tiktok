@@ -98,8 +98,7 @@ if(V==='3'){
   head(['Je eigen bestelsite,','<i>zonder commissie.</i>'],.2,4.7);
   const ph=dev('phone',80,620,470,1000,['ordering-nl.png']);from(ph,.6,-700,0,.8);
   kb(ph.imgs[0],1.4,3.4,'scale(1)','scale(1.12) translateY(-4%)');
-  const c1=h(`<div class="ab card" style="left:520px;top:700px;width:500px"><img src="module-ordering-fulfilment-nl.png"></div>`);from(c1,1.6,600,0,.7);away(c1,4.6,600,0);
-  const c2=h(`<div class="ab card" style="left:500px;top:1100px;width:520px"><img src="module-ordering-menu-nl.png"></div>`);from(c2,2.3,600,0,.7);away(c2,4.6,600,0);
+  const c1=h(`<div class="ab card" style="left:540px;top:820px;width:480px"><img src="module-ordering-fulfilment-nl.png"></div>`);from(c1,1.6,600,0,.7);away(c1,4.6,600,0);
   away(ph,4.6,-700,0);
   head(['Alles wat een bestel-','platform doet,','<i>maar dan van jou.</i>'],4.8,9.6);
   ['Menukaart met allergenen','Bezorgzones op postcode','Op je eigen domein','iDEAL, kaart en live tracking','Deals en bundels'].forEach((t,i)=>{const e=h(`<div class="ab tick" style="left:80px;top:${720+i*150}px"><b>✓</b>${t}</div>`);from(e,5.4+i*.4,-900,0,.55);fadeOut(e,9.5)});
