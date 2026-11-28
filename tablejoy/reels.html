@@ -1,0 +1,143 @@
+<!doctype html><html><head><meta charset="utf-8">
+<!-- Tablejoy motion reels 1080x1920. Render frames: reels.html?v=1..5, window.seek(t). Assets: Figtree.ttf, FigtreeI.ttf, logo.png, tablejoy.app marketing pngs, s1.png, sora1.png, app-store.svg, google-play-nl.png.
+     Safe zone (IG/TikTok UI): keep text between y=280 and y=1600, nothing important at the top 250px. -->
+<style>
+@font-face{font-family:F;src:url(Figtree.ttf)}@font-face{font-family:F;font-style:italic;src:url(FigtreeI.ttf)}
+*{box-sizing:border-box;margin:0}
+html,body{width:1080px;height:1920px;overflow:hidden;font-family:F,sans-serif;color:#123e2c;
+ background:radial-gradient(ellipse at 75% 10%,#fffdf6 0%,#f7f1e2 45%,#efe6cf 100%)}
+#root{position:absolute;inset:0}
+.ab{position:absolute}
+.hl{left:80px;right:60px;top:300px;font-weight:800;font-size:94px;line-height:1.0;letter-spacing:-2.5px}
+.hl i{font-style:italic;color:#c9a23e;font-weight:700}
+.hl div{overflow:hidden;padding-bottom:10px}
+.sub{left:82px;right:120px;font-size:38px;font-weight:500;color:#4e6157;line-height:1.35}
+.panel{left:70px;right:70px;background:#21533d;border-radius:60px}
+.ipad{background:#141414;border-radius:44px;padding:16px;box-shadow:0 40px 90px rgba(10,40,25,.35)}
+.ipad .scr{border-radius:28px}
+.phone{background:#141414;border-radius:58px;padding:12px;box-shadow:0 30px 70px rgba(10,40,25,.4)}
+.phone .scr{border-radius:46px}
+.scr{position:relative;overflow:hidden;background:#fff;width:100%;height:100%}
+.scr img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center}
+.chip{background:#fff;border-radius:26px;padding:22px 30px;font-size:36px;font-weight:700;box-shadow:0 16px 40px rgba(18,62,44,.18);display:flex;gap:16px;align-items:center;white-space:nowrap}
+.chip.g{background:#123e2c;color:#f7f3e8}.chip.y{background:#c9a23e;color:#fff}
+.card{background:#fff;border-radius:34px;box-shadow:0 30px 70px rgba(18,62,44,.22);overflow:hidden}
+.card img{display:block;width:100%}
+.pill{display:inline-block;background:#123e2c;color:#f7f3e8;border-radius:80px;padding:34px 60px;font-size:56px;font-weight:800}
+.big{font-weight:800;font-size:120px;line-height:1;letter-spacing:-3px}
+.tick{font-size:44px;font-weight:700;display:flex;gap:22px;align-items:center;background:#fff;border-radius:24px;padding:24px 32px;box-shadow:0 12px 30px rgba(18,62,44,.12)}
+.tick b{width:52px;height:52px;border-radius:50%;background:#21533d;color:#fff;display:flex;align-items:center;justify-content:center;font-size:30px}
+.touch{width:90px;height:90px;border-radius:50%;background:rgba(201,162,62,.55);border:5px solid #fff;box-shadow:0 8px 20px rgba(0,0,0,.25)}
+</style></head><body><div id="root"></div>
+<script>
+const V=new URLSearchParams(location.search).get('v')||'1';
+const R=document.getElementById('root');
+const h=(html,parent=R)=>{const d=document.createElement('div');d.innerHTML=html.trim();const el=d.firstChild;parent.appendChild(el);return el};
+const A=(el,kf,s,d,e='cubic-bezier(.2,.9,.25,1.1)',fill='both')=>el.animate(kf,{duration:d*1000,delay:s*1000,fill,easing:e});
+const X=(el,kf,s,d,e='cubic-bezier(.6,0,.4,1)')=>A(el,kf,s,d,e,'forwards');
+const P=(el,kf,s,d)=>A(el,kf,s,d,'ease-in-out','none');
+const vis=(el,a,b)=>{A(el,[{opacity:0},{opacity:1}],a,.01);if(b!=null)X(el,[{opacity:1},{opacity:0}],b,.01)};
+const fadeIn=(el,t,d=.4)=>A(el,[{opacity:0},{opacity:1}],t,d,'ease-out');
+const fadeOut=(el,t,d=.3)=>X(el,[{opacity:1},{opacity:0}],t,d,'ease-in');
+const from=(el,t,dx,dy,d=.7)=>A(el,[{transform:`translate(${dx}px,${dy}px)`,opacity:0},{transform:'none',opacity:1}],t,d);
+const away=(el,t,dx,dy,d=.45)=>X(el,[{transform:'none',opacity:1},{transform:`translate(${dx}px,${dy}px)`,opacity:0}],t,d);
+const pop=(el,t,d=.45)=>A(el,[{transform:'scale(0)',opacity:0},{transform:'scale(1)',opacity:1}],t,d,'cubic-bezier(.3,1.6,.5,1)');
+const pulse=(el,t,s=1.06)=>P(el,[{transform:'scale(1)'},{transform:`scale(${s})`},{transform:'scale(1)'}],t,.7);
+const kb=(img,t,d,a,b)=>A(img,[{transform:a},{transform:b}],t,d,'ease-in-out');
+function head(lines,t,tOut,top=300,size=94){
+  const e=h(`<div class="ab hl" style="top:${top}px;font-size:${size}px">${lines.map(l=>`<div><span style="display:inline-block">${l}</span></div>`).join('')}</div>`);
+  [...e.querySelectorAll('span')].forEach((s,i)=>A(s,[{transform:'translateY(120%)'},{transform:'none'}],t+i*.12,.6,'cubic-bezier(.2,.9,.2,1)'));
+  if(tOut!=null)[...e.querySelectorAll('span')].forEach((s,i)=>X(s,[{transform:'none'},{transform:'translateY(-125%)'}],tOut+i*.06,.35));
+  return e}
+function sub(txt,t,tOut,top){const e=h(`<div class="ab sub" style="top:${top}px">${txt}</div>`);from(e,t,0,30,.5);if(tOut!=null)fadeOut(e,tOut);return e}
+function dev(kind,x,y,w,hh,imgs){const e=h(`<div class="ab ${kind}" style="left:${x}px;top:${y}px;width:${w}px;height:${hh}px"><div class="scr">${imgs.map((s,i)=>`<img src="${s}" style="opacity:${i?0:1}">`).join('')}</div></div>`);e.imgs=[...e.querySelectorAll('img')];return e}
+function swap(d,i,t){const im=d.imgs;im.forEach((m,j)=>{if(j===i)A(m,[{opacity:0,transform:'translateX(60px)'},{opacity:1,transform:'none'}],t,.5,'ease-out');else X(m,[{opacity:1},{opacity:0}],t,.35)});}
+function chip(txt,x,y,t,tOut,cls=''){const e=h(`<div class="ab chip ${cls}" style="left:${x}px;top:${y}px">${txt}</div>`);pop(e,t);if(tOut!=null)fadeOut(e,tOut,.25);return e}
+function endCard(t,line1,line2,badges){
+  const bg=h(`<div class="ab" style="inset:0;background:radial-gradient(ellipse at 50% 40%,#fffdf6,#f1e9d4)"></div>`);
+  A(bg,[{clipPath:'circle(0% at 50% 60%)'},{clipPath:'circle(150% at 50% 60%)'}],t,.7,'cubic-bezier(.6,0,.3,1)');
+  const lg=h(`<img class="ab" src="logo.png" style="left:170px;top:560px;width:740px">`);pop(lg,t+.35,.6);
+  const l1=h(`<div class="ab" style="top:840px;width:100%;text-align:center;font-size:54px;font-weight:800">${line1}</div>`);from(l1,t+.6,0,40,.5);
+  const l2=h(`<div class="ab" style="top:915px;width:100%;text-align:center;font-size:40px;font-weight:500;color:#4e6157">${line2}</div>`);from(l2,t+.7,0,40,.5);
+  const pl=h(`<div class="ab" style="top:1050px;width:100%;text-align:center"><span class="pill">Gratis starten · tablejoy.app</span></div>`);from(pl,t+.9,0,120,.5);pulse(pl.firstChild,t+1.8);
+  if(badges){const bd=h(`<div class="ab" style="top:1240px;width:100%;display:flex;justify-content:center;gap:30px;align-items:center"><img src="app-store.svg" style="height:96px"><img src="google-play-nl.png" style="height:96px"></div>`);from(bd,t+1.1,0,80,.5)}
+  const tg=h(`<div class="ab" style="top:${badges?1400:1250}px;width:100%;text-align:center;font-size:32px;font-weight:800;letter-spacing:5px;color:#c9a23e">MORE JOY, LESS CHAOS</div>`);fadeIn(tg,t+1.2);
+}
+const E=12.9;
+if(V==='1'){
+  head(['Het meest complete','reserveringssysteem','voor <i>jouw restaurant.</i>'],.2,4.6);
+  sub('Gasten boeken zelf via je eigen site, in jouw huisstijl. Geen telefoontjes tijdens de service.',1.0,4.6,630);
+  const pn=h(`<div class="ab panel" style="top:1180px;height:480px"></div>`);A(pn,[{transform:'scaleY(0)'},{transform:'none'}],1.3,.6);
+  const ip=dev('ipad',150,860,780,600,['timeline-nl.png','floor-nl.png','reservations-nl.png']);from(ip,1.5,0,700,.8);
+  const pl=dev('phone',60,1060,290,620,['home-nl.png','guests-nl.png']);from(pl,1.9,-500,0,.7);
+  const pr=dev('phone',730,1060,290,620,['widget-terracotta-nl.png','reviews-nl.png']);from(pr,2.2,500,0,.7);
+  chip('🔔 Nieuwe reservering · 4p · 19:30',260,1500,3.0,4.7,'g');
+  head(['Al je tafels','<i>in één oogopslag.</i>'],4.8,7.9);swap(ip,1,4.9);
+  chip('Plattegrond live',640,780,5.6,7.9,'y');
+  head(['Ken je gast','<i>voor hij binnenkomt.</i>'],8.0,10.6);swap(pl,1,8.1);swap(ip,2,8.2);
+  chip('⚠️ Notenallergie',80,780,8.8,10.6);chip('⭐ Vaste gast · 9 bezoeken',380,1500,9.3,10.6,'g');
+  head(['Reviews opvolgen','<i>terwijl het nog telt.</i>'],10.7,12.6);swap(pr,1,10.8);
+  chip('💬 Direct reageren',620,780,11.3,12.6,'y');
+  endCard(E,'Reserveren · bestellen · keuken · kassa','Eén platform voor je hele restaurant');
+}
+if(V==='2'){
+  head(['Je restaurant','in je <i>broekzak.</i>'],.2,5.0);
+  const ph=dev('phone',270,560,540,1150,['home-nl.png','guests-nl.png','reviews-nl.png']);from(ph,.6,0,900,.9);
+  kb(ph.imgs[0],1.5,3.4,'scale(1)','scale(1.08) translateY(3%)');
+  chip('👥 Hoeveel gasten vandaag',40,760,1.6,5.0,'g');chip('⏭ Wie er als volgende komt',540,1060,2.3,5.0);chip('⚠️ Allergieën meteen in beeld',90,1380,3.0,5.0,'y');
+  head(['Ken je gast','<i>voor hij binnenkomt.</i>'],5.1,8.0);swap(ph,1,5.2);
+  chip('📞 Bellen of mailen met één tik',200,1500,5.9,8.0,'g');
+  head(['Je zaal','<i>op de iPad.</i>'],8.1,12.6);
+  X(ph,[{transform:'none'},{transform:'translate(330px,260px) scale(.62)'}],8.1,.6);
+  const ip=dev('ipad',60,620,900,690,['floor-nl.png','timeline-nl.png']);from(ip,8.3,-1100,0,.7);
+  const tc=h(`<div class="ab touch" style="left:430px;top:910px"></div>`);vis(tc,9.2,11.9);A(tc,[{transform:'translate(0,0)'},{transform:'translate(-150px,110px)'}],9.3,.9,'ease-in-out');
+  swap(ip,1,10.4);chip('Schuiven met je vinger 👆',90,1380,10.6,12.6,'y');
+  endCard(E,'Download Tablejoy Host','Voor iPhone, iPad en Android',true);
+}
+if(V==='3'){
+  head(['Je eigen bestelsite,','<i>zonder commissie.</i>'],.2,4.7);
+  const ph=dev('phone',80,620,470,1000,['ordering-nl.png']);from(ph,.6,-700,0,.8);
+  kb(ph.imgs[0],1.4,3.4,'scale(1)','scale(1.12) translateY(-4%)');
+  const c1=h(`<div class="ab card" style="left:520px;top:700px;width:500px"><img src="module-ordering-fulfilment-nl.png"></div>`);from(c1,1.6,600,0,.7);away(c1,4.6,600,0);
+  const c2=h(`<div class="ab card" style="left:500px;top:1100px;width:520px"><img src="module-ordering-menu-nl.png"></div>`);from(c2,2.3,600,0,.7);away(c2,4.6,600,0);
+  away(ph,4.6,-700,0);
+  head(['Alles wat een bestel-','platform doet,','<i>maar dan van jou.</i>'],4.8,9.6);
+  ['Menukaart met allergenen','Bezorgzones op postcode','Op je eigen domein','iDEAL, kaart en live tracking','Deals en bundels'].forEach((t,i)=>{const e=h(`<div class="ab tick" style="left:80px;top:${720+i*150}px"><b>✓</b>${t}</div>`);from(e,5.4+i*.4,-900,0,.55);fadeOut(e,9.5)});
+  const n1=h(`<div class="ab" style="left:80px;top:420px"><div style="font-size:52px;font-weight:700;color:#4e6157">Geen percentage per bestelling.</div><div class="big" style="margin-top:30px">Vast <i style="color:#c9a23e">€0,35</i></div><div style="font-size:40px;font-weight:600;margin-top:24px;color:#4e6157">per online bestelling (excl. btw)</div></div>`);
+  vis(n1,9.7,12.7);from(n1.children[0],9.7,0,40,.5);pop(n1.children[1],10.1,.6);from(n1.children[2],10.6,0,40,.5);
+  const ip=dev('ipad',150,960,780,600,['kitchen-nl.png']);from(ip,10.9,0,800,.7);
+  chip('🍣 Bestelling direct in de keuken',170,870,11.5,12.7,'g');
+  endCard(E,'Je eigen bestelsite','Deze week nog live');
+}
+if(V==='4'){
+  head(['Eén scherm voor','<i>de hele keuken.</i>'],.2,6.4);
+  const ip=dev('ipad',60,560,960,740,['kitchen-nl.png','pos-nl.png']);from(ip,.6,0,900,.8);
+  const kc=h(`<div class="ab card" style="left:60px;top:1000px;width:960px"><img src="module-kitchen-courses-nl.png"></div>`);from(kc,2.2,0,600,.7);fadeOut(kc,6.3);
+  chip('🔥 Gangen en fire',90,900,3.0,6.4,'y');chip('🖨 Bonprinten erbij',560,900,3.6,6.4,'g');
+  head(['Een kassa die je zaal','<i>en keuken kent.</i>'],6.5,12.6);swap(ip,1,6.6);
+  const ph=dev('phone',690,880,330,720,['module-pos-order-nl.png']);from(ph,7.3,500,0,.7);
+  ['Orders per tafel','Splitsen en samenvoegen','Kassasessies en Z-rapport'].forEach((t,i)=>{const e=h(`<div class="ab tick" style="left:60px;top:${1220+i*130}px"><b>✓</b>${t}</div>`);from(e,8.0+i*.45,-800,0,.55);fadeOut(e,12.6)});
+  chip('🔥 Hoofdgerechten → keuken',300,800,11.0,12.6,'g');
+  endCard(E,'Reserveren · bestellen · keuken · kassa','Werkt allemaal samen');
+}
+if(V==='5'){
+  head(['Van een URL naar','<i>een live widget.</i>'],.2,8.2);
+  sub('In enkele minuten. Onze AI haalt je kleuren, logo, openingstijden en menu van je site.',.9,4.9,540);
+  const inp=h(`<div class="ab card" style="left:80px;top:800px;width:920px;padding:44px 48px;overflow:visible">
+    <div style="font-size:30px;font-weight:700;color:#7b8a80;letter-spacing:2px">1 · PLAK JE URL</div>
+    <div style="margin-top:22px;border:3px solid #d9d3c2;border-radius:22px;padding:26px 30px;font-size:46px;font-weight:600"><span id="ty" style="display:inline-block">https://jouwrestaurant.nl</span><span id="cu" style="display:inline-block;width:4px;height:50px;background:#123e2c;vertical-align:middle;margin-left:4px"></span></div>
+    <div id="bt" style="margin-top:28px;display:inline-block;background:#123e2c;color:#f7f3e8;border-radius:20px;padding:24px 36px;font-size:40px;font-weight:800">✨ Haal mijn huisstijl op</div></div>`);
+  from(inp,1.2,0,300,.6);A(inp.querySelector('#ty'),[{clipPath:'inset(0 100% 0 0)'},{clipPath:'inset(0 0 0 0)'}],1.9,1.4,'steps(25)');
+  P(inp.querySelector('#cu'),[{opacity:1},{opacity:0},{opacity:1}],1.9,1.6);pulse(inp.querySelector('#bt'),3.5,1.1);away(inp,4.8,0,-200);
+  const tc=h(`<div class="ab touch" style="left:330px;top:1110px"></div>`);vis(tc,3.4,4.3);pop(tc,3.4,.3);
+  const br=h(`<div class="ab card" style="left:80px;top:640px;width:920px;padding:0"><img src="feature-branding-nl.png"></div>`);from(br,5.0,0,700,.7);away(br,8.0,0,-300);
+  chip('🎨 Kleuren gevonden',580,580,5.8,8.0,'y');chip('🕒 Openingstijden ingevuld',90,1400,6.4,8.0,'g');chip('📋 Menu geïmporteerd',520,1500,7.0,8.0);
+  head(['Dezelfde widget,','<i>elk merk.</i>'],8.3,12.6);
+  const p1=dev('phone',40,640,320,690,['widget-terracotta-nl.png']);const p2=dev('phone',380,600,320,690,['s1.png']);const p3=dev('phone',720,640,320,690,['sora1.png']);
+  from(p1,8.6,-500,0,.6);from(p2,8.8,0,800,.6);from(p3,9.0,500,0,.6);
+  chip('Casa Lupita',90,1360,9.6,12.6);chip('Maison Olivier',410,1330,9.9,12.6,'g');chip('Sora',800,1360,10.2,12.6,'y');
+  sub('Op je eigen site, in je eigen huisstijl. Geen generieke boekingspagina.',10.6,12.6,1480);
+  endCard(E,'Live op je eigen site','Gratis starten, geen creditcard nodig');
+}
+window.seek=t=>document.getAnimations().forEach(a=>{a.pause();a.currentTime=t*1000});window.ready=true;
+</script></body></html>
